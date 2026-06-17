@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="refresh" content="300">
+<title>趋势突破精选 v2.0 — 每日信号报告</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card-bg: #1a1d27;
+    --border: rgba(255,255,255,0.06);
+    --text: #e4e6eb;
+    --text2: #999;
+    --green: #00c853;
+    --red: #ff3d3d;
+    --yellow: #ffa000;
+    --blue: #448aff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .topbar h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.3px }
+  .topbar .sub { font-size: 13px; color: var(--text2); margin-top: 2px }
+  .env-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .summary-bar {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 22px;
+    min-width: 110px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 30px; font-weight: 600 }
+  .stat-card .lbl { font-size: 12px; color: var(--text2); margin-top: 2px }
+  .section { margin-bottom: 32px }
+  .section h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .holdings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 12px;
+  }
+  .h-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .h-card .name { font-size: 15px; font-weight: 500 }
+  .h-card .code { font-size: 12px; color: var(--text2) }
+  .h-card .px { font-size: 22px; font-weight: 600; margin: 6px 0 2px }
+  .h-card .meta { font-size: 11px; color: var(--text2) }
+  .h-card .alerts { margin-top: 6px }
+  .h-card .alerts span {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin: 2px 2px 0 0;
+  }
+  .alert-buy  { background: rgba(0,200,83,0.12); color: var(--green) }
+  .alert-hold { background: rgba(68,138,255,0.12); color: var(--blue) }
+  .alert-warn { background: rgba(255,160,0,0.12); color: var(--yellow) }
+  .alert-sell { background: rgba(255,61,61,0.12); color: var(--red) }
+  .signal-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .signal-row .rank { font-size: 18px; font-weight: 600; min-width: 24px; text-align: center }
+  .signal-row .stock { min-width: 110px }
+  .signal-row .stock .sname { font-weight: 500; font-size: 15px }
+  .signal-row .stock .scode { font-size: 12px; color: var(--text2) }
+  .signal-row .indicator {
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: rgba(68,138,255,0.08);
+    white-space: nowrap;
+  }
+  .signal-row .sl-tp { font-size: 12px; min-width: 80px; text-align: right }
+  .signal-row .sl-tp .sl { color: var(--red) }
+  .signal-row .sl-tp .tp { color: var(--green) }
+  .rules-box {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,160,0,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .rules-box strong { color: var(--yellow) }
+  .note {
+    margin-top: 20px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    background: rgba(255,255,255,0.03);
+    color: var(--text2);
+  }
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text2);
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+  }
+  .empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--text2);
+    font-size: 14px;
+  }
+  @media (max-width: 600px) {
+    body { padding: 12px }
+    .stat-card { min-width: 80px; padding: 12px }
+    .stat-card .num { font-size: 22px }
+    .holdings-grid { grid-template-columns: repeat(2, 1fr) }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>趋势突破精选系统 v2.0</h1>
+    <div class="sub">每日信号报告 · 2026-06-17 晚间更新</div>
+  </div>
+  <span class="env-tag" style="background:rgba(255,160,0,0.15);color:#ffa000">震荡市</span>
+</div>
+
+<div class="summary-bar">
+  <div class="stat-card">
+    <div class="num" style="color:var(--blue)">6</div>
+    <div class="lbl">当前持仓</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" style="color:var(--yellow)">--</div>
+    <div class="lbl">今日信号(6/12数据)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" style="color:var(--text)">55%</div>
+    <div class="lbl">策略胜率(回测)</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" style="color:var(--green)">1.98</div>
+    <div class="lbl">盈亏比(回测)</div>
+  </div>
+</div>
+
+<!-- ===== 持仓 ===== -->
+<div class="section">
+  <h3>当前持仓</h3>
+  <div class="holdings-grid">
+
+    <div class="h-card">
+      <div class="name">大族激光</div>
+      <div class="code">002008</div>
+      <div class="px">135.84</div>
+      <div class="meta">成本 129.29 · 浮盈 +5.1%</div>
+      <div class="alerts">
+        <span class="alert-hold">持仓观望</span>
+        <span class="alert-warn">高位震荡</span>
+      </div>
+    </div>
+
+    <div class="h-card">
+      <div class="name">中恒电气</div>
+      <div class="code">002364</div>
+      <div class="px" style="color:var(--red)">51.99</div>
+      <div class="meta">成本 52.98 · 浮亏 -1.9%</div>
+      <div class="alerts">
+        <span class="alert-sell">跌破MA20</span>
+        <span class="alert-warn">距止损仅1.3%</span>
+      </div>
+    </div>
+
+    <div class="h-card">
+      <div class="name">大位科技</div>
+      <div class="code">600589</div>
+      <div class="px">10.02</div>
+      <div class="meta">成本 10.125 · 浮亏 -1.0%</div>
+      <div class="alerts">
+        <span class="alert-hold">持仓</span>
+      </div>
+    </div>
+
+    <div class="h-card">
+      <div class="name">特变电工</div>
+      <div class="code">600089</div>
+      <div class="px">24.11</div>
+      <div class="meta">成本 23.96 · 浮盈 +0.6%</div>
+      <div class="alerts">
+        <span class="alert-hold">持仓</span>
+      </div>
+    </div>
+
+    <div class="h-card">
+      <div class="name">华域汽车</div>
+      <div class="code">600741</div>
+      <div class="px">16.49</div>
+      <div class="meta">成本 16.76 · 浮亏 -1.6%</div>
+      <div class="alerts">
+        <span class="alert-hold">持仓</span>
+        <span class="alert-warn">跌破MA20</span>
+      </div>
+    </div>
+
+    <div class="h-card">
+      <div class="name">盐湖股份</div>
+      <div class="code">000792</div>
+      <div class="px">31.15</div>
+      <div class="meta">成本 32.11 · 浮亏 -3.0%</div>
+      <div class="alerts">
+        <span class="alert-hold">持仓</span>
+        <span class="alert-warn">跌破MA20</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 今日分析 ===== -->
+<div class="section">
+  <h3>今日分析重点 (06-17)</h3>
+
+  <div class="signal-row">
+    <div class="rank" style="color:var(--red)">⚠</div>
+    <div class="stock">
+      <div class="sname">中恒电气</div>
+      <div class="scode">002364 · 收 51.99</div>
+    </div>
+    <span class="indicator">MACD死叉</span>
+    <span class="indicator">主力流出5655万</span>
+    <span class="indicator">PE=225x</span>
+    <div class="sl-tp">
+      <div class="sl">止损 50.33</div>
+      <div style="font-size:11px;color:var(--text2)">距止损仅0.33元</div>
+    </div>
+  </div>
+
+  <div class="signal-row">
+    <div class="rank" style="color:var(--yellow)">👁</div>
+    <div class="stock">
+      <div class="sname">京东方A</div>
+      <div class="scode">000725 · 收 6.71(+10%)</div>
+    </div>
+    <span class="indicator">ADX=49强趋势</span>
+    <span class="indicator">主力+32亿</span>
+    <span class="indicator">NearMA20+16%不达标</span>
+    <div class="sl-tp">
+      <div style="font-size:12px;color:var(--blue)">等回调6.2-6.3</div>
+    </div>
+  </div>
+
+  <div class="signal-row">
+    <div class="rank" style="color:var(--yellow)">👁</div>
+    <div class="stock">
+      <div class="sname">景旺科技</div>
+      <div class="scode">603228 · 收 80.76(+3.3%)</div>
+    </div>
+    <span class="indicator">ADX=14不达标</span>
+    <span class="indicator">主力+3.49亿</span>
+    <span class="indicator">NearMA20=4.4%达标</span>
+    <div class="sl-tp">
+      <div style="font-size:12px;color:var(--blue)">等ADX>20+KDJ回落</div>
+    </div>
+  </div>
+
+  <div class="signal-row" style="opacity:0.6">
+    <div class="rank" style="color:var(--red)">✕</div>
+    <div class="stock">
+      <div class="sname">宏昌电子</div>
+      <div class="scode">603002 · 连3涨停</div>
+    </div>
+    <span class="indicator">PE=814x</span>
+    <span class="indicator">ROE=0.85%</span>
+    <span class="indicator">NearMA20+32%</span>
+    <div class="sl-tp">
+      <div style="font-size:12px;color:var(--text2)">不买</div>
+    </div>
+  </div>
+
+  <div class="signal-row" style="opacity:0.6">
+    <div class="rank" style="color:var(--red)">✕</div>
+    <div class="stock">
+      <div class="sname">天通股份</div>
+      <div class="scode">600330 · 三连阳+16%</div>
+    </div>
+    <span class="indicator">ROE=-3.29%亏损</span>
+    <span class="indicator">ADX=10</span>
+    <span class="indicator">KDJ=106超买</span>
+    <div class="sl-tp">
+      <div style="font-size:12px;color:var(--text2)">不买，等放量突破前高35.55确认</div>
+    </div>
+  </div>
+
+  <div class="signal-row" style="opacity:0.6">
+    <div class="rank" style="color:var(--red)">✕</div>
+    <div class="stock">
+      <div class="sname">烽火通讯</div>
+      <div class="scode">600498 · 年内+139%</div>
+    </div>
+    <span class="indicator">KDJ=101超买</span>
+    <span class="indicator">NearMA20+35%</span>
+    <span class="indicator">董事长辞职</span>
+    <div class="sl-tp">
+      <div style="font-size:12px;color:var(--text2)">不追高，等回调57元</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 系统参数 ===== -->
+<div class="section">
+  <h3>系统参数 (回测验证)</h3>
+  <div class="summary-bar">
+    <div class="stat-card">
+      <div class="num" style="font-size:24px">8647</div>
+      <div class="lbl">全市场股票</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" style="font-size:24px">3年</div>
+      <div class="lbl">回测周期</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" style="font-size:24px;color:var(--green)">54.1%</div>
+      <div class="lbl">胜率</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" style="font-size:24px;color:var(--green)">+1.22%</div>
+      <div class="lbl">均收益/笔</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" style="font-size:24px;color:var(--green)">1.98</div>
+      <div class="lbl">盈亏比</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" style="font-size:24px">~800</div>
+      <div class="lbl">信号/年</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 选股条件 ===== -->
+<div class="section">
+  <h3>选股条件</h3>
+  <div class="rules-box">
+    <strong>基础过滤</strong> (6条全满足):<br>
+    ① 创20日新高 &nbsp; ② 成交量 > MA5 × 1.5 &nbsp; ③ ADX > 20<br>
+    ④ RSI > 50 &nbsp; ⑤ 收盘价 > MA60 &nbsp; ⑥ MACD金叉(DIF > DEA)<br><br>
+    <strong>精选过滤</strong>: NearMA20 < 7%（价格距20日均线不超7%）<br><br>
+    <strong>最优组合</strong> (回测验证): NearMA20<7% 胜率54.1% 盈亏比1.98<br>
+    ADX上升+均线多头+NearMA20<7% 胜率54.7% 盈亏比1.53
+  </div>
+</div>
+
+<!-- ===== 风控 ===== -->
+<div class="section">
+  <h3>风控规则</h3>
+  <div class="rules-box">
+    <strong>硬止损</strong>: -5%无条件平仓<br>
+    <strong>止盈</strong>: +15%后移动止盈<br>
+    <strong>时间止损</strong>: 持仓10天未盈利 → 无条件重新评估<br>
+    <strong>仓位</strong>: 震荡市总仓50-70%，单只≤10%<br>
+    <strong>熔断</strong>: 月度亏损>8% → 降仓至30%<br>
+    <strong>连续止损</strong>: 连亏3笔 → 停止交易，复盘后再战<br>
+    <strong>单笔风险</strong>: 单笔亏损>总资金2% → 无条件平仓
+  </div>
+</div>
+
+<div class="note">
+  ⚡ 此页面每天早上 09:25 自动更新（如WorkBuddy在线）。信号基于8647只A股3年历史回测验证。<br>
+  📊 最新完整策略文档: artifacts/三策共振交易体系_实战版.md<br>
+  🔗 同花顺选股公式: artifacts/同花顺选股公式.md
+</div>
+
+<div class="footer">
+  趋势突破精选系统 v2.0 · 生成时间 2026-06-17 22:10 · 回测周期 2023-2026 全市场8647只
+</div>
+
+</body>
+</html>
