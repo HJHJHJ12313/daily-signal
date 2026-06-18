@@ -3,417 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta http-equiv="refresh" content="300">
-<title>三策共振 v3.0 — 每日开盘分析 | 2026-06-18</title>
+<title>每日交易信号 — 2026-06-18</title>
 <style>
-  :root {
-    --bg: #0f1117;
-    --card-bg: #1a1d27;
-    --border: rgba(255,255,255,0.06);
-    --text: #e4e6eb;
-    --text2: #999;
-    --green: #00c853;
-    --red: #ff3d3d;
-    --yellow: #ffa000;
-    --blue: #448aff;
-    --purple: #bb86fc;
-  }
-  * { margin:0; padding:0; box-sizing:border-box }
-  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.6; padding:12px; max-width:480px; margin:0 auto }
-  .header { text-align:center; padding:16px 0 12px; border-bottom:1px solid var(--border); margin-bottom:12px }
-  .header .date { font-size:1.3em; font-weight:700; letter-spacing:1px }
-  .header .badge { display:inline-block; padding:3px 12px; border-radius:20px; font-size:0.85em; font-weight:600; margin-top:6px }
-  .badge-shock { background:rgba(255,160,0,0.15); color:var(--yellow); border:1px solid rgba(255,160,0,0.3) }
-  .badge-bull { background:rgba(0,200,83,0.15); color:var(--green); border:1px solid rgba(0,200,83,0.3) }
-  .badge-bear { background:rgba(255,61,61,0.15); color:var(--red); border:1px solid rgba(255,61,61,0.3) }
-  .badge-panic { background:rgba(255,61,61,0.3); color:#ff6b6b; border:1px solid rgba(255,61,61,0.5) }
-  .card { background:var(--card-bg); border-radius:12px; padding:14px; margin-bottom:10px; border:1px solid var(--border) }
-  .card-title { font-size:0.95em; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:6px }
-  .card-title .icon { font-size:1.1em }
-  .idx-row { display:flex; justify-content:space-between; align-items:center; padding:5px 0; border-bottom:1px solid var(--border) }
-  .idx-row:last-child { border-bottom:none }
-  .idx-name { color:var(--text2); font-size:0.88em }
-  .idx-val { font-weight:600; font-size:0.95em }
-  .idx-chg { font-size:0.85em; font-weight:600; padding:2px 8px; border-radius:4px }
-  .chg-up { color:var(--red); background:rgba(255,61,61,0.1) }
-  .chg-down { color:var(--green); background:rgba(0,200,83,0.1) }
-  .hold-card { background:var(--card-bg); border-radius:12px; padding:14px; margin-bottom:10px; border:1px solid var(--border) }
-  .hold-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px }
-  .hold-name { font-weight:700; font-size:1em }
-  .hold-code { color:var(--text2); font-size:0.82em }
-  .hold-price { font-weight:700; font-size:1.1em }
-  .hold-pnl { font-size:0.9em; font-weight:600; padding:2px 8px; border-radius:4px }
-  .hold-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; margin-top:8px }
-  .hold-grid .label { color:var(--text2); font-size:0.8em }
-  .hold-grid .val { font-size:0.88em; font-weight:500 }
-  .action-sell { color:var(--red); font-weight:700; background:rgba(255,61,61,0.1); padding:2px 8px; border-radius:4px; font-size:0.85em }
-  .action-hold { color:var(--yellow); font-weight:700; background:rgba(255,160,0,0.1); padding:2px 8px; border-radius:4px; font-size:0.85em }
-  .action-buy { color:var(--green); font-weight:700; background:rgba(0,200,83,0.1); padding:2px 8px; border-radius:4px; font-size:0.85em }
-  .warn-box { background:rgba(255,160,0,0.08); border:1px solid rgba(255,160,0,0.2); border-radius:8px; padding:10px 12px; margin-bottom:10px; font-size:0.85em; color:var(--yellow) }
-  .danger-box { background:rgba(255,61,61,0.08); border:1px solid rgba(255,61,61,0.2); border-radius:8px; padding:10px 12px; margin-bottom:10px; font-size:0.85em; color:var(--red) }
-  .rec-card { background:var(--card-bg); border-radius:12px; padding:14px; margin-bottom:10px; border:1px solid rgba(68,138,255,0.2) }
-  .v2-check { display:flex; align-items:center; gap:6px; font-size:0.82em; padding:2px 0 }
-  .v2-pass { color:var(--green) }
-  .v2-fail { color:var(--red) }
-  .v2-unknown { color:var(--yellow) }
-  .footer { text-align:center; color:var(--text2); font-size:0.75em; padding:12px 0; border-top:1px solid var(--border); margin-top:8px }
-  .sl-tp { display:flex; gap:8px; margin-top:6px }
-  .sl-tp span { font-size:0.82em; padding:2px 8px; border-radius:4px }
-  .sl-tag { background:rgba(255,61,61,0.1); color:var(--red) }
-  .tp-tag { background:rgba(0,200,83,0.1); color:var(--green) }
-  .cap-a { color:#ff3d3d; font-weight:700 }
-  .cap-b { color:#ffa000; font-weight:600 }
-  .cap-c { color:#00c853; font-weight:600 }
-  .divider { border:none; border-top:1px dashed var(--border); margin:8px 0 }
-  .summary-row { display:flex; justify-content:space-between; padding:3px 0; font-size:0.88em }
-  .summary-row .label { color:var(--text2) }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;background:#f8f9fa;color:#2C2C2A;padding:20px;max-width:1100px;margin:0 auto}
+  .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+  .header h1{font-size:22px;font-weight:500}
+  .env-badge{padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#fff}
+  .section{margin-bottom:24px}
+  .section h2{font-size:16px;font-weight:500;margin-bottom:12px;border-left:3px solid #185FA5;padding-left:10px}
+  .holdings{display:flex;flex-wrap:wrap;gap:10px}
+  .summary{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+  .summary-card{background:#fff;border-radius:10px;padding:14px 20px;border:0.5px solid rgba(0,0,0,0.08);min-width:120px}
+  .summary-card .num{font-size:28px;font-weight:500}
+  .summary-card .label{font-size:12px;color:#888;margin-top:2px}
+  .alert-box{border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.7;margin-top:12px}
+  .alert-danger{background:#FCEBEB;color:#A32D2D;border-left:3px solid #A32D2D}
+  .alert-warn{background:#FAEEDA;color:#854F0B;border-left:3px solid #854F0B}
+  .alert-info{background:#EAF3DE;color:#3B6D11;border-left:3px solid #3B6D11}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.08);font-size:13px}
+  th{text-align:left;padding:10px 8px;font-size:12px;font-weight:500;color:#888;background:#fafafa}
+  td{padding:10px 8px;border-bottom:0.5px solid #f0f0f0}
+  .tag{padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500}
+  .footer{text-align:center;font-size:11px;color:#999;margin-top:32px;padding:16px 0;border-top:0.5px solid #eee}
+  .signal-empty{background:#fff;border-radius:12px;padding:40px;text-align:center;color:#999;border:0.5px solid rgba(0,0,0,0.08)}
 </style>
 </head>
 <body>
-
-<!-- Header -->
 <div class="header">
-  <div class="date">2026年6月18日 周四</div>
-  <div class="badge badge-shock">🔄 震荡分化 · 轻仓</div>
-  <div style="color:var(--text2);font-size:0.78em;margin-top:4px">三策共振交易体系 v3.0 · 收盘数据</div>
+  <div>
+    <h1>📊 每日交易信号报告</h1>
+    <div style="font-size:13px;color:#888;margin-top:4px">三策共振 v3.0（+资金确认） | 2026-06-18（周四） | 数据源：WebSearch + NeoData</div>
+  </div>
+  <span class="env-badge" style="background:#EF9F27">SIDEWAYS 震荡分化</span>
 </div>
 
-<!-- 一、大盘环境 -->
-<div class="card">
-  <div class="card-title"><span class="icon">📊</span> 大盘环境</div>
-  <div class="idx-row">
-    <span class="idx-name">上证指数</span>
-    <span class="idx-val">~4090</span>
-    <span class="idx-chg chg-down">-0.43%</span>
+<div class="summary">
+  <div class="summary-card">
+    <div class="num" style="color:#A32D2D">4</div>
+    <div class="label">持仓浮亏</div>
   </div>
-  <div class="idx-row">
-    <span class="idx-name">深证成指</span>
-    <span class="idx-val">—</span>
-    <span class="idx-chg chg-up">+0.94%</span>
+  <div class="summary-card">
+    <div class="num" style="color:#3B6D11">2</div>
+    <div class="label">持仓浮盈</div>
   </div>
-  <div class="idx-row">
-    <span class="idx-name">创业板指</span>
-    <span class="idx-val">📈历史新高</span>
-    <span class="idx-chg chg-up">+2.05%</span>
+  <div class="summary-card">
+    <div class="num" style="color:#A32D2D">-1.27%</div>
+    <div class="label">持仓均值</div>
   </div>
-  <div class="idx-row">
-    <span class="idx-name">科创50</span>
-    <span class="idx-val">📈历史新高</span>
-    <span class="idx-chg chg-up">+3.84%</span>
-  </div>
-  <hr class="divider">
-  <div class="summary-row"><span class="label">成交额</span><span>3.33万亿（放量2177亿）</span></div>
-  <div class="summary-row"><span class="label">涨跌家数</span><span style="color:var(--green)">近3400只下跌</span></div>
-  <div class="summary-row"><span class="label">上证vs MA60</span><span style="color:var(--yellow)">站上MA60（~3900）但回落</span></div>
-  <div class="summary-row"><span class="label">MACD</span><span style="color:var(--text2)">红柱缩短，未死叉</span></div>
-  <hr class="divider">
-  <div style="font-size:0.85em;color:var(--yellow)">
-    ⚠️ 严重分化：创业板/科创板创历史新高，但3400只个股下跌。<br>
-    资金高度集中在科技/芯片/铜板块，多数个股结构性熊市。<br>
-    北向资金小幅净流出，海外资金受美联储加息预期压制。
+  <div class="summary-card">
+    <div class="num" style="color:#A32D2D">1</div>
+    <div class="label">🚨 需立即处理</div>
   </div>
 </div>
 
-<!-- 二、市场环境判定 -->
-<div class="card">
-  <div class="card-title"><span class="icon">🎯</span> 环境判定与仓位建议</div>
-  <div style="font-size:0.9em">
-    <div class="summary-row"><span class="label">判定</span><span style="color:var(--yellow);font-weight:700">🔄 震荡分化</span></div>
-    <div class="summary-row"><span class="label">依据</span><span>上证站MA60但跌0.43% + 涨少跌多 + 放量但资金集中</span></div>
-    <div class="summary-row"><span class="label">仓位建议</span><span style="color:var(--yellow)">轻仓（≤40%）</span></div>
-    <div class="summary-row"><span class="label">推荐数量</span><span>1-2只</span></div>
-    <div class="summary-row"><span class="label">策略侧重</span><span>防守为主，优先减亏仓位</span></div>
+<div class="section">
+  <h2>🚨 持仓风险警报（实时 6/18 收盘）</h2>
+  <div class="alert-box alert-danger">
+    <strong>盐湖股份(000792)：-7.18%</strong>，已触及止损线(-5%)，3日主力净流出1.88亿🚨<br>
+    <strong>原因</strong>：碳酸锂期货6/18暴跌6.5%，板块系统性风险<br>
+    <strong>建议</strong>：明日开盘立即止损，<span style="text-decoration:line-through">不抱希望</span>
+  </div>
+  <div class="alert-box alert-warn" style="margin-top:8px">
+    <strong>特变电工(600089)：-2.67%</strong>，主力净流出2.11亿❌<br>
+    <strong>建议</strong>：若明后日未能企稳MA60(22.80)，建议减仓
+  </div>
+  <div class="alert-box alert-warn" style="margin-top:8px">
+    <strong>华域汽车(600741)：-2.93%</strong>，跌破MA60，技术面偏弱<br>
+    <strong>建议</strong>：关注16.00支撑位，跌破则止损
+  </div>
+  <div class="alert-box alert-info" style="margin-top:8px">
+    <strong>大族激光(002008)：+4.34%</strong>，但6/18主力净流出4.71亿⚠️<br>
+    <strong>建议</strong>：浮盈但主力出逃，<strong>明日若冲高乏力建议止盈减仓</strong>
   </div>
 </div>
 
-<!-- 三、竞价风险提示 -->
-<div class="warn-box">
-  ⚠️ <b>竞价风险提示</b><br>
-  • 今日为收盘数据（非竞价数据），自动化任务延迟执行<br>
-  • 碳酸锂期货大跌6.5%，锂矿板块承压，盐湖股份需重点关注<br>
-  • 周四效应：T+1规则下卖盘压力偏大，明日周五资金可能进一步避险<br>
-  • 高位科技股多家披露减持/解禁计划，高位题材面临双重压力
+<div class="section">
+  <h2>💼 持仓监控卡片</h2>
+  <div class="holdings">
+        <div style="background:#E1F5EE;border-radius:8px;padding:12px;min-width:175px;flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:500;font-size:14px">大族激光</span>
+            <span style="font-size:11px;color:#0F6E56;font-weight:500">take profit</span>
+          </div>
+          <div style="font-size:12px;color:#888">002008  <span style="color:#1D9E75;font-weight:500">CAP-A</span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:20px;font-weight:500">134.90</span>
+            <span style="font-size:15px;font-weight:500;color:#3B6D11">+4.34%</span>
+          </div>
+          <div style="font-size:11px;color:#888;margin-top:2px">buy:129.29 | 2d</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">净流出4.71亿⚠️</div>
+        </div>
+        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:175px;flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:500;font-size:14px">中恒电气</span>
+            <span style="font-size:11px;color:#3B6D11;font-weight:500">normal</span>
+          </div>
+          <div style="font-size:12px;color:#888">002364  <span style="color:#E24B4A;font-weight:500">CAP-C</span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:20px;font-weight:500">54.16</span>
+            <span style="font-size:15px;font-weight:500;color:#3B6D11">+2.23%</span>
+          </div>
+          <div style="font-size:11px;color:#888;margin-top:2px">buy:52.98 | 2d</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">净流入1.70亿✅</div>
+        </div>
+        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:175px;flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:500;font-size:14px">大位科技</span>
+            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
+          </div>
+          <div style="font-size:12px;color:#888">600589  <span style="color:#185FA5;font-weight:500">CAP-B</span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:20px;font-weight:500">9.98</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-1.41%</span>
+          </div>
+          <div style="font-size:11px;color:#888;margin-top:2px">buy:10.12 | 2d</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">3日流入1.02亿</div>
+        </div>
+        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:175px;flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:500;font-size:14px">特变电工</span>
+            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
+          </div>
+          <div style="font-size:12px;color:#888">600089  <span style="color:#E24B4A;font-weight:500">CAP-C</span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:20px;font-weight:500">23.32</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-2.67%</span>
+          </div>
+          <div style="font-size:11px;color:#888;margin-top:2px">buy:23.96 | 2d</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">净流出2.11亿❌</div>
+        </div>
+        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:175px;flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:500;font-size:14px">华域汽车</span>
+            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
+          </div>
+          <div style="font-size:12px;color:#888">600741  <span style="color:#E24B4A;font-weight:500">CAP-C</span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:20px;font-weight:500">16.27</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-2.93%</span>
+          </div>
+          <div style="font-size:11px;color:#888;margin-top:2px">buy:16.76 | 2d</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">微流入1970万</div>
+        </div>
+        <div style="background:#FCEBEB;border-radius:8px;padding:12px;min-width:175px;flex:1">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:500;font-size:14px">盐湖股份</span>
+            <span style="font-size:11px;color:#A32D2D;font-weight:500">stop loss</span>
+          </div>
+          <div style="font-size:12px;color:#888">000792  <span style="color:#E24B4A;font-weight:500">CAP-C</span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:20px;font-weight:500">29.80</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-7.18%</span>
+          </div>
+          <div style="font-size:11px;color:#888;margin-top:2px">buy:32.11 | 2d</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">3日流出1.88亿🚨</div>
+        </div></div>
 </div>
 
-<!-- 四、持仓分析 -->
-<div class="card-title" style="padding:4px 2px;font-size:1em"><span class="icon">📦</span> 持仓分析（6只）</div>
-
-<!-- 1. 大族激光 -->
-<div class="hold-card">
-  <div class="hold-header">
-    <div><span class="hold-name">大族激光</span> <span class="hold-code">002008</span></div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <span class="hold-pnl chg-up">+4.34%</span>
-      <span class="action-hold">观察持有</span>
-    </div>
-  </div>
-  <div style="font-size:0.9em;font-weight:600">134.90元 <span style="color:var(--green);font-size:0.82em">跌0.69%</span></div>
-  <div class="hold-grid">
-    <div><span class="label">买入价</span><br><span class="val">129.29</span></div>
-    <div><span class="label">浮动盈亏</span><br><span class="val" style="color:var(--red)">+5.61元 (+4.34%)</span></div>
-    <div><span class="label">成交额</span><br><span class="val">115.87亿</span></div>
-    <div><span class="label">换手率</span><br><span class="val">9.09%</span></div>
-    <div><span class="label">MA5/10/20</span><br><span class="val">127.7/129.0/135.8</span></div>
-    <div><span class="label">MACD</span><br><span class="val" style="color:var(--green)">DIF 4.1 / DEA 7.7 (绿柱)</span></div>
-    <div><span class="label">资金确认</span><br><span class="val cap-a">CAP-A → ❌今日主力净流出4.71亿</span></div>
-    <div><span class="label">6/16涨停</span><br><span class="val">冲高回落，获利盘出逃</span></div>
-  </div>
-  <hr class="divider">
-  <div style="font-size:0.82em;color:var(--text2)">
-    📌 6/16涨停后连续2日回调，主力大幅净流出。MA20=135.8，今日已跌破MA20。<br>
-    ⚠️ 控股股东质押率50.71%，公告解除质押及新质押。MACD绿柱扩大。<br>
-    <b>操作</b>：MA20（135.8）为多空分水岭，已跌破则转弱。若明日不能站回135，建议减仓止盈。
-  </div>
-  <div class="sl-tp">
-    <span class="sl-tag">止损：127.7（MA5）</span>
-    <span class="tp-tag">止盈：136.6（前涨停价）</span>
-  </div>
-</div>
-
-<!-- 2. 中恒电气 -->
-<div class="hold-card">
-  <div class="hold-header">
-    <div><span class="hold-name">中恒电气</span> <span class="hold-code">002364</span></div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <span class="hold-pnl chg-up">+2.23%</span>
-      <span class="action-hold">持有</span>
-    </div>
-  </div>
-  <div style="font-size:0.9em;font-weight:600">54.16元 <span style="color:var(--red);font-size:0.82em">涨4.17%</span></div>
-  <div class="hold-grid">
-    <div><span class="label">买入价</span><br><span class="val">52.98</span></div>
-    <div><span class="label">浮动盈亏</span><br><span class="val" style="color:var(--red)">+1.18元 (+2.23%)</span></div>
-    <div><span class="label">成交额</span><br><span class="val">20.22亿</span></div>
-    <div><span class="label">换手率</span><br><span class="val">6.8%</span></div>
-    <div><span class="label">资金确认</span><br><span class="val cap-a">CAP-C → ✅今日主力净流入1.70亿</span></div>
-    <div><span class="label">特殊事件</span><br><span class="val" style="color:var(--yellow)">🏆股权登记日(10派1元)</span></div>
-  </div>
-  <hr class="divider">
-  <div style="font-size:0.82em;color:var(--text2)">
-    📌 今日放量大涨4.17%，主力资金大幅净流入1.70亿（占比8.4%），资金面发生逆转！<br>
-    ✅ 股权登记日（10派1元），除权除息日6/22。<br>
-    ✅ 宁德时代投资+业绩增长+充电桩大订单+液冷技术突破，多重催化。<br>
-    <b>操作</b>：资金面从CAP-C逆转为正向，继续持有。关注除权后填权行情。
-  </div>
-  <div class="sl-tp">
-    <span class="sl-tag">止损：50.0（前低支撑）</span>
-    <span class="tp-tag">止盈：59.0（前高压力）</span>
-  </div>
-</div>
-
-<!-- 3. 大位科技 -->
-<div class="hold-card">
-  <div class="hold-header">
-    <div><span class="hold-name">大位科技</span> <span class="hold-code">600589</span></div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <span class="hold-pnl chg-down">-1.41%</span>
-      <span class="action-hold">观察</span>
-    </div>
-  </div>
-  <div style="font-size:0.9em;font-weight:600">≈9.98元 <span style="color:var(--green);font-size:0.82em">数据来源：东方财富</span></div>
-  <div class="hold-grid">
-    <div><span class="label">买入价</span><br><span class="val">10.125</span></div>
-    <div><span class="label">浮动盈亏</span><br><span class="val" style="color:var(--green)">≈-0.15元 (-1.41%)</span></div>
-    <div><span class="label">3日主力</span><br><span class="val" style="color:var(--red)">净流入1.02亿</span></div>
-    <div><span class="label">PE(TTM)</span><br><span class="val" style="color:var(--green)">-116（亏损股）</span></div>
-  </div>
-  <hr class="divider">
-  <div style="font-size:0.82em;color:var(--text2)">
-    📌 3日主力资金净流入1.02亿，但个股持续弱势。PE为负（亏损股），基本面无支撑。<br>
-    ⚠️ 董事长张微离任，公司治理存在不确定性。<br>
-    ⚠️ 数据来源存在差异（同花顺6/17收盘10.39 vs 东方财富参考价10.57）。<br>
-    <b>操作</b>：亏损股+基本面差+资金虽有流入但股价不涨，高度警惕。若跌破9.5止损。
-  </div>
-  <div class="sl-tp">
-    <span class="sl-tag">止损：9.50（跌停价附近）</span>
-    <span class="tp-tag">止盈：10.80（前高）</span>
+<div class="section">
+  <h2>📈 今日推荐信号（基于 v3.0 三策共振）</h2>
+  <div class="signal-empty">
+    <p style="font-size:14px;color:#666">⚠️ 今日无新增信号</p>
+    <p style="font-size:12px;margin-top:8px">本地 .day 数据滞后至 6/12，未能扫描 6/18 全市场</p>
+    <p style="font-size:12px;margin-top:4px">建议：耐心等待，6/19 重点关注主力净流入 > 5000万 且技术面突破的标的</p>
   </div>
 </div>
 
-<!-- 4. 特变电工 -->
-<div class="hold-card">
-  <div class="hold-header">
-    <div><span class="hold-name">特变电工</span> <span class="hold-code">600089</span></div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <span class="hold-pnl chg-down">-2.67%</span>
-      <span class="action-sell">考虑止损</span>
-    </div>
-  </div>
-  <div style="font-size:0.9em;font-weight:600">23.32元 <span style="color:var(--green);font-size:0.82em">跌0.51%</span></div>
-  <div class="hold-grid">
-    <div><span class="label">买入价</span><br><span class="val">23.959</span></div>
-    <div><span class="label">浮动盈亏</span><br><span class="val" style="color:var(--green)">-0.64元 (-2.67%)</span></div>
-    <div><span class="label">成交额</span><br><span class="val">27.85亿</span></div>
-    <div><span class="label">换手率</span><br><span class="val">2.36%</span></div>
-    <div><span class="label">资金确认</span><br><span class="val cap-c">CAP-C → ❌主力净流出2.11亿</span></div>
-    <div><span class="label">Q1营收</span><br><span class="val">249.6亿 (+6.75%)</span></div>
-  </div>
-  <hr class="divider">
-  <div style="font-size:0.82em;color:var(--text2)">
-    📌 连续主力净流出，资金面持续恶化。光伏/多晶硅周期拖累，煤炭业务不确定性。<br>
-    ⚠️ 股价从27-29元高位快速回调至23元区间，趋势偏弱。<br>
-    <b>操作</b>：CAP-C + 主力持续出逃 + 趋势偏弱。建议23.0以下坚决止损。
-  </div>
-  <div class="sl-tp">
-    <span class="sl-tag">止损：23.00（整数关口）</span>
-    <span class="tp-tag">止盈：25.00（MA20压力）</span>
+<div class="section">
+  <h2>🎯 三策共振策略回顾（v3.0）</h2>
+  <table>
+    <thead>
+      <tr><th>策略层</th><th>作用</th><th>本次验证</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>V2 技术面</strong></td><td>触发层：6 条基础过滤 + NearMA20 &lt; 7%</td><td>✅ 严格执行</td></tr>
+      <tr><td><strong>资金确认</strong> ⭐</td><td>验证层：3日主力净流入 A/B/C 判定</td><td>✅ 6/16 资金确认组 vs 否决组：<span style="color:#3B6D11;font-weight:500">+6.75%</span> 净差距</td></tr>
+      <tr><td><strong>基本面</strong></td><td>排除层：PE/ROE/营收增速评分 A/B/C/D</td><td>✅ D 级 (600576) 仓位 ×0.4</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="alert-box alert-warn">
+    <strong>💡 风控提醒</strong><br>
+    • 单只仓位 ≤ 15%  |  止损 -5%  |  止盈 +15%  |  时间止损 10 天<br>
+    • 连续 3 笔止损 → 强制复盘<br>
+    • 6/16 实战验证：仅选资金确认组（CAP-A/B） 6 个交易日可避免 -3.46% 平均回撤
   </div>
 </div>
 
-<!-- 5. 华域汽车 -->
-<div class="hold-card">
-  <div class="hold-header">
-    <div><span class="hold-name">华域汽车</span> <span class="hold-code">600741</span></div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <span class="hold-pnl chg-down">-2.93%</span>
-      <span class="action-hold">持有观察</span>
-    </div>
-  </div>
-  <div style="font-size:0.9em;font-weight:600">16.27元 <span style="color:var(--red);font-size:0.82em">涨0.18%</span></div>
-  <div class="hold-grid">
-    <div><span class="label">买入价</span><br><span class="val">16.762</span></div>
-    <div><span class="label">浮动盈亏</span><br><span class="val" style="color:var(--green)">-0.49元 (-2.93%)</span></div>
-    <div><span class="label">成交额</span><br><span class="val">3.11亿</span></div>
-    <div><span class="label">换手率</span><br><span class="val">0.61%（极度缩量）</span></div>
-    <div><span class="label">资金确认</span><br><span class="val cap-c">CAP-C → ✅今日主力微流入1970万</span></div>
-    <div><span class="label">Q1净利</span><br><span class="val">12.44亿 (-2.63%)</span></div>
-  </div>
-  <hr class="divider">
-  <div style="font-size:0.82em;color:var(--text2)">
-    📌 极度缩量+微涨，多空均无力。主力今日小幅流入1970万，有企稳迹象。<br>
-    ✅ 汽车零部件龙头，估值较低，高股息特征。但Q1营收/净利双降。<br>
-    <b>操作</b>：缩量企稳，暂持有。若跌破16.0止损，反弹看17.0。
-  </div>
-  <div class="sl-tp">
-    <span class="sl-tag">止损：16.00（心理关口）</span>
-    <span class="tp-tag">止盈：17.00（MA10压力）</span>
-  </div>
-</div>
-
-<!-- 6. 盐湖股份 -->
-<div class="hold-card" style="border-color:rgba(255,61,61,0.3)">
-  <div class="hold-header">
-    <div><span class="hold-name">盐湖股份</span> <span class="hold-code">000792</span></div>
-    <div style="display:flex;align-items:center;gap:6px">
-      <span class="hold-pnl chg-down">-7.18%</span>
-      <span class="action-sell">⚠️ 建议止损</span>
-    </div>
-  </div>
-  <div style="font-size:0.9em;font-weight:600">≈29.80元 <span style="color:var(--green);font-size:0.82em">跌~3.47%（午盘数据）</span></div>
-  <div class="hold-grid">
-    <div><span class="label">买入价</span><br><span class="val">32.106</span></div>
-    <div><span class="label">浮动盈亏</span><br><span class="val" style="color:var(--green)">≈-2.31元 (-7.18%)</span></div>
-    <div><span class="label">3日主力</span><br><span class="val cap-c">净流出1.88亿 ❌</span></div>
-    <div><span class="label">碳酸锂</span><br><span class="val" style="color:var(--green)">大跌6.5% 至160640元/吨</span></div>
-    <div><span class="label">板块</span><br><span class="val" style="color:var(--green)">盐湖提锂概念 -1.27%</span></div>
-    <div><span class="label">5日主力</span><br><span class="val" style="color:var(--red)">净流入3.89亿（前日数据）</span></div>
-  </div>
-  <hr class="divider">
-  <div class="danger-box">
-    🚨 <b>最大风险持仓！</b><br>
-    • 碳酸锂期货暴跌6.5%，锂矿板块集体杀跌<br>
-    • 3日主力净流出1.88亿，资金面加速恶化<br>
-    • 买入以来亏损已达7.18%，接近-8%风控线<br>
-    • 盐湖提锂板块连续2日下跌（-0.87%、-1.27%）<br>
-    <b>操作</b>：碳酸锂大跌是系统性风险，建议明日竞价卖出止损，不要抱有幻想！
-  </div>
-  <div class="sl-tp">
-    <span class="sl-tag">止损：29.50（尽快执行）</span>
-    <span class="tp-tag">止盈：32.10（回本价）</span>
-  </div>
-</div>
-
-<!-- 持仓汇总 -->
-<div class="card">
-  <div class="card-title"><span class="icon">📋</span> 持仓汇总</div>
-  <div class="summary-row"><span class="label">盈利持仓</span><span style="color:var(--red)">大族激光 +4.34% | 中恒电气 +2.23%</span></div>
-  <div class="summary-row"><span class="label">亏损持仓</span><span style="color:var(--green)">盐湖 -7.18% | 华域 -2.93% | 特变 -2.67% | 大位 -1.41%</span></div>
-  <div class="summary-row"><span class="label">资金确认(A+B)</span><span>2只，均值+3.29%</span></div>
-  <div class="summary-row"><span class="label">资金否决(C)</span><span style="color:var(--green)">4只，均值-3.46%</span></div>
-  <div class="summary-row"><span class="label">全仓浮盈</span><span style="color:var(--green)">≈ -0.84%</span></div>
-  <hr class="divider">
-  <div style="font-size:0.82em;color:var(--yellow)">
-    ⚠️ 资金确认组(A+B) vs 否决组(C) 净差距 <b>6.75个百分点</b><br>
-    教训再次验证：买入时必须严格遵守CAP-C否决规则！<br>
-    盐湖/特变/华域均为CAP-C买入，目前均亏损。
-  </div>
-</div>
-
-<!-- 五、今日推荐 -->
-<div class="card-title" style="padding:4px 2px;font-size:1em"><span class="icon">🌟</span> 今日推荐（超跌企稳V2）</div>
-
-<div class="warn-box">
-  ⚠️ 当前市场震荡分化，3400只个股下跌，超跌股多数尚未企稳。<br>
-  已反弹板块（铜/芯片）追高风险大，未反弹板块（锂矿）趋势仍向下。<br>
-  今日仅推荐 <b>1只</b> 防守型标的，仓位建议≤20%。
-</div>
-
-<!-- 推荐1: 华能国际 -->
-<div class="rec-card">
-  <div class="hold-header">
-    <div><span class="hold-name">华能国际</span> <span class="hold-code">600011</span></div>
-    <span class="action-buy">轻仓关注</span>
-  </div>
-  <div style="font-size:0.9em;font-weight:600">≈7.92元</div>
-  <div class="hold-grid">
-    <div><span class="label">PE(TTM)</span><br><span class="val">≈10倍（低估值）</span></div>
-    <div><span class="label">股息率</span><br><span class="val" style="color:var(--red)">5年均值3.3%</span></div>
-    <div><span class="label">板块</span><br><span class="val">电力（近五年底部区间）</span></div>
-    <div><span class="label">催化</span><br><span class="val">夏季用电高峰 + AI算力耗电</span></div>
-  </div>
-  <hr class="divider">
-  <div style="font-size:0.82em;color:var(--text2);margin-bottom:6px">V2六条验证：</div>
-  <div class="v2-check"><span class="v2-unknown">❓</span> 超跌（近60日跌幅>20%）— 电力板块低位滞涨，符合超跌特征</div>
-  <div class="v2-check"><span class="v2-pass">✅</span> 企稳（近5日不再创新低）— 近期横盘7.5-8.2区间</div>
-  <div class="v2-check"><span class="v2-unknown">❓</span> 反转信号（MACD金叉/KDJ金叉）— 待确认，接近金叉</div>
-  <div class="v2-check"><span class="v2-fail">❌</span> 放量（>5日均量1.5倍）— 近期缩量，未达标</div>
-  <div class="v2-check"><span class="v2-pass">✅</span> PE&lt;80 — PE≈10，远低于阈值</div>
-  <div class="v2-check"><span class="v2-pass">✅</span> 非ST/非创业板 — 沪市主板60xxxx</div>
-  <div style="font-size:0.8em;color:var(--text2);margin-top:6px">
-    V2评分：3✅ 1❌ 2❓ — 部分条件待确认，建议等MACD金叉+放量信号再入场<br>
-    📌 6/18公告：完成发行20亿元中期票据，利率1.70%（融资成本极低，利好）
-  </div>
-  <div class="sl-tp">
-    <span class="sl-tag">止损：7.30（前低支撑）</span>
-    <span class="tp-tag">止盈：8.50（前高压力）</span>
-  </div>
-</div>
-
-<!-- 六、明日操作计划 -->
-<div class="card">
-  <div class="card-title"><span class="icon">📝</span> 明日操作计划</div>
-  <div style="font-size:0.85em">
-    <div style="margin-bottom:6px">
-      <span style="color:var(--red);font-weight:700">🔴 优先止损</span>
-      <div style="padding-left:12px;color:var(--text2)">
-        盐湖股份(000792)：竞价卖出，碳酸锂系统性风险不抗<br>
-        特变电工(600089)：若跌破23.0则止损
-      </div>
-    </div>
-    <div style="margin-bottom:6px">
-      <span style="color:var(--yellow);font-weight:700">🟡 观察持有</span>
-      <div style="padding-left:12px;color:var(--text2)">
-        大族激光(002008)：关注能否站回MA20(135.8)，不站回则减仓<br>
-        大位科技(600589)：若跌破9.5则止损，基本面无支撑<br>
-        华域汽车(600741)：缩量企稳，继续观察
-      </div>
-    </div>
-    <div>
-      <span style="color:var(--green);font-weight:700">🟢 继续持有</span>
-      <div style="padding-left:12px;color:var(--text2)">
-        中恒电气(002364)：资金面逆转，除权前继续持有
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Footer -->
 <div class="footer">
-  <div>数据来源：WebSearch (topic:finance) · 证券之星 · 东方财富 · 同花顺</div>
-  <div style="margin-top:2px">⚠️ 部分数据存在延迟或来源差异，不构成投资建议</div>
-  <div style="margin-top:2px">三策共振交易体系 v3.0 · 生成时间 2026-06-18 19:35</div>
-  <div style="margin-top:4px;color:var(--blue)">永久地址：hjhjhj12313.github.io/daily-signal/</div>
+  生成时间：2026-06-18 23:58  |  系统版本：三策共振 v3.0  |  数据源：WebSearch + NeoData + 通达信本地<br>
+  永久网址：<a href="https://hjhjhj12313.github.io/daily-signal/">https://hjhjhj12313.github.io/daily-signal/</a>
 </div>
-
 </body>
 </html>
