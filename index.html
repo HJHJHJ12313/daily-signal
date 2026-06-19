@@ -3,199 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>每日交易信号 — 2026-06-18</title>
+<title>Daily Signal Report - 20260618</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;background:#f8f9fa;color:#2C2C2A;padding:20px;max-width:1100px;margin:0 auto}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f8f9fa;color:#2C2C2A;padding:20px;max-width:1100px;margin:0 auto}
   .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
   .header h1{font-size:22px;font-weight:500}
   .env-badge{padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#fff}
   .section{margin-bottom:24px}
-  .section h2{font-size:16px;font-weight:500;margin-bottom:12px;border-left:3px solid #185FA5;padding-left:10px}
+  .section h2{font-size:16px;font-weight:500;margin-bottom:12px}
   .holdings{display:flex;flex-wrap:wrap;gap:10px}
+  .sig-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.08)}
+  .sig-table th{text-align:left;padding:10px 8px;font-size:12px;font-weight:500;color:var(--color-text-secondary);background:#fafafa}
   .summary{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
   .summary-card{background:#fff;border-radius:10px;padding:14px 20px;border:0.5px solid rgba(0,0,0,0.08);min-width:120px}
   .summary-card .num{font-size:28px;font-weight:500}
-  .summary-card .label{font-size:12px;color:#888;margin-top:2px}
-  .alert-box{border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.7;margin-top:12px}
-  .alert-danger{background:#FCEBEB;color:#A32D2D;border-left:3px solid #A32D2D}
-  .alert-warn{background:#FAEEDA;color:#854F0B;border-left:3px solid #854F0B}
-  .alert-info{background:#EAF3DE;color:#3B6D11;border-left:3px solid #3B6D11}
-  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.08);font-size:13px}
-  th{text-align:left;padding:10px 8px;font-size:12px;font-weight:500;color:#888;background:#fafafa}
-  td{padding:10px 8px;border-bottom:0.5px solid #f0f0f0}
-  .tag{padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500}
-  .footer{text-align:center;font-size:11px;color:#999;margin-top:32px;padding:16px 0;border-top:0.5px solid #eee}
-  .signal-empty{background:#fff;border-radius:12px;padding:40px;text-align:center;color:#999;border:0.5px solid rgba(0,0,0,0.08)}
+  .summary-card .label{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+  .risk-reminder{background:#FAEEDA;border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.7;margin-top:16px}
+  .footer{text-align:center;font-size:11px;color:var(--color-text-secondary);margin-top:32px;padding:16px 0;border-top:0.5px solid rgba(0,0,0,0.06)}
 </style>
 </head>
 <body>
 <div class="header">
   <div>
-    <h1>📊 每日交易信号报告</h1>
-    <div style="font-size:13px;color:#888;margin-top:4px">三策共振 v3.0（+资金确认） | 2026-06-18（周四） | 数据源：WebSearch + NeoData</div>
+    <h1>Daily Signal Report</h1>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-top:4px">Signal system v2.0  |  20260618  |  scanned in 40s</div>
   </div>
-  <span class="env-badge" style="background:#EF9F27">SIDEWAYS 震荡分化</span>
-</div>
-
-<div class="summary">
-  <div class="summary-card">
-    <div class="num" style="color:#A32D2D">4</div>
-    <div class="label">持仓浮亏</div>
-  </div>
-  <div class="summary-card">
-    <div class="num" style="color:#3B6D11">2</div>
-    <div class="label">持仓浮盈</div>
-  </div>
-  <div class="summary-card">
-    <div class="num" style="color:#A32D2D">-1.27%</div>
-    <div class="label">持仓均值</div>
-  </div>
-  <div class="summary-card">
-    <div class="num" style="color:#A32D2D">1</div>
-    <div class="label">🚨 需立即处理</div>
-  </div>
+  <span class="env-badge" style="background:#E24B4A">Weak</span>
 </div>
 
 <div class="section">
-  <h2>🚨 持仓风险警报（实时 6/18 收盘）</h2>
-  <div class="alert-box alert-danger">
-    <strong>盐湖股份(000792)：-7.18%</strong>，已触及止损线(-5%)，3日主力净流出1.88亿🚨<br>
-    <strong>原因</strong>：碳酸锂期货6/18暴跌6.5%，板块系统性风险<br>
-    <strong>建议</strong>：明日开盘立即止损，<span style="text-decoration:line-through">不抱希望</span>
-  </div>
-  <div class="alert-box alert-warn" style="margin-top:8px">
-    <strong>特变电工(600089)：-2.67%</strong>，主力净流出2.11亿❌<br>
-    <strong>建议</strong>：若明后日未能企稳MA60(22.80)，建议减仓
-  </div>
-  <div class="alert-box alert-warn" style="margin-top:8px">
-    <strong>华域汽车(600741)：-2.93%</strong>，跌破MA60，技术面偏弱<br>
-    <strong>建议</strong>：关注16.00支撑位，跌破则止损
-  </div>
-  <div class="alert-box alert-info" style="margin-top:8px">
-    <strong>大族激光(002008)：+4.34%</strong>，但6/18主力净流出4.71亿⚠️<br>
-    <strong>建议</strong>：浮盈但主力出逃，<strong>明日若冲高乏力建议止盈减仓</strong>
-  </div>
-</div>
-
-<div class="section">
-  <h2>💼 持仓监控卡片</h2>
+  <h2>Holdings Risk Check</h2>
   <div class="holdings">
-        <div style="background:#E1F5EE;border-radius:8px;padding:12px;min-width:175px;flex:1">
+        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:140px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span style="font-weight:500;font-size:14px">大族激光</span>
-            <span style="font-size:11px;color:#0F6E56;font-weight:500">take profit</span>
+            <span style="font-size:11px;color:#3B6D11;font-weight:500">normal</span>
           </div>
-          <div style="font-size:12px;color:#888">002008  <span style="color:#1D9E75;font-weight:500">CAP-A</span></div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">002008</div>
           <div style="display:flex;justify-content:space-between;margin-top:6px">
             <span style="font-size:20px;font-weight:500">134.90</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+4.34%</span>
+            <span style="font-size:15px;font-weight:500;color:#3B6D11">+4.3%</span>
           </div>
-          <div style="font-size:11px;color:#888;margin-top:2px">buy:129.29 | 2d</div>
-          <div style="font-size:11px;margin-top:4px;color:#555">净流出4.71亿⚠️</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:129.29  |  2d</div>
+          
         </div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:175px;flex:1">
+        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:140px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span style="font-weight:500;font-size:14px">中恒电气</span>
             <span style="font-size:11px;color:#3B6D11;font-weight:500">normal</span>
           </div>
-          <div style="font-size:12px;color:#888">002364  <span style="color:#E24B4A;font-weight:500">CAP-C</span></div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">002364</div>
           <div style="display:flex;justify-content:space-between;margin-top:6px">
             <span style="font-size:20px;font-weight:500">54.16</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+2.23%</span>
+            <span style="font-size:15px;font-weight:500;color:#3B6D11">+2.2%</span>
           </div>
-          <div style="font-size:11px;color:#888;margin-top:2px">buy:52.98 | 2d</div>
-          <div style="font-size:11px;margin-top:4px;color:#555">净流入1.70亿✅</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:52.98  |  2d</div>
+          
         </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:175px;flex:1">
+        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span style="font-weight:500;font-size:14px">大位科技</span>
             <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
           </div>
-          <div style="font-size:12px;color:#888">600589  <span style="color:#185FA5;font-weight:500">CAP-B</span></div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">600589</div>
           <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">9.98</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-1.41%</span>
+            <span style="font-size:20px;font-weight:500">10.21</span>
+            <span style="font-size:15px;font-weight:500;color:#3B6D11">+0.8%</span>
           </div>
-          <div style="font-size:11px;color:#888;margin-top:2px">buy:10.12 | 2d</div>
-          <div style="font-size:11px;margin-top:4px;color:#555">3日流入1.02亿</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:10.12  |  2d</div>
+          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(10.67)</span>
         </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:175px;flex:1">
+        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span style="font-weight:500;font-size:14px">特变电工</span>
             <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
           </div>
-          <div style="font-size:12px;color:#888">600089  <span style="color:#E24B4A;font-weight:500">CAP-C</span></div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">600089</div>
           <div style="display:flex;justify-content:space-between;margin-top:6px">
             <span style="font-size:20px;font-weight:500">23.32</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-2.67%</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-2.7%</span>
           </div>
-          <div style="font-size:11px;color:#888;margin-top:2px">buy:23.96 | 2d</div>
-          <div style="font-size:11px;margin-top:4px;color:#555">净流出2.11亿❌</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:23.96  |  2d</div>
+          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(24.83)</span><span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">MACD死叉</span>
         </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:175px;flex:1">
+        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span style="font-weight:500;font-size:14px">华域汽车</span>
             <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
           </div>
-          <div style="font-size:12px;color:#888">600741  <span style="color:#E24B4A;font-weight:500">CAP-C</span></div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">600741</div>
           <div style="display:flex;justify-content:space-between;margin-top:6px">
             <span style="font-size:20px;font-weight:500">16.27</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-2.93%</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-2.9%</span>
           </div>
-          <div style="font-size:11px;color:#888;margin-top:2px">buy:16.76 | 2d</div>
-          <div style="font-size:11px;margin-top:4px;color:#555">微流入1970万</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:16.76  |  2d</div>
+          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(16.76)</span>
         </div>
-        <div style="background:#FCEBEB;border-radius:8px;padding:12px;min-width:175px;flex:1">
+        <div style="background:#FCEBEB;border-radius:8px;padding:12px;min-width:140px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
             <span style="font-weight:500;font-size:14px">盐湖股份</span>
-            <span style="font-size:11px;color:#A32D2D;font-weight:500">stop loss</span>
+            <span style="font-size:11px;color:#A32D2D;font-weight:500">danger</span>
           </div>
-          <div style="font-size:12px;color:#888">000792  <span style="color:#E24B4A;font-weight:500">CAP-C</span></div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">000792</div>
           <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">29.80</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-7.18%</span>
+            <span style="font-size:20px;font-weight:500">29.75</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-7.3%</span>
           </div>
-          <div style="font-size:11px;color:#888;margin-top:2px">buy:32.11 | 2d</div>
-          <div style="font-size:11px;margin-top:4px;color:#555">3日流出1.88亿🚨</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:32.11  |  2d</div>
+          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">触及止损线(-5.0%)</span><span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(30.65)</span>
         </div></div>
 </div>
 
 <div class="section">
-  <h2>📈 今日推荐信号（基于 v3.0 三策共振）</h2>
-  <div class="signal-empty">
-    <p style="font-size:14px;color:#666">⚠️ 今日无新增信号</p>
-    <p style="font-size:12px;margin-top:8px">本地 .day 数据滞后至 6/12，未能扫描 6/18 全市场</p>
-    <p style="font-size:12px;margin-top:4px">建议：耐心等待，6/19 重点关注主力净流入 > 5000万 且技术面突破的标的</p>
+  <h2>Daily Signals</h2>
+  <div class="summary">
+    <div class="summary-card">
+      <div class="num">2</div>
+      <div class="label">Signals today</div>
+    </div>
+    <div class="summary-card">
+      <div class="num">30-50%</div>
+      <div class="label">Recommended position</div>
+    </div>
+    <div class="summary-card">
+      <div class="num">5%</div>
+      <div class="label">Max per stock</div>
+    </div>
   </div>
-</div>
-
-<div class="section">
-  <h2>🎯 三策共振策略回顾（v3.0）</h2>
-  <table>
+  <table class="sig-table">
     <thead>
-      <tr><th>策略层</th><th>作用</th><th>本次验证</th></tr>
+      <tr>
+        <th style="width:30px">#</th>
+        <th style="width:120px">Stock</th>
+        <th style="width:70px">Close</th>
+        <th style="width:50px">ADX</th>
+        <th style="width:50px">RSI</th>
+        <th style="width:70px">MA20 dev</th>
+        <th style="width:180px">Triggers</th>
+        <th style="width:70px">Bonus</th>
+        <th style="width:90px">Capital</th>
+        <th style="width:110px">SL / TP</th>
+      </tr>
     </thead>
     <tbody>
-      <tr><td><strong>V2 技术面</strong></td><td>触发层：6 条基础过滤 + NearMA20 &lt; 7%</td><td>✅ 严格执行</td></tr>
-      <tr><td><strong>资金确认</strong> ⭐</td><td>验证层：3日主力净流入 A/B/C 判定</td><td>✅ 6/16 资金确认组 vs 否决组：<span style="color:#3B6D11;font-weight:500">+6.75%</span> 净差距</td></tr>
-      <tr><td><strong>基本面</strong></td><td>排除层：PE/ROE/营收增速评分 A/B/C/D</td><td>✅ D 级 (600576) 仓位 ×0.4</td></tr>
-    </tbody>
+            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+              <td style="padding:10px 8px;font-weight:500">1</td>
+              <td style="padding:10px 8px"><span style="font-weight:500">169104</span><br><span style="font-size:11px;color:var(--color-text-secondary)">169104</span></td>
+              <td style="padding:10px 8px;font-weight:500;font-size:16px">32.56</td>
+              <td style="padding:10px 8px;font-size:12px">21.4</td>
+              <td style="padding:10px 8px;font-size:12px">60.6</td>
+              <td style="padding:10px 8px;font-size:12px">5.77%</td>
+              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=21.4 | RSI=60.6 | 站上MA60 | MACD金叉状态</td>
+              <td style="padding:10px 8px;font-size:12px"><span style="background:#EEEDFE;color:#534AB7;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">MA aligned</span></td>
+              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
+              <td style="padding:10px 8px;font-size:12px">30.93 / 37.44</td>
+            </tr>
+            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+              <td style="padding:10px 8px;font-weight:500">2</td>
+              <td style="padding:10px 8px"><span style="font-weight:500">161025</span><br><span style="font-size:11px;color:var(--color-text-secondary)">161025</span></td>
+              <td style="padding:10px 8px;font-weight:500;font-size:16px">15.92</td>
+              <td style="padding:10px 8px;font-size:12px">20.5</td>
+              <td style="padding:10px 8px;font-size:12px">61.8</td>
+              <td style="padding:10px 8px;font-size:12px">5.97%</td>
+              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=20.5 | RSI=61.8 | 站上MA60 | MACD金叉状态</td>
+              <td style="padding:10px 8px;font-size:12px">--</td>
+              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
+              <td style="padding:10px 8px;font-size:12px">15.12 / 18.31</td>
+            </tr></tbody>
   </table>
+  <div class="risk-reminder">
+    <strong>Risk Rules</strong><br>
+    Per stock max: 15% of capital  |  Stop loss: -5%  |  Take profit: +15%  |  Time stop: 10 days<br>
+    Single loss &gt;2% of total capital: exit immediately  |  Monthly loss &gt;8%: reduce position to 30%<br>
+    3 consecutive stops: stop trading and review
+  </div>
 </div>
 
 <div class="section">
-  <div class="alert-box alert-warn">
-    <strong>💡 风控提醒</strong><br>
-    • 单只仓位 ≤ 15%  |  止损 -5%  |  止盈 +15%  |  时间止损 10 天<br>
-    • 连续 3 笔止损 → 强制复盘<br>
-    • 6/16 实战验证：仅选资金确认组（CAP-A/B） 6 个交易日可避免 -3.46% 平均回撤
-  </div>
+  <h2>Fundamental Grades</h2>
+  <div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">169104</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">161025</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><p style="margin-top:8px;font-size:12px;color:#999;">等级分布: D:2  |  A/B: 满仓  |  C: 60%  |  D: 40%小仓</p>
+</div>
+
+<div class="section">
+  <h2>Capital Flow Confirmation (v3.0)</h2>
+  <div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">169104</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">161025</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><p style="margin-top:8px;font-size:12px;color:#999;">等级分布: UNKNOWN:2  |  A: +50%仓位  |  B: 标准仓  |  C: 不建议买入  |  UNKNOWN: 80%仓位</p>
 </div>
 
 <div class="footer">
-  生成时间：2026-06-18 23:58  |  系统版本：三策共振 v3.0  |  数据源：WebSearch + NeoData + 通达信本地<br>
-  永久网址：<a href="https://hjhjhj12313.github.io/daily-signal/">https://hjhjhj12313.github.io/daily-signal/</a>
+  Signal System v3.0 (+Capital)  |  Generated at 2026-06-20 00:01:03  |  Data: 8647 stocks scanned
 </div>
 </body>
 </html>
