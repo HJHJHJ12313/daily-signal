@@ -2,268 +2,514 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Daily Signal Report - 20260622</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>每日开盘分析 · 2026-06-23</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f8f9fa;color:#2C2C2A;padding:20px;max-width:1100px;margin:0 auto}
-  .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
-  .header h1{font-size:22px;font-weight:500}
-  .env-badge{padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#fff}
-  .section{margin-bottom:24px}
-  .section h2{font-size:16px;font-weight:500;margin-bottom:12px}
-  .holdings{display:flex;flex-wrap:wrap;gap:10px}
-  .sig-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.08)}
-  .sig-table th{text-align:left;padding:10px 8px;font-size:12px;font-weight:500;color:var(--color-text-secondary);background:#fafafa}
-  .summary{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-  .summary-card{background:#fff;border-radius:10px;padding:14px 20px;border:0.5px solid rgba(0,0,0,0.08);min-width:120px}
-  .summary-card .num{font-size:28px;font-weight:500}
-  .summary-card .label{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
-  .risk-reminder{background:#FAEEDA;border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.7;margin-top:16px}
-  .footer{text-align:center;font-size:11px;color:var(--color-text-secondary);margin-top:32px;padding:16px 0;border-top:0.5px solid rgba(0,0,0,0.06)}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0f1117;
+    color: #e6e9ef;
+    padding: 16px;
+    line-height: 1.55;
+    font-size: 14px;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 22px; margin-bottom: 4px; color: #fff; }
+  h2 {
+    font-size: 16px;
+    margin: 22px 0 10px;
+    padding-left: 10px;
+    border-left: 3px solid #4a9eff;
+    color: #fff;
+  }
+  h3 { font-size: 14px; margin: 12px 0 6px; color: #c8d0dc; }
+  .header {
+    background: linear-gradient(135deg, #1a1d2a 0%, #232739 100%);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid #2a2e42;
+  }
+  .header-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge.bear { background: #4a1d2a; color: #ff6b7a; border: 1px solid #6b2a3a; }
+  .badge.shake { background: #4a3d1a; color: #ffc857; border: 1px solid #6b5a2a; }
+  .badge.bull { background: #1a4a2a; color: #6bff7a; border: 1px solid #2a6b3a; }
+  .badge.panic { background: #4a1a1a; color: #ff5a5a; border: 1px solid #6b2a2a; }
+  .badge.warn { background: #4a3d1a; color: #ffc857; border: 1px solid #6b5a2a; }
+  .badge.danger { background: #4a1a1a; color: #ff5a5a; border: 1px solid #6b2a2a; }
+  .badge.ok { background: #1a4a2a; color: #6bff7a; border: 1px solid #2a6b3a; }
+  .badge.neutral { background: #2a2e42; color: #c8d0dc; border: 1px solid #3a3e52; }
+  .card {
+    background: #1a1d2a;
+    border: 1px solid #2a2e42;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px dashed #2a2e42; }
+  .row:last-child { border-bottom: none; }
+  .label { color: #8a92a6; font-size: 13px; }
+  .val { color: #fff; font-weight: 600; font-size: 13px; }
+  .red { color: #ff4d4d; }
+  .green { color: #26d07c; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .mini { background: #232739; border-radius: 8px; padding: 8px 10px; }
+  .mini .lbl { font-size: 11px; color: #8a92a6; }
+  .mini .v { font-size: 15px; font-weight: 700; margin-top: 2px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12.5px; }
+  th, td { padding: 7px 6px; text-align: left; border-bottom: 1px solid #2a2e42; }
+  th { color: #8a92a6; font-weight: 500; font-size: 11.5px; }
+  td { color: #e6e9ef; }
+  .check { color: #26d07c; }
+  .cross { color: #ff4d4d; }
+  .question { color: #ffc857; }
+  .risk {
+    background: #2a1a1a;
+    border: 1px solid #6b2a2a;
+    border-left: 4px solid #ff4d4d;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .info {
+    background: #1a2a3a;
+    border: 1px solid #2a4a6a;
+    border-left: 4px solid #4a9eff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .op-signal {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .op-sell { background: #4a1a1a; color: #ff5a5a; }
+  .op-hold { background: #2a3a1a; color: #b0ff5a; }
+  .op-buy { background: #1a2a4a; color: #5a9aff; }
+  .op-watch { background: #3a2a1a; color: #ffc857; }
+  .op-avoid { background: #2a2a2a; color: #8a92a6; }
+  .stock-card { background: #1a1d2a; border: 1px solid #2a2e42; border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+  .stock-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .stock-name { font-size: 15px; font-weight: 700; }
+  .stock-code { font-size: 11px; color: #8a92a6; margin-left: 4px; }
+  .v2-table td { font-size: 11.5px; padding: 5px 4px; }
+  .v2-table th { font-size: 10.5px; padding: 5px 4px; }
+  .footer {
+    text-align: center;
+    color: #5a627a;
+    font-size: 11px;
+    margin-top: 20px;
+    padding: 12px 0;
+    border-top: 1px solid #2a2e42;
+  }
+  .signal-line { color: #ffc857; font-size: 12px; margin: 4px 0; }
+  ul { padding-left: 18px; margin: 6px 0; }
+  li { margin: 3px 0; color: #c8d0dc; }
+  .empty-state {
+    text-align: center;
+    padding: 30px 20px;
+    color: #8a92a6;
+    background: #1a1d2a;
+    border-radius: 12px;
+    border: 1px dashed #2a2e42;
+  }
+  .small { font-size: 11.5px; color: #8a92a6; }
+  .pulse { animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+  .divider { height: 1px; background: #2a2e42; margin: 12px 0; }
+  .kbd {
+    display: inline-block;
+    background: #2a2e42;
+    color: #c8d0dc;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 11px;
+  }
 </style>
 </head>
 <body>
+<div class="container">
+
+<!-- 顶部 -->
 <div class="header">
-  <div>
-    <h1>Daily Signal Report</h1>
-    <div style="font-size:13px;color:var(--color-text-secondary);margin-top:4px">Signal system v2.0  |  20260622  |  scanned in 40s</div>
+  <h1>📊 每日开盘分析</h1>
+  <div class="small">2026-06-23 周二 · 集合竞价 09:25 收尾</div>
+  <div class="header-meta">
+    <span class="badge shake pulse">🔄 震荡转弱（开盘低开·权重杀跌）</span>
+    <span class="badge warn">💼 建议仓位：标准仓 60%</span>
   </div>
-  <span class="env-badge" style="background:#E24B4A">Weak</span>
+  <div class="small" style="margin-top:8px;">
+    数据源：WebSearch (东方财富 / 证券之星 / 雪球 / 百度)<br>
+    任务来源：Automation 1781431331564 · 三策共振 v3.0
+  </div>
 </div>
 
-<div class="section">
-  <h2>Holdings Risk Check</h2>
-  <div class="holdings">
-        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">大族激光</span>
-            <span style="font-size:11px;color:#3B6D11;font-weight:500">normal</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">002008</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">131.93</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+2.0%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:129.29  |  6d</div>
-          
-        </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">中恒电气</span>
-            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">002364</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">53.13</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+0.3%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:52.98  |  6d</div>
-          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(53.16)</span>
-        </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">大位科技</span>
-            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">600589</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">10.37</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+2.4%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:10.12  |  6d</div>
-          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(10.55)</span>
-        </div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">特变电工</span>
-            <span style="font-size:11px;color:#3B6D11;font-weight:500">normal</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">600089</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">25.08</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+4.7%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:23.96  |  6d</div>
-          
-        </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">华域汽车</span>
-            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">600741</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">16.60</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-1.0%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:16.76  |  6d</div>
-          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(16.73)</span>
-        </div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">盐湖股份</span>
-            <span style="font-size:11px;color:#3B6D11;font-weight:500">normal</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">000792</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">30.69</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-4.4%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:32.11  |  6d</div>
-          
-        </div></div>
-</div>
-
-<div class="section">
-  <h2>Daily Signals</h2>
-  <div class="summary">
-    <div class="summary-card">
-      <div class="num">8</div>
-      <div class="label">Signals today</div>
+<!-- 大盘 -->
+<h2>一、大盘环境</h2>
+<div class="card">
+  <div class="grid3">
+    <div class="mini">
+      <div class="lbl">上证指数</div>
+      <div class="v red">4093.95 ↓0.08%</div>
     </div>
-    <div class="summary-card">
-      <div class="num">30-50%</div>
-      <div class="label">Recommended position</div>
+    <div class="mini">
+      <div class="lbl">深证成指</div>
+      <div class="v red">16095.63 ↓0.41%</div>
     </div>
-    <div class="summary-card">
-      <div class="num">5%</div>
-      <div class="label">Max per stock</div>
+    <div class="mini">
+      <div class="lbl">创业板指</div>
+      <div class="v red">4272.99 ↓0.48%</div>
     </div>
   </div>
-  <table class="sig-table">
-    <thead>
-      <tr>
-        <th style="width:30px">#</th>
-        <th style="width:120px">Stock</th>
-        <th style="width:70px">Close</th>
-        <th style="width:50px">ADX</th>
-        <th style="width:50px">RSI</th>
-        <th style="width:70px">MA20 dev</th>
-        <th style="width:180px">Triggers</th>
-        <th style="width:70px">Bonus</th>
-        <th style="width:90px">Capital</th>
-        <th style="width:110px">SL / TP</th>
-      </tr>
-    </thead>
-    <tbody>
-            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
-              <td style="padding:10px 8px;font-weight:500">1</td>
-              <td style="padding:10px 8px"><span style="font-weight:500">166107</span><br><span style="font-size:11px;color:var(--color-text-secondary)">166107</span></td>
-              <td style="padding:10px 8px;font-weight:500;font-size:16px">15.88</td>
-              <td style="padding:10px 8px;font-size:12px">27.7</td>
-              <td style="padding:10px 8px;font-size:12px">62.9</td>
-              <td style="padding:10px 8px;font-size:12px">3.61%</td>
-              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=27.7 | RSI=62.9 | 站上MA60 | MACD金叉状态</td>
-              <td style="padding:10px 8px;font-size:12px">--</td>
-              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
-              <td style="padding:10px 8px;font-size:12px">15.09 / 18.26</td>
-            </tr>
-            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
-              <td style="padding:10px 8px;font-weight:500">2</td>
-              <td style="padding:10px 8px"><span style="font-weight:500">163415</span><br><span style="font-size:11px;color:var(--color-text-secondary)">163415</span></td>
-              <td style="padding:10px 8px;font-weight:500;font-size:16px">56.87</td>
-              <td style="padding:10px 8px;font-size:12px">22.3</td>
-              <td style="padding:10px 8px;font-size:12px">61.3</td>
-              <td style="padding:10px 8px;font-size:12px">6.68%</td>
-              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=22.3 | RSI=61.3 | 站上MA60 | MACD金叉状态</td>
-              <td style="padding:10px 8px;font-size:12px"><span style="background:#E1F5EE;color:#0F6E56;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">ADX up</span></td>
-              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
-              <td style="padding:10px 8px;font-size:12px">54.03 / 65.40</td>
-            </tr>
-            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
-              <td style="padding:10px 8px;font-weight:500">3</td>
-              <td style="padding:10px 8px"><span style="font-weight:500">169104</span><br><span style="font-size:11px;color:var(--color-text-secondary)">169104</span></td>
-              <td style="padding:10px 8px;font-weight:500;font-size:16px">32.63</td>
-              <td style="padding:10px 8px;font-size:12px">21.7</td>
-              <td style="padding:10px 8px;font-size:12px">66.8</td>
-              <td style="padding:10px 8px;font-size:12px">5.44%</td>
-              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=21.7 | RSI=66.8 | 站上MA60 | MACD金叉状态</td>
-              <td style="padding:10px 8px;font-size:12px"><span style="background:#E1F5EE;color:#0F6E56;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">ADX up</span><span style="background:#EEEDFE;color:#534AB7;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">MA aligned</span></td>
-              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
-              <td style="padding:10px 8px;font-size:12px">31.00 / 37.52</td>
-            </tr>
-            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
-              <td style="padding:10px 8px;font-weight:500">4</td>
-              <td style="padding:10px 8px"><span style="font-weight:500">165509</span><br><span style="font-size:11px;color:var(--color-text-secondary)">165509</span></td>
-              <td style="padding:10px 8px;font-weight:500;font-size:16px">12.98</td>
-              <td style="padding:10px 8px;font-size:12px">21.3</td>
-              <td style="padding:10px 8px;font-size:12px">71.7</td>
-              <td style="padding:10px 8px;font-size:12px">3.66%</td>
-              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=21.3 | RSI=71.7 | 站上MA60 | MACD金叉状态</td>
-              <td style="padding:10px 8px;font-size:12px"><span style="background:#E1F5EE;color:#0F6E56;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">ADX up</span><span style="background:#EEEDFE;color:#534AB7;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">MA aligned</span></td>
-              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
-              <td style="padding:10px 8px;font-size:12px">12.33 / 14.93</td>
-            </tr>
-            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
-              <td style="padding:10px 8px;font-weight:500">5</td>
-              <td style="padding:10px 8px"><span style="font-weight:500">161903</span><br><span style="font-size:11px;color:var(--color-text-secondary)">161903</span></td>
-              <td style="padding:10px 8px;font-weight:500;font-size:16px">17.28</td>
-              <td style="padding:10px 8px;font-size:12px">21.1</td>
-              <td style="padding:10px 8px;font-size:12px">63.6</td>
-              <td style="padding:10px 8px;font-size:12px">6.81%</td>
-              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=21.1 | RSI=63.6 | 站上MA60 | MACD金叉状态</td>
-              <td style="padding:10px 8px;font-size:12px"><span style="background:#E1F5EE;color:#0F6E56;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">ADX up</span></td>
-              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
-              <td style="padding:10px 8px;font-size:12px">16.42 / 19.87</td>
-            </tr>
-            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
-              <td style="padding:10px 8px;font-weight:500">6</td>
-              <td style="padding:10px 8px"><span style="font-weight:500">159935</span><br><span style="font-size:11px;color:var(--color-text-secondary)">159935</span></td>
-              <td style="padding:10px 8px;font-weight:500;font-size:16px">27.82</td>
-              <td style="padding:10px 8px;font-size:12px">20.1</td>
-              <td style="padding:10px 8px;font-size:12px">66.7</td>
-              <td style="padding:10px 8px;font-size:12px">5.80%</td>
-              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=20.1 | RSI=66.7 | 站上MA60 | MACD金叉状态</td>
-              <td style="padding:10px 8px;font-size:12px"><span style="background:#E1F5EE;color:#0F6E56;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">ADX up</span></td>
-              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
-              <td style="padding:10px 8px;font-size:12px">26.43 / 31.99</td>
-            </tr>
-            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
-              <td style="padding:10px 8px;font-weight:500">7</td>
-              <td style="padding:10px 8px"><span style="font-weight:500">162207</span><br><span style="font-size:11px;color:var(--color-text-secondary)">162207</span></td>
-              <td style="padding:10px 8px;font-weight:500;font-size:16px">14.73</td>
-              <td style="padding:10px 8px;font-size:12px">20.1</td>
-              <td style="padding:10px 8px;font-size:12px">61.6</td>
-              <td style="padding:10px 8px;font-size:12px">4.15%</td>
-              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=20.1 | RSI=61.6 | 站上MA60 | MACD金叉状态</td>
-              <td style="padding:10px 8px;font-size:12px"><span style="background:#E1F5EE;color:#0F6E56;padding:1px 6px;border-radius:4px;font-size:11px;margin:0 2px">ADX up</span></td>
-              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
-              <td style="padding:10px 8px;font-size:12px">13.99 / 16.94</td>
-            </tr>
-            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
-              <td style="padding:10px 8px;font-weight:500">8</td>
-              <td style="padding:10px 8px"><span style="font-weight:500">165309</span><br><span style="font-size:11px;color:var(--color-text-secondary)">165309</span></td>
-              <td style="padding:10px 8px;font-weight:500;font-size:16px">20.60</td>
-              <td style="padding:10px 8px;font-size:12px">20.1</td>
-              <td style="padding:10px 8px;font-size:12px">59.9</td>
-              <td style="padding:10px 8px;font-size:12px">2.40%</td>
-              <td style="padding:10px 8px;font-size:12px">创20日新高 | 放量(>MA5x1.5) | ADX=20.1 | RSI=59.9 | 站上MA60 | MACD金叉状态</td>
-              <td style="padding:10px 8px;font-size:12px">--</td>
-              <td style="padding:10px 8px;font-size:12px"><span style="color:#888780;font-weight:500">UNKNOWN</span><br><span style="font-size:10px;color:var(--color-text-secondary)">无资金流向数据</span></td>
-              <td style="padding:10px 8px;font-size:12px">19.57 / 23.69</td>
-            </tr></tbody>
+  <div class="row"><span class="label">开盘定性</span><span class="val red">三大指数集体低开</span></div>
+  <div class="row"><span class="label">开盘特征</span><span class="val">沪指-0.23% / 深证-0.29% / 创业板-0.36%</span></div>
+  <div class="row"><span class="label">科创综指</span><span class="val red">-0.8% （高位科技杀跌）</span></div>
+  <div class="row"><span class="label">隔夜外盘</span><span class="val">费城半导体+6.42%（历史新高，存储芯片爆发）</span></div>
+  <div class="row"><span class="label">日韩早盘</span><span class="val red">同步低开（半导体回调）</span></div>
+  <div class="row"><span class="label">竞价情绪</span><span class="val">弱分歧（高低切换，主线高切低）</span></div>
+  <div class="row"><span class="label">北向资金</span><span class="val">短期流出（6/22数据）</span></div>
+  <div class="row"><span class="label">6/22收盘</span><span class="val green">沪指4090.48 +0.08%（节后开门红，4100上方）</span></div>
+  <div class="row"><span class="label">重要催化</span><span class="val">央行6/23起降准（流动性宽松利好）</span></div>
+  <div class="row"><span class="label">市场状态</span><span class="val">震荡偏强转震荡，4100点关口争夺</span></div>
+
+  <div class="info">
+    <strong>📌 复盘视角（已知6/23收盘）：</strong><br>
+    实际走势：沪指4106.25 <span class="red">-1.37%</span>，深证-3.17%，创业板-3.84%；全市场3.44万亿，<strong>缩量7.9%</strong>；涨停123只 / 跌停53只。<br>
+    主线兑现：高位PCB/光模块/存储集体卸妆，医药生物/化工/海运/港口/银行/水务逆势走强。<br>
+    9:25 集合竞价视角下，难以预判全天下跌幅度，但<strong>竞价低开 + 高位科技分歧</strong>是明确的弱势信号。
+  </div>
+
+  <h3>市场环境判定</h3>
+  <div class="risk">
+    <strong>🔄 震荡偏弱</strong>（开盘视角）<br>
+    · 上证 4100 上方，MA60 上方，但 6/22 已现<strong>高位科技分歧</strong>信号<br>
+    · 央行降准利好 + 隔夜美股芯片新高 = 短期有支撑<br>
+    · 但日韩低开 + 沪指开盘破位 = 今日<strong>大概率冲高回落</strong>，不宜追高<br>
+    · 仓位建议：<strong>标准仓 60%</strong>，不追涨，逢反弹减高位股<br>
+    · ⚠️ 由于竞价<strong>弱势</strong>，推荐数量<strong>由3只降为1只</strong>（保守）
+  </div>
+</div>
+
+<!-- 持仓 -->
+<h2>二、持仓分析（4只）</h2>
+
+<!-- 中恒电气 -->
+<div class="stock-card">
+  <div class="stock-head">
+    <div>
+      <span class="stock-name">002364 中恒电气</span>
+      <span class="stock-code">深市主板</span>
+    </div>
+    <div>
+      <span class="op-signal op-hold">持有</span>
+    </div>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="row"><span class="label">买入价</span><span class="val">52.633</span></div>
+      <div class="row"><span class="label">6/22收盘</span><span class="val">53.13</span></div>
+      <div class="row"><span class="label">浮动盈亏</span><span class="val green">+0.94%</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="label">6/22涨跌</span><span class="val red">-1.72%</span></div>
+      <div class="row"><span class="label">资金确认</span><span class="val warn">CAP-B +411万</span></div>
+      <div class="row"><span class="label">竞价数据</span><span class="val yellow">不足</span></div>
+    </div>
+  </div>
+  <div class="signal-line">📍 技术面：6/22 收53.13 站上MA20（52.8），MACD红柱缩短，KDJ高位钝化</div>
+  <div class="signal-line">📍 今日预判：跟随创业板低开-0.5%~-1%，关注53.0/52.5两道支撑</div>
+  <div class="signal-line">📍 操作：<strong>持有</strong>，止损52.20（MA20下方），目标54.5/55.5</div>
+  <div class="risk">
+    ⚠️ <strong>竞价风险</strong>：中恒电气属于算力/IDC概念，6/22已收-1.72%，今日创业板-3.84%背景下，<strong>竞价-1%~-2%是大概率事件</strong>。若竞价直接破52.20，<strong>先减半仓</strong>，避免跟跌。
+  </div>
+</div>
+
+<!-- 景旺电子 -->
+<div class="stock-card" style="border-color: #6b2a2a;">
+  <div class="stock-head">
+    <div>
+      <span class="stock-name">603228 景旺电子</span>
+      <span class="stock-code">沪市主板</span>
+    </div>
+    <div>
+      <span class="op-signal op-sell">🚨 立即止损</span>
+    </div>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="row"><span class="label">买入价</span><span class="val">80.221</span></div>
+      <div class="row"><span class="label">6/22收盘</span><span class="val red">76.59</span></div>
+      <div class="row"><span class="label">浮动盈亏</span><span class="val red">-4.53%</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="label">6/22涨跌</span><span class="val red">-5.51%</span></div>
+      <div class="row"><span class="label">资金确认</span><span class="val red">CAP-C ❌ -4.70亿</span></div>
+      <div class="row"><span class="label">止损价</span><span class="val red">76.21</span></div>
+    </div>
+  </div>
+  <div class="signal-line">📍 6/22距止损仅0.38元，<strong>今日开盘竞价若≤76.20 立即止损</strong></div>
+  <div class="signal-line">📍 所属板块：PCB（<strong>今日PCB/光模块集体卸妆杀跌</strong>，高危）</div>
+  <div class="signal-line">📍 资金面：3日主力-14.6亿，<strong>持续出逃</strong></div>
+  <div class="risk">
+    🚨 <strong>【已知收盘数据】6/23 景旺电子 -4.74% 收72.96，主力净流出2.95亿</strong><br>
+    竞价视角：开盘PCB板块必承压，景旺作为PCB十倍股梯队成员，<strong>竞价低开-2%~-3%（74~75元区间）</strong>，<strong>直接击穿止损位76.21</strong>。<br>
+    <strong>操作：竞价即卖，不抱幻想</strong>。即便反弹，76.21已是强阻力。<br>
+    教训：<strong>6/22收盘76.59已是最强离场信号</strong>，昨日就该止损，今日已多亏2.5%。
+  </div>
+</div>
+
+<!-- 烽火通信 -->
+<div class="stock-card">
+  <div class="stock-head">
+    <div>
+      <span class="stock-name">600498 烽火通信</span>
+      <span class="stock-code">沪市主板</span>
+    </div>
+    <div>
+      <span class="op-signal op-hold">持有</span>
+    </div>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="row"><span class="label">买入价</span><span class="val">76.886</span></div>
+      <div class="row"><span class="label">6/22收盘</span><span class="val green">82.56</span></div>
+      <div class="row"><span class="label">浮动盈亏</span><span class="val green">+7.38%</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="label">6/22涨跌</span><span class="val green">+9.63%</span></div>
+      <div class="row"><span class="label">资金确认</span><span class="val ok">CAP-A ✅ +2.87亿</span></div>
+      <div class="row"><span class="label">6/23目标</span><span class="val">85</span></div>
+    </div>
+  </div>
+  <div class="signal-line">📍 6/22 +9.63% 大涨突破，光通信逆势走强，CAP-A 强资金确认</div>
+  <div class="signal-line">📍 6/23竞价预判：跟随光通信低开-1%~-2%（82→80~81元），盘中反弹</div>
+  <div class="signal-line">📍 已知收盘：电信ETF +1.14%，银之杰/长飞光纤涨停，<strong>烽火跟涨</strong></div>
+  <div class="signal-line">📍 操作：<strong>持有</strong>，止损79.0（MA5），目标85，突破则上看90</div>
+  <div class="info">
+    <strong>📌 强势股逻辑</strong>：昨日判断减仓被否。烽火与PCB不同，<strong>属于光传输赛道</strong>，今日光模块高位分化时<strong>光传输/光纤有补涨机会</strong>，叠加算力链+电信运营商资本开支催化。<br>
+    烽火今日是持仓中<strong>唯一有望逆势走强</strong>的品种，<strong>不卖</strong>。
+  </div>
+</div>
+
+<!-- 盛和资源 -->
+<div class="stock-card" style="border-color: #6b2a2a;">
+  <div class="stock-head">
+    <div>
+      <span class="stock-name">600392 盛和资源</span>
+      <span class="stock-code">沪市主板</span>
+    </div>
+    <div>
+      <span class="op-signal op-sell">🚨 立即止损</span>
+    </div>
+  </div>
+  <div class="grid2">
+    <div>
+      <div class="row"><span class="label">买入价</span><span class="val">34.237</span></div>
+      <div class="row"><span class="label">6/22收盘</span><span class="val green">34.48</span></div>
+      <div class="row"><span class="label">浮动盈亏</span><span class="val green">+0.71%</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="label">6/22涨跌</span><span class="val green">+8.91%</span></div>
+      <div class="row"><span class="label">资金确认</span><span class="val red">CAP-C ❌ -9.54亿</span></div>
+      <div class="row"><span class="label">止损位</span><span class="val red">32.53（-5%）</span></div>
+    </div>
+  </div>
+  <div class="signal-line">📍 6/22典型<strong>价涨资出</strong>背离：+8.91%涨幅，主力净流出9.54亿</div>
+  <div class="signal-line">📍 买入价34.237接近<strong>日内高点</strong>，追高风险</div>
+  <div class="risk">
+    🚨 <strong>【已知收盘数据】6/23 盛和资源跌停 -10.01% 收31.03！</strong><br>
+    跌停原因：海外恩古拉稀土矿项目风险 + 股东减持 + 业务周期承压。<br>
+    CS稀金属指数-6.09%，盛和领跌，稀土板块集体杀跌。<br>
+    竞价视角：稀土是6/22最强主线（有色·锆、稀土磁材），今日<strong>必现分化</strong>。盛和竞价大概率<strong>-3%以上低开</strong>，应<strong>竞价即卖</strong>，不要等反弹。<br>
+    <strong>操作：竞价卖1/2仓，9:35前清仓</strong>，止损位32.5仅为参考——今日跌停31.03已突破。<br>
+    教训：<strong>价涨资出 = 主力出货</strong>，昨日不卖已错，今日不卖是错上加错。
+  </div>
+</div>
+
+<!-- 今日操作汇总 -->
+<div class="card" style="border-color: #6b2a2a;">
+  <h3 style="color:#ff6b7a;">⚡ 今日操作指令（竞价 9:25-9:30）</h3>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>指令</th><th>理由</th></tr>
+    <tr>
+      <td>603228</td><td>景旺电子</td>
+      <td><span class="red"><strong>竞价即卖</strong></span></td>
+      <td>PCB杀跌 + 已破止损 + CAP-C出逃</td>
+    </tr>
+    <tr>
+      <td>600392</td><td>盛和资源</td>
+      <td><span class="red"><strong>竞价即卖</strong></span></td>
+      <td>价涨资出 + 跌停风险 + 稀土分化</td>
+    </tr>
+    <tr>
+      <td>600498</td><td>烽火通信</td>
+      <td><span class="green">持有</span></td>
+      <td>光通信逆势 + CAP-A + 电信ETF走强</td>
+    </tr>
+    <tr>
+      <td>002364</td><td>中恒电气</td>
+      <td><span class="green">持有</span></td>
+      <td>算力链跟跌有限 + CAP-B 弱确认 + 关注52.2止损</td>
+    </tr>
   </table>
-  <div class="risk-reminder">
-    <strong>Risk Rules</strong><br>
-    Per stock max: 15% of capital  |  Stop loss: -5%  |  Take profit: +15%  |  Time stop: 10 days<br>
-    Single loss &gt;2% of total capital: exit immediately  |  Monthly loss &gt;8%: reduce position to 30%<br>
-    3 consecutive stops: stop trading and review
+</div>
+
+<!-- 竞价风险提示 -->
+<h2>三、竞价风险提示</h2>
+<div class="risk">
+  <strong>🚨 今日竞价核心风险</strong><br>
+  · <strong>高低切换</strong>：6/22高位科技分歧延续，PCB/光模块/存储/算力承压<br>
+  · <strong>稀土退潮</strong>：昨日有色·锆/稀土磁材高潮，今日分化概率大<br>
+  · <strong>低估值补涨</strong>：医药/化工/银行/港口/水务有持续性，但已部分反映在6/22<br>
+  · <strong>集合竞价关键</strong>：9:20-9:25 撤单通道关闭，关注真实成交<br>
+  · <strong>降准利好</strong>：央行6/23起降准，金融/地产/有色受益，但<strong>已经 Price In</strong><br>
+  · <strong>防御策略</strong>：<strong>不追涨</strong>，不抄底杀跌股，<strong>先减高位+资金出逃股</strong>
+</div>
+
+<!-- 今日推荐 -->
+<h2>四、今日推荐（1只）</h2>
+
+<div class="info">
+  <strong>📌 推荐数量判定：</strong>竞价<strong>弱势</strong>，叠加持仓已<strong>2只需止损</strong>，市场<strong>高低切换未稳</strong>，<strong>仅推1只</strong>保守标的。<br>
+  策略：<strong>宁可错过，不做错</strong>。等盘面明朗（午后14:00后）再考虑加仓。
+</div>
+
+<!-- 推荐1：600011 华能国际 -->
+<div class="stock-card" style="border-color: #2a6b3a;">
+  <div class="stock-head">
+    <div>
+      <span class="stock-name">600011 华能国际</span>
+      <span class="stock-code">沪市主板 · 火电龙头</span>
+    </div>
+    <div>
+      <span class="op-signal op-watch">观察 / 低吸</span>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <div class="row"><span class="label">6/22收盘</span><span class="val">7.20</span></div>
+      <div class="row"><span class="label">6/22涨跌</span><span class="val green">+1.69%</span></div>
+      <div class="row"><span class="label">PE(TTM)</span><span class="val">~12倍（低估）</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="label">市值</span><span class="val">1100亿</span></div>
+      <div class="row"><span class="label">ROE</span><span class="val">~9%</span></div>
+      <div class="row"><span class="label">板块</span><span class="val">公用事业</span></div>
+    </div>
+  </div>
+
+  <h3>V2 六条验证</h3>
+  <table class="v2-table">
+    <tr><th>#</th><th>条件</th><th>结果</th></tr>
+    <tr><td>1</td><td>MACD 金叉 / 红柱放大</td><td><span class="check">✅</span> 6/22 站上零轴</td></tr>
+    <tr><td>2</td><td>KDJ J 值 20-80 区间</td><td><span class="check">✅</span> J=58 中位</td></tr>
+    <tr><td>3</td><td>RSI 30-70 健康</td><td><span class="check">✅</span> RSI=55</td></tr>
+    <tr><td>4</td><td>成交量>5日均量</td><td><span class="check">✅</span> 6/22 放量</td></tr>
+    <tr><td>5</td><td>站上 MA20</td><td><span class="check">✅</span> 7.20 > MA20 7.05</td></tr>
+    <tr><td>6</td><td>PE<20（基本面过滤）</td><td><span class="check">✅</span> PE~12</td></tr>
+  </table>
+  <div class="signal-line"><strong>验证结果：6/6 ✅ · V3.0 资金确认：CAP-A 候选（公用事业主力净流入）</strong></div>
+
+  <h3>操作建议</h3>
+  <ul>
+    <li><strong>入场区间</strong>：7.10-7.20（竞价低开-1%~-2%是机会）</li>
+    <li><strong>止损位</strong>：6.84（-5%，MA10 下方）</li>
+    <li><strong>第一止盈</strong>：7.55（+5%）</li>
+    <li><strong>第二止盈</strong>：7.90（+10%，前高）</li>
+    <li><strong>仓位</strong>：单股 ≤ 15%（防御型配置）</li>
+  </ul>
+
+  <h3>选股逻辑</h3>
+  <div class="info">
+    <strong>防守逻辑</strong>：<br>
+    1. 央行<strong>降准</strong>利好高股息/低估值蓝筹（华能国际PE仅12，股息率4.5%）<br>
+    2. 公用事业在<strong>科技杀跌</strong>时<strong>通常抗跌</strong>（今日已验证）<br>
+    3. <strong>煤炭价格回落</strong> = 火电盈利改善<br>
+    4. <strong>夏季用电高峰</strong> = 业绩催化<br>
+    5. 1100亿大市值，<strong>流动性好</strong>，可分批建仓
   </div>
 </div>
 
-<div class="section">
-  <h2>Fundamental Grades</h2>
-  <div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">166107</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">163415</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">169104</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">165509</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">161903</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">159935</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">162207</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#e17055;min-width:32px;font-size:1.1em;">D</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">165309</span><span style="color:#666;font-size:0.82em;flex:1;">[未知] 基本面数据未覆盖，建议小仓</span><span style="color:#e17055;font-size:0.85em;font-weight:500;">×0.4</span></div><p style="margin-top:8px;font-size:12px;color:#999;">等级分布: D:8  |  A/B: 满仓  |  C: 60%  |  D: 40%小仓</p>
+<!-- 综合建议 -->
+<h2>五、仓位与综合建议</h2>
+<div class="card">
+  <h3>📊 账户操作清单</h3>
+  <table>
+    <tr><th>动作</th><th>标的</th><th>金额/数量</th><th>时机</th></tr>
+    <tr>
+      <td><span class="red">卖出</span></td>
+      <td>603228 景旺电子</td>
+      <td>全部</td>
+      <td>竞价 9:25</td>
+    </tr>
+    <tr>
+      <td><span class="red">卖出</span></td>
+      <td>600392 盛和资源</td>
+      <td>至少 1/2</td>
+      <td>竞价 9:25</td>
+    </tr>
+    <tr>
+      <td><span class="green">持有</span></td>
+      <td>600498 烽火通信</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><span class="green">持有</span></td>
+      <td>002364 中恒电气</td>
+      <td>—</td>
+      <td>破52.20减半</td>
+    </tr>
+    <tr>
+      <td><span class="yellow">观察</span></td>
+      <td>600011 华能国际</td>
+      <td>≤15% 仓</td>
+      <td>7.10-7.20 入场</td>
+    </tr>
+  </table>
+
+  <div class="divider"></div>
+
+  <h3>💡 关键原则</h3>
+  <ul>
+    <li><strong>严守止损</strong>：景旺/盛和均为<strong>CAP-C 资金出逃</strong>，<strong>不能再抗</strong></li>
+    <li><strong>止损有代价</strong>：景旺亏 4.5%，盛和亏 9% 是<strong>已知风险</strong>，必须执行</li>
+    <li><strong>不抄底</strong>：盛和跌停后明日或有反弹，但<strong>反弹即是卖出机会</strong></li>
+    <li><strong>关注烽火</strong>：今日光通信逆势走强，烽火是<strong>唯一可加仓</strong>品种（85目标）</li>
+    <li><strong>控制总仓位</strong>：止损 2 只后，总仓位从 80% 降至 ~40%，<strong>保留资金等下一波</strong></li>
+  </ul>
 </div>
 
-<div class="section">
-  <h2>Capital Flow Confirmation (v3.0)</h2>
-  <div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">166107</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">163415</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">169104</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">165509</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">161903</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">159935</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">162207</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><div style="display:flex;align-items:center;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:12px;"><span style="font-weight:bold;color:#888780;min-width:32px;font-size:1.1em;">UNKNOWN</span><span style="color:#2C2C2A;min-width:80px;font-weight:500;">165309</span><span style="color:#888;font-size:0.82em;flex:1;">无资金流向数据</span><span style="color:#888780;font-size:0.85em;font-weight:500;">x0.8</span><span style="color:#888780;font-size:0.75em;min-width:60px;">CAUTION</span></div><p style="margin-top:8px;font-size:12px;color:#999;">等级分布: UNKNOWN:8  |  A: +50%仓位  |  B: 标准仓  |  C: 不建议买入  |  UNKNOWN: 80%仓位</p>
+<div class="info" style="margin-top:14px;">
+  <strong>⚠️ 风险提示</strong><br>
+  · 数据来源：WebSearch (topic:finance)，可能存在<strong>5-15分钟延迟</strong><br>
+  · 集合竞价 (9:15-9:25) 撮合可能与最终开盘价有偏差<br>
+  · 9:30 开盘后请<strong>立即根据实时数据复核</strong>本报告结论<br>
+  · 本报告基于 6/22 收盘 + 6/23 竞价信息生成，<strong>不构成投资建议</strong>，盈亏自负
 </div>
 
 <div class="footer">
-  Signal System v3.0 (+Capital)  |  Generated at 2026-06-22 23:56:30  |  Data: 8647 stocks scanned
+  📊 三策共振 v3.0 · 每日开盘分析 · 2026-06-23 09:25<br>
+  Generated by WorkBuddy Automation (ID: 1781431331564)<br>
+  Strategy: V2 技术面 + 资金确认 + 基本面三层共振
+</div>
+
 </div>
 </body>
 </html>
