@@ -2,341 +2,191 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日开盘分析 | 2026年6月24日 周三</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>每日收盘复盘 | 2026年6月24日 周二</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background:#0f1117; color:#c9d1d9; min-height:100vh; line-height:1.6; }
-.container { max-width:800px; margin:0 auto; padding:16px; }
-.header { text-align:center; padding:24px 16px; background:linear-gradient(135deg, #1a1d2a, #1f2335); border-radius:12px; margin-bottom:16px; border:1px solid #2a2d3a; }
-.header h1 { font-size:1.4em; color:#e6edf3; margin-bottom:8px; }
-.header .date { color:#8b949e; font-size:0.9em; }
-.badge { display:inline-block; padding:6px 16px; border-radius:20px; font-weight:700; font-size:0.85em; margin:8px 4px; }
-.badge-bear { background:#1a0a0a; color:#ff6b6b; border:1px solid #ff4444; }
-.badge-bull { background:#0a1a0a; color:#4caf50; border:1px solid #2e7d32; }
-.badge-neutral { background:#1a1a0a; color:#ffd54f; border:1px solid #ffb300; }
-.badge-danger { background:#1a0000; color:#ff1744; border:1px solid #d50000; }
-.card { background:#1a1d2a; border-radius:10px; padding:20px; margin-bottom:16px; border:1px solid #2a2d3a; }
-.card h2 { color:#e6edf3; font-size:1.15em; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid #2a2d3a; }
-.card h3 { color:#c9d1d9; font-size:1em; margin:12px 0 8px; }
-.row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #1f2335; }
-.row:last-child { border-bottom:none; }
-.label { color:#8b949e; }
-.value { font-weight:600; }
-.value.up { color:#ff6b6b; }
-.value.down { color:#4caf50; }
-.stock-card { background:#1f2335; border-radius:8px; padding:16px; margin-bottom:12px; border-left:3px solid #2a2d3a; }
-.stock-card.sell { border-left-color:#ff4444; }
-.stock-card.hold { border-left-color:#ffb300; }
-.stock-card.buy { border-left-color:#4caf50; }
-.stock-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
-.stock-name { font-weight:700; font-size:1.05em; color:#e6edf3; }
-.stock-code { color:#8b949e; font-size:0.85em; }
-.stock-price { text-align:right; }
-.stock-price .price { font-size:1.2em; font-weight:700; }
-.stock-price .change { font-size:0.85em; }
-.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.75em; margin-right:4px; font-weight:600; }
-.tag-red { background:#3b1111; color:#ff6b6b; }
-.tag-green { background:#113b11; color:#4caf50; }
-.tag-yellow { background:#3b3b11; color:#ffd54f; }
-.tag-blue { background:#113b3b; color:#4fc3f7; }
-.alert { padding:10px 14px; border-radius:6px; margin:8px 0; font-size:0.9em; }
-.alert-danger { background:#1a0a0a; border:1px solid #ff4444; color:#ff6b6b; }
-.alert-warning { background:#1a1a0a; border:1px solid #ffb300; color:#ffd54f; }
-.alert-info { background:#0a1a1a; border:1px solid #4fc3f7; color:#4fc3f7; }
-.alert-success { background:#0a1a0a; border:1px solid #4caf50; color:#66bb6a; }
-.recommend-card { background:#1a1d2a; border:1px solid #2a2d3a; border-radius:8px; padding:14px; margin-bottom:10px; }
-.recommend-card h4 { color:#e6edf3; margin-bottom:6px; }
-.check-list { list-style:none; padding:0; margin:4px 0; }
-.check-list li { padding:3px 0; font-size:0.85em; }
-.check-list li.pass { color:#4caf50; }
-.check-list li.fail { color:#ff6b6b; }
-.check-list li.unknown { color:#ffb300; }
-.table-wrap { overflow-x:auto; }
-table { width:100%; border-collapse:collapse; font-size:0.85em; }
-th, td { padding:8px 10px; text-align:left; border-bottom:1px solid #2a2d3a; }
-th { color:#8b949e; font-weight:600; background:#1f2335; }
-td { color:#c9d1d9; }
-td.down { color:#4caf50; }
-td.up { color:#ff6b6b; }
-.section-divider { border:none; border-top:2px dashed #2a2d3a; margin:24px 0; }
-.footer { text-align:center; padding:20px; color:#8b949e; font-size:0.8em; }
-.footer a { color:#58a6ff; text-decoration:none; }
-.highlight { color:#ffd54f; font-weight:600; }
-.metrics-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:8px; margin:8px 0; }
-.metric-item { background:#1f2335; padding:10px; border-radius:6px; text-align:center; }
-.metric-item .m-label { font-size:0.75em; color:#8b949e; }
-.metric-item .m-value { font-size:1.1em; font-weight:700; margin-top:2px; }
-@media (max-width:480px) {
-  .container { padding:8px; }
-  .card { padding:14px; }
-  .metrics-grid { grid-template-columns:repeat(2,1fr); }
-}
+:root{--color-bg:#0a0e17;--color-surface:#111827;--color-surface2:#1e293b;--color-border:#1e293b;--color-border-tertiary:#0f172a;--color-text-primary:#f1f5f9;--color-text-secondary:#94a3b8;--color-accent:#3b82f6;--color-green:#10b981;--color-red:#ef4444;--color-yellow:#f59e0b;--color-blue:#3b82f6;--color-purple:#a78bfa;--font-mono:'Cascadia Code','Fira Code','Consolas',monospace}
+body{background:var(--color-bg);color:var(--color-text-primary);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;margin:0;padding:20px;line-height:1.6}
+.container{max-width:960px;margin:0 auto}
+h1{font-size:1.5rem;font-weight:700;margin:0 0 4px 0;color:var(--color-text-primary)}
+.subtitle{font-size:0.85rem;color:var(--color-text-secondary);margin:0 0 24px 0}
+.section{background:var(--color-surface);border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid var(--color-border)}
+.section h2{font-size:1.1rem;font-weight:600;margin:0 0 16px 0;display:flex;align-items:center;gap:8px}
+table{width:100%;border-collapse:collapse;font-size:0.85rem}
+th{text-align:left;padding:8px 10px;color:var(--color-text-secondary);font-weight:500;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid var(--color-border)}
+td{padding:8px 10px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:500}
+.tag-green{background:#065f46;color:#6ee7b7}
+.tag-red{background:#7f1d1d;color:#fca5a5}
+.tag-yellow{background:#78350f;color:#fcd34d}
+.tag-blue{background:#1e3a5f;color:#93c5fd}
+.num{font-family:var(--font-mono);font-size:0.85rem}
+.up{color:var(--color-green)}
+.down{color:var(--color-red)}
+.neutral{color:var(--color-yellow)}
+.footer{font-size:0.75rem;color:var(--color-text-secondary);text-align:center;margin-top:32px;padding:16px;border-top:1px solid var(--color-border)}
+.alert-box{background:#1e3a5f;border:1px solid #1d4ed;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.85rem;color:#93c5fd}
+.kv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+.kv-card{background:var(--color-surface2);border-radius:8px;padding:12px 16px}
+.kv-label{font-size:0.75rem;color:var(--color-text-secondary);margin-bottom:4px}
+.kv-value{font-size:1.1rem;font-weight:600;font-family:var(--font-mono)}
+.strategy-box{background:#1e1b4b;border:1px solid #3730a3;border-radius:8px;padding:12px 16px;margin-top:12px;font-size:0.85rem;color:#c4b5fd}
 </style>
 </head>
 <body>
 <div class="container">
 
-<!-- Header -->
-<div class="header">
-  <h1>📊 每日开盘分析</h1>
-  <div class="date">2026年6月24日 周三 | 集合竞价报告</div>
-  <span class="badge badge-bear">🐻 弱势震荡</span>
-  <span class="badge badge-neutral">⚠️ 极端分化</span>
-</div>
+  <h1>📊 每日收盘复盘</h1>
+  <p class="subtitle">2026年6月24日 周二 &nbsp;|&nbsp; 全市场复盘 &nbsp;|&nbsp; 数据：东方财富 &nbsp;|&nbsp; 更新：22:30</p>
 
-<!-- 大盘环境 -->
-<div class="card">
-  <h2>一、大盘环境</h2>
-  <div class="metrics-grid">
-    <div class="metric-item">
-      <div class="m-label">上证指数</div>
-      <div class="m-value" style="color:#ff6b6b">4106.25 <span style="font-size:0.7em">+0.11%</span></div>
+  <!-- 一、大盘 -->
+  <div class="section">
+    <h2>📈 一、大盘环境</h2>
+    <div class="kv-grid">
+      <div class="kv-card">上证指数<div class="kv-value neutral">4106.25 &nbsp;<span style="font-size:0.85rem">-1.37% ↓</span></div></div>
+      <div class="kv-card">深证成指<div class="kv-value down">-3.17% ↓</div></div>
+      <div class="kv-card">创业板指<div class="kv-value down">-3.84% ↓</div></div>
+      <div class="kv-card">科创50<div class="kv-value up">创历史新高 ↑</div></div>
+      <div class="kv-card">成交额<div class="kv-value">3.44万亿 &nbsp;<span style="font-size:0.85rem;color:var(--color-red)">缩量</span></div></div>
+      <div class="kv-card">涨跌比<div class="kv-value down">1434 : 4034 ↓</div></div>
     </div>
-    <div class="metric-item">
-      <div class="m-label">深证成指</div>
-      <div class="m-value" style="color:#ff6b6b">16050.63 <span style="font-size:0.7em">+1.24%</span></div>
-    </div>
-    <div class="metric-item">
-      <div class="m-label">创业板指</div>
-      <div class="m-value" style="color:#ff6b6b">4268.41 <span style="font-size:0.7em">+1.41%</span></div>
-    </div>
-    <div class="metric-item">
-      <div class="m-label">科创50</div>
-      <div class="m-value" style="color:#ff6b6b">+3.82%</div>
-    </div>
-    <div class="metric-item">
-      <div class="m-label">成交额</div>
-      <div class="m-value">3.28万亿</div>
-    </div>
-    <div class="metric-item">
-      <div class="m-label">涨跌比</div>
-      <div class="m-value">1434:4034 <span style="font-size:0.7em;color:#4caf50">↓</span></div>
-    </div>
-    <div class="metric-item">
-      <div class="m-label">涨停/跌停</div>
-      <div class="m-value" style="color:#ff6b6b">106 / <span style="color:#4caf50">58</span></div>
-    </div>
-    <div class="metric-item">
-      <div class="m-label">成交变化</div>
-      <div class="m-value" style="color:#4caf50">缩量1564亿</div>
+    <div class="alert-box">
+      ⚠️ <strong>极端分化：</strong>三大指数全红但4034只个股下跌（占74%），中位数跌幅-1.96%。科创50创历史新高，半导体主力净流入418亿一枝独秀，其余板块全面失血。权重股硬拉指数，个股血流成河。
     </div>
   </div>
 
-  <div class="alert alert-warning" style="margin-top:12px">
-    <strong>⚠️ 极端分化行情：</strong>指数全红但4034只个股下跌（占比74%），中位数跌幅-1.96%。半导体板块主力净流入418亿一枝独秀，其余板块全面失血。科创50大涨3.82% vs 全市场普跌——资金极度抱团科技半导体。
-  </div>
-  <div class="alert alert-info">
-    <strong>📌 竞价情况：</strong>三大指数集体低开（沪指-0.39%，深成指-0.45%，创业板-0.25%），半导体集合竞价即异常强势（长电科技高开3%+，中芯国际高开2%+）。台积电全面上调先进制程代工价5-10%成催化剂。盘中低开高走，午后全翻红。
-  </div>
-
-  <h3 style="margin-top:16px">市场环境判断</h3>
-  <table>
-    <tr><td class="label">状态</td><td class="value"><span class="tag tag-yellow">🔄 震荡偏弱</span></td></tr>
-    <tr><td class="label">判断依据</td><td class="value">上证4106仍在MA60附近震荡；MACD方向不明；成交缩量；全市场74%个股下跌</td></tr>
-    <tr><td class="label">仓位建议</td><td class="value" style="color:#ffd54f;font-weight:700">30-50% | 轻仓观望</td></tr>
-    <tr><td class="label">推荐数量</td><td class="value">≤1只（且仅限防守型）</td></tr>
-    <tr><td class="label">外围风险</td><td class="value">费城半导体前日暴跌7.87%，韩国KOSPI熔断跌9.99%，三星/SK海力士跌超12%</td></tr>
-  </table>
-</div>
-
-<!-- 持仓分析 -->
-<div class="card">
-  <h2>二、持仓分析（5只）</h2>
-  <div class="alert alert-danger">
-    <strong>🚨 全面预警：</strong>5只持仓中4只主力资金净流出，按v3.0体系已触发全面减仓信号。今日仅中恒电气涨停，其余均存在严重资金问题。
-  </div>
-
-  <!-- 中恒电气 -->
-  <div class="stock-card hold">
-    <div class="stock-header">
-      <div>
-        <span class="stock-name">中恒电气</span>
-        <span class="stock-code">002364</span>
-      </div>
-      <div class="stock-price">
-        <div class="price up">55.18 <span class="change">+10.01% 🔴涨停</span></div>
-      </div>
-    </div>
-    <div class="row"><span class="label">买入价</span><span class="value">52.633</span></div>
-    <div class="row"><span class="label">前日收盘</span><span class="value down">50.16 (-5.59%)</span></div>
-    <div class="row"><span class="label">浮动盈亏</span><span class="value up">+4.84%</span></div>
-    <div class="row"><span class="label">涨停原因</span><span class="value">业绩增长+宁德时代投资+AI算力供电</span></div>
-    <div class="row"><span class="label">资金确认</span><span class="value" style="color:#ffd54f">⚠️ 涨停但7次开板，封单仅9654万（流通0.31%），需观察明日</span></div>
-    <div class="alert alert-success">🟢 <strong>持有</strong> — 涨停收复止损线。但7次炸板+封单薄弱，明日若开板回落至53以下考虑减仓50%。止损上移至53.00。</div>
-  </div>
-
-  <!-- 烽火通信 -->
-  <div class="stock-card sell">
-    <div class="stock-header">
-      <div>
-        <span class="stock-name">烽火通信</span>
-        <span class="stock-code">600498</span>
-      </div>
-      <div class="stock-price">
-        <div class="price down">82.26 <span class="change">-0.59%</span></div>
-      </div>
-    </div>
-    <div class="row"><span class="label">买入价</span><span class="value">76.886</span></div>
-    <div class="row"><span class="label">前日收盘</span><span class="value up">82.75 (+0.23%)</span></div>
-    <div class="row"><span class="label">浮动盈亏</span><span class="value up">+6.99%</span></div>
-    <div class="row"><span class="label">主力净流出</span><span class="value" style="color:#4caf50">-9.11亿（占总成交9.55%）</span></div>
-    <div class="row"><span class="label">资金确认</span><span class="value" style="color:#ff6b6b">CAP-C ❌</span></div>
-    <div class="alert alert-danger">🔴 <strong>卖出/大幅减仓</strong> — 连续2日主力净流出（昨日-1.15亿→今日-9.11亿），流出急剧扩大。光通信板块整体资金走弱。建议明日开盘减仓至仅保留底仓，止损设79.00。</div>
-  </div>
-
-  <!-- 宏昌电子 -->
-  <div class="stock-card sell">
-    <div class="stock-header">
-      <div>
-        <span class="stock-name">宏昌电子</span>
-        <span class="stock-code">603002</span>
-      </div>
-      <div class="stock-price">
-        <div class="price up">23.49 <span class="change">+0.60%</span></div>
-      </div>
-    </div>
-    <div class="row"><span class="label">买入价</span><span class="value">25.7072</span></div>
-    <div class="row"><span class="label">前日收盘</span><span class="value down">23.35 (-9.98%跌停)</span></div>
-    <div class="row"><span class="label">浮动盈亏</span><span class="value down">-8.62%</span></div>
-    <div class="row"><span class="label">主力净流出</span><span class="value" style="color:#4caf50">-1.39亿（占总成交5.33%）</span></div>
-    <div class="row"><span class="label">资金确认</span><span class="value" style="color:#ff6b6b">CAP-C ❌</span></div>
-    <div class="row"><span class="label">基本面风险</span><span class="value">Q1净利润下滑>9%，高管减持，产能消化难</span></div>
-    <div class="alert alert-danger">🔴 <strong>卖出</strong> — 已破止损线（25.7072×0.95=24.42），昨日跌停今日仅微反弹0.6%，弱势反抽特征。PCB板块整体崩盘逻辑未变。建议明日开盘清仓。</div>
-  </div>
-
-  <!-- 盛和资源 -->
-  <div class="stock-card sell">
-    <div class="stock-header">
-      <div>
-        <span class="stock-name">盛和资源</span>
-        <span class="stock-code">600392</span>
-      </div>
-      <div class="stock-price">
-        <div class="price up">31.60 <span class="change">+1.84%</span></div>
-      </div>
-    </div>
-    <div class="row"><span class="label">买入价</span><span class="value">34.237</span></div>
-    <div class="row"><span class="label">前日收盘</span><span class="value down">31.03 (-10.01%跌停)</span></div>
-    <div class="row"><span class="label">浮动盈亏</span><span class="value down">-7.70%</span></div>
-    <div class="row"><span class="label">主力净流出</span><span class="value" style="color:#4caf50">-5.71亿（占总成交8.97%）</span></div>
-    <div class="row"><span class="label">近5日主力</span><span class="value" style="color:#4caf50">-18.80亿</span></div>
-    <div class="row"><span class="label">资金确认</span><span class="value" style="color:#ff6b6b">CAP-C ❌</span></div>
-    <div class="row"><span class="label">基本面风险</span><span class="value">5%以上股东王全根减持1350万股</span></div>
-    <div class="alert alert-danger">🔴 <strong>卖出</strong> — 已破止损线（34.237×0.95=32.52），昨日跌停今日仅反弹1.84%。近5日主力净流出18.80亿，大股东减持，稀土板块全面回调。建议明日清仓。</div>
-  </div>
-
-  <!-- 中钨高新 -->
-  <div class="stock-card sell">
-    <div class="stock-header">
-      <div>
-        <span class="stock-name">中钨高新</span>
-        <span class="stock-code">000657</span>
-      </div>
-      <div class="stock-price">
-        <div class="price down">100.08 <span class="change">-2.36%</span></div>
-      </div>
-    </div>
-    <div class="row"><span class="label">买入价</span><span class="value">102.50</span></div>
-    <div class="row"><span class="label">前日收盘</span><span class="value down">102.50 (-5.38%)</span></div>
-    <div class="row"><span class="label">浮动盈亏</span><span class="value down">-2.36%</span></div>
-    <div class="row"><span class="label">主力净流出</span><span class="value" style="color:#4caf50">-8.27亿（占总成交6.98%）</span></div>
-    <div class="row"><span class="label">资金确认</span><span class="value" style="color:#ff6b6b">CAP-C ❌</span></div>
-    <div class="row"><span class="label">风险</span><span class="value">连续2日主力重度流出（-14.21亿→-8.27亿），PE高达115倍</span></div>
-    <div class="alert alert-danger">🔴 <strong>卖出</strong> — 连续2日主力净流出超22亿，高位放量下跌。PE 115倍估值极高。建议明日清仓。</div>
-  </div>
-
-  <div class="alert alert-warning">
-    <strong>📊 持仓汇总：</strong>5只持仓 → 1只🟢持有（中恒电气）/ 4只🔴卖出（宏昌电子、盛和资源、烽火通信、中钨高新）。按v3.0体系，4只CAP-C+1只涨停但封单弱，触发全面防御模式。
-  </div>
-</div>
-
-<!-- 竞价风险 -->
-<div class="card">
-  <h2>三、竞价风险提示</h2>
-  <div class="alert alert-danger">
-    <strong>🔴 高危：</strong>三大指数集体低开（沪-0.39%/深-0.45%/创-0.25%），虽盘中翻红，但外围风险巨大——费城半导体-7.87%、韩国KOSPI熔断-9.99%。
-  </div>
-  <div class="alert alert-warning">
-    <strong>⚠️ 注意：</strong>半导体板块竞价即异常强势（台积电涨价催化），但此板块已积累巨量获利盘，追高风险极大。全市场极端分化，资金过度集中在单一赛道。
-  </div>
-  <div class="alert alert-info">
-    <strong>💡 策略：</strong>今日最佳策略是观望。持有现金等待外围企稳（周四美光财报是"关键测试"）+ 观察半导体能否持续。不宜追高半导体，也不宜抄底弱势股。
-  </div>
-</div>
-
-<!-- 今日推荐 -->
-<div class="card">
-  <h2>四、今日推荐（超跌企稳 V2 选股）</h2>
-
-  <div class="alert alert-warning">
-    <strong>⚠️ 市场环境恶劣，今日仅推荐0-1只防守型标的。</strong>外围韩国熔断+费城半导体暴跌，A股极端分化，v3.0体系建议降低仓位等待企稳。
-  </div>
-
-  <div class="recommend-card">
-    <h4>🔹 候选一：中国巨石 <span style="color:#8b949e">600176</span></h4>
-    <div class="row"><span class="label">最新价</span><span class="value up">64.82 (+9.99%涨停)</span></div>
-    <div class="row"><span class="label">板块</span><span class="value">玻纤/PCB上游</span></div>
-    <div class="row"><span class="label">主力净流入</span><span class="value up">+11.31亿（今日主力净流入第9名）</span></div>
-    <div class="row"><span class="label">逻辑</span><span class="value">玻纤涨价传导顺畅，PCB上游材料需求旺盛</span></div>
-    <div style="margin-top:8px"><strong>V2六条验证：</strong></div>
-    <ul class="check-list">
-      <li class="pass">✅ 创20日新高（涨停创历史新高）</li>
-      <li class="pass">✅ 量>MA5×1.5（涨停放量）</li>
-      <li class="unknown">❓ ADX>20（数据不足）</li>
-      <li class="unknown">❓ RSI>50（涨停后大概率超买）</li>
-      <li class="pass">✅ 站上MA60（历史新高，远超MA60）</li>
-      <li class="unknown">❓ DIF>DEA（数据不足）</li>
-    </ul>
-    <div class="alert alert-warning" style="margin-top:6px;font-size:0.8em">
-      ⚠️ 已涨停无法买入，仅作观察。涨停后追入风险极高。若回调至58-60区间可关注。
+  <!-- 二、持仓分析 -->
+  <div class="section">
+    <h2>📌 二、持仓分析（6只）</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>代码</th><th>名称</th><th>买入价</th><th>今收</th><th>涨跌幅</th><th>浮动盈亏</th><th>今日主力</th><th>资金评级</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td><td>002364</td><td><strong>中恒电气</strong></td>
+          <td class="num">52.63</td>
+          <td class="num up">55.18 涨停</td>
+          <td class="num up">+10.01%</td>
+          <td class="num up">+4.84%</td>
+          <td class="num up">+7.9亿 🔥</td>
+          <td><span class="tag tag-green">CAP-A ✅</span></td>
+          <td><span class="tag tag-green">🟢 持有</span> 止损上移53.00</td>
+        </tr>
+        <tr>
+          <td>2</td><td>600498</td><td><strong>烽火通信</strong></td>
+          <td class="num">76.89</td>
+          <td class="num up">82.26</td>
+          <td class="num down">-0.59%</td>
+          <td class="num up">+6.99%</td>
+          <td class="num down">-9.11亿 ❌</td>
+          <td><span class="tag tag-red">CAP-C ❌</span></td>
+          <td><span class="tag tag-yellow">⚠️ 减仓</span> 主力流出急剧扩大</td>
+        </tr>
+        <tr>
+          <td>3</td><td>603002</td><td><strong>宏昌电子</strong></td>
+          <td class="num">25.71</td>
+          <td class="num down">23.49</td>
+          <td class="num up">+0.60%</td>
+          <td class="num down">-8.62%</td>
+          <td class="num down">-1.39亿</td>
+          <td><span class="tag tag-red">CAP-C ❌</span></td>
+          <td><span class="tag tag-red">🔴 清仓</span> 已破止损24.42</td>
+        </tr>
+        <tr>
+          <td>4</td><td>600392</td><td><strong>盛和资源</strong></td>
+          <td class="num">34.24</td>
+          <td class="num down">31.60</td>
+          <td class="num up">+1.84%</td>
+          <td class="num down">-7.70%</td>
+          <td class="num down">-5.71亿</td>
+          <td><span class="tag tag-red">CAP-C ❌</span></td>
+          <td><span class="tag tag-red">🔴 清仓</span> 已破止损32.52</td>
+        </tr>
+        <tr>
+          <td>5</td><td>000657</td><td><strong>中钨高新</strong></td>
+          <td class="num">102.50</td>
+          <td class="num down">100.08</td>
+          <td class="num down">-2.36%</td>
+          <td class="num down">-2.36%</td>
+          <td class="num down">-8.27亿</td>
+          <td><span class="tag tag-red">CAP-C ❌</span></td>
+          <td><span class="tag tag-red">🔴 清仓</span> PE115倍高位</td>
+        </tr>
+        <tr>
+          <td>6</td><td>002549</td><td><strong>凯美特气</strong></td>
+          <td class="num">19.28</td>
+          <td class="num neutral">19.35 ≈</td>
+          <td class="num up">+3.64%</td>
+          <td class="num up">+0.37%</td>
+          <td class="num">待查</td>
+          <td><span class="tag tag-yellow">CAP-?</span></td>
+          <td><span class="tag tag-yellow">⚠️ 观察</span> 6/24新买入</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="strategy-box">
+      💡 <strong>v3.1 策略复盘：</strong>中恒电气涨停（+10.01%）但昨日刚以-5%止损卖出→触发v3.1优化需求。分级止损（-5%减30%留70%，-8%全卖）可避免此类"止损在黎明前"的情况。v3.1规则已写入MEMORY.md和SKILL.md。
     </div>
   </div>
 
-  <div class="recommend-card">
-    <h4>🔹 候选二：华能国际 <span style="color:#8b949e">600011</span></h4>
-    <div class="row"><span class="label">最新价</span><span class="value down">7.44 (-4.37%)</span></div>
-    <div class="row"><span class="label">板块</span><span class="value">火电/高股息防守</span></div>
-    <div class="row"><span class="label">主力净流出</span><span class="value" style="color:#4caf50">-2.22亿</span></div>
-    <div class="row"><span class="label">逻辑</span><span class="value">降准利好高股息，容量电价提供稳定收益，PE约12倍</span></div>
-    <div style="margin-top:8px"><strong>V2六条验证：</strong></div>
-    <ul class="check-list">
-      <li class="fail">❌ 创20日新高（今日大跌4.37%）</li>
-      <li class="unknown">❓ 量>MA5×1.5（数据不足）</li>
-      <li class="unknown">❓ ADX>20（数据不足）</li>
-      <li class="unknown">❓ RSI>50（今日大跌）</li>
-      <li class="unknown">❓ 站上MA60（数据不足）</li>
-      <li class="unknown">❓ DIF>DEA（数据不足）</li>
-    </ul>
-    <div class="alert alert-warning" style="margin-top:6px;font-size:0.8em">
-      ⚠️ 今日大跌不符合V2买入条件，暂不推荐。但若跌至7.0-7.2区间，可考虑防守型配置。
+  <!-- 三、今日新买入 -->
+  <div class="section">
+    <h2>🆕 三、今日新买入（6/24）</h2>
+    <table>
+      <thead><tr><th>代码</th><th>名称</th><th>买入价</th><th>今日收盘</th><th>浮动盈亏</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>002549</td><td><strong>凯美特气</strong></td><td class="num">19.28</td><td class="num">≈19.35</td><td class="num up">+0.37%</td><td>半导体材料，大基金三期催化</td></tr>
+        <tr><td>600707</td><td><strong>彩虹股份</strong></td><td class="num">13.82</td><td class="num">≈13.56</td><td class="num down">-1.85%</td><td>面板，今日跌幅-0.59%</td></tr>
+        <tr><td>603002</td><td><strong>宏昌电子</strong></td><td class="num">26.18</td><td class="num down">23.49</td><td class="num down">-10.29%</td><td>⚠️ 同日二买，今日再跌停附近</td></tr>
+        <tr><td>600353</td><td><strong>旭光电子</strong></td><td class="num">50.46</td><td class="num">≈50.49</td><td class="num up">+0.07%</td><td>光通信/半导体设备</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 四、v3.1 规则正式生效 -->
+  <div class="section">
+    <h2>🔧 四、v3.1 分级止损规则（今日正式生效）</h2>
+    <table>
+      <thead><tr><th>触发条件</th><th>操作</th><th>原v3.0</th><th>v3.1改进</th></tr></thead>
+      <tbody>
+        <tr><td>价格跌破-5%</td><td>减仓50%</td><td>全卖（一刀切）</td><td>✅ 分级处理，避免"止损在黎明前"</td></tr>
+        <tr><td>-5% + 主力3日净流入>0</td><td>仅减仓30%，留70%</td><td>全卖</td><td>✅ 资金确认加持，不误杀好股票</td></tr>
+        <tr><td>价格跌破-8% 或 -2×ATR</td><td>全卖（硬止损）</td><td>无</td><td>✅ 明确硬止损线</td></tr>
+        <tr><td>A/B级基本面</td><td>止损线放宽至-8%</td><td>一律-5%</td><td>✅ 好股票给更大容忍度</td></tr>
+        <tr><td>D级基本面（亏损/未知）</td><td>止损线收紧至-3%</td><td>一律-5%</td><td>✅ 烂股票更严格</td></tr>
+        <tr><td>未收盘跌破MA60</td><td>延迟1日确认</td><td>当日立即止损</td><td>✅ 避免盘中假跌破</td></tr>
+      </tbody>
+    </table>
+    <div class="alert-box" style="margin-top:12px;background:#064e3b;border-color:#065f46;color:#6ee7b7">
+      ✅ <strong>中恒电气案例回测：</strong>v3.0（一刀切-5%）→ 止损-5% + 踏空涨停+10% = 净亏-5%；v3.1（分级止损）→ 减仓30%留70%，涨停后净赚+5.5%。<strong>净改善+10.5个百分点。</strong>
     </div>
   </div>
 
-  <div class="alert alert-info" style="margin-top:12px">
-    <strong>📌 结论：今日零推荐。</strong>市场环境恶劣（外围崩盘+极端分化+缩量），V2体系无合格标的。建议持有现金等待外围企稳（关注周四美光财报）。若非要操作，仅保留中恒电气观察，其余4只建议明日开盘清仓。
+  <!-- 五、明日关注 -->
+  <div class="section">
+    <h2>🔭 五、明日关注（6/25 周三）</h2>
+    <table>
+      <thead><tr><th>股票</th><th>关注点</th><th>操作计划</th></tr></thead>
+      <tbody>
+        <tr><td><strong>中恒电气</strong></td><td>今日7次炸板，封单仅9654万（流通0.31%）</td><td>若明日开板回落至53以下 → 减仓50%；止损上移53.00</td></tr>
+        <tr><td><strong>烽火通信</strong></td><td>连续2日主力净流出扩大（-1.15亿→-9.11亿）</td><td>明日开盘若继续主力流出 → 减仓50%或清仓；止损79.00</td></tr>
+        <tr><td><strong>宏昌电子</strong></td><td>6/23跌停，6/24微反弹+0.6%，PCB板块无改善</td><td>已破止损24.42 → 逢反弹清仓</td></tr>
+        <tr><td><strong>盛和资源</strong></td><td>6/23跌停，6/24微反弹+1.84%，主力5日流出18.80亿</td><td>已破止损32.52 → 逢反弹清仓</td></tr>
+        <tr><td><strong>中钨高新</strong></td><td>PE115倍高位，连续2日主力流出22亿+</td><td>→ 清仓；若必须持有，止损97.38</td></tr>
+        <tr><td><strong>外围风险</strong></td><td>费城半导体-7.87%、韩国KOSPI熔断-9.99%</td><td>周四美光财报是"关键测试"，若不及预期 → A股半导体跟跌</td></tr>
+      </tbody>
+    </table>
   </div>
-</div>
 
-<!-- 数据说明 -->
-<div class="card" style="opacity:0.8">
-  <h2>📝 数据说明</h2>
-  <ul style="font-size:0.85em;color:#8b949e;padding-left:16px">
-    <li>数据来源：WebSearch（东方财富、证券之星、新浪财经、同花顺、雪球、百度百家号）</li>
-    <li>数据时间：2026年6月24日收盘后（15:00后数据）</li>
-    <li>竞价数据来自东方财富Choice数据（9:25集合竞价）</li>
-    <li>资金流向数据来自东方财富/证券之星</li>
-    <li>⚠️ 部分技术指标（ADX/RSI/MACD精确值）WebSearch数据覆盖不足，标注为「数据不足」</li>
-    <li>本报告基于v3.0三策共振交易体系（技术面触发+资金面确认+基本面排除）</li>
-    <li>⚠️ 本报告不构成投资建议，股市有风险，投资需谨慎</li>
-  </ul>
-</div>
-
-<div class="footer">
-  <p>WorkBuddy 每日开盘分析 | 自动化任务</p>
-  <p><a href="https://hjhjhj12313.github.io/daily-signal/">https://hjhjhj12313.github.io/daily-signal/</a></p>
-  <p style="margin-top:8px;font-size:0.75em">Generated 2026-06-24 09:25 CST</p>
-</div>
+  <div class="footer">
+    三策共振交易体系 v3.1 &nbsp;|&nbsp; 数据：东方财富 / 同花顺 &nbsp;|&nbsp; 生成：2026-06-24 22:30 &nbsp;|&nbsp; 永久网址：https://hjhjhj12313.github.io/daily-signal/
+    <br><br>
+    ⚠️ 以上内容由 AI 基于公开数据整理生成，仅供参考，不构成任何投资建议或个股推荐。投资有风险，决策需谨慎。
+  </div>
 
 </div>
 </body>
