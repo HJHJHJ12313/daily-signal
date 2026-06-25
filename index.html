@@ -3,171 +3,429 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Daily Signal Report - 20260624</title>
+<title>每日开盘分析 - 2026-06-25</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f8f9fa;color:#2C2C2A;padding:20px;max-width:1100px;margin:0 auto}
-  .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
-  .header h1{font-size:22px;font-weight:500}
-  .env-badge{padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#fff}
-  .section{margin-bottom:24px}
-  .section h2{font-size:16px;font-weight:500;margin-bottom:12px}
-  .holdings{display:flex;flex-wrap:wrap;gap:10px}
-  .sig-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.08)}
-  .sig-table th{text-align:left;padding:10px 8px;font-size:12px;font-weight:500;color:var(--color-text-secondary);background:#fafafa}
-  .summary{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-  .summary-card{background:#fff;border-radius:10px;padding:14px 20px;border:0.5px solid rgba(0,0,0,0.08);min-width:120px}
-  .summary-card .num{font-size:28px;font-weight:500}
-  .summary-card .label{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
-  .risk-reminder{background:#FAEEDA;border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.7;margin-top:16px}
-  .footer{text-align:center;font-size:11px;color:var(--color-text-secondary);margin-top:32px;padding:16px 0;border-top:0.5px solid rgba(0,0,0,0.06)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#0f1117;color:#e6e8ee;padding:16px;max-width:1100px;margin:0 auto;line-height:1.6}
+  .header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px;padding:16px;background:linear-gradient(135deg,#1a1d2a 0%,#252938 100%);border-radius:12px;border:1px solid rgba(255,255,255,0.05)}
+  .header h1{font-size:20px;font-weight:600;color:#fff}
+  .header .subtitle{font-size:12px;color:#8a8e9c;margin-top:4px}
+  .badges{display:flex;gap:8px;flex-wrap:wrap}
+  .badge{padding:5px 12px;border-radius:16px;font-size:12px;font-weight:500;color:#fff;letter-spacing:0.5px}
+  .badge.bull{background:linear-gradient(135deg,#16a34a,#22c55e)}
+  .badge.shake{background:linear-gradient(135deg,#d97706,#f59e0b)}
+  .badge.bear{background:linear-gradient(135deg,#dc2626,#ef4444)}
+  .badge.panic{background:linear-gradient(135deg,#7f1d1d,#991b1b)}
+  .section{background:#1a1d2a;border-radius:12px;padding:18px;margin-bottom:14px;border:1px solid rgba(255,255,255,0.05)}
+  .section h2{font-size:15px;font-weight:600;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .section h2::before{content:'';width:3px;height:14px;background:linear-gradient(180deg,#3b82f6,#8b5cf6);border-radius:2px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+  .idx-card{background:#0f1117;border-radius:8px;padding:12px 14px;border:1px solid rgba(255,255,255,0.06)}
+  .idx-card .name{font-size:11px;color:#8a8e9c;margin-bottom:4px}
+  .idx-card .val{font-size:18px;font-weight:600;color:#fff}
+  .idx-card .chg{font-size:13px;font-weight:500;margin-top:2px}
+  .up{color:#ef4444}
+  .down{color:#22c55e}
+  .flat{color:#8a8e9c}
+  .stock-card{background:#0f1117;border-radius:10px;padding:14px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.06);position:relative}
+  .stock-card.sell{border-left:3px solid #ef4444}
+  .stock-card.hold{border-left:3px solid #22c55e}
+  .stock-card.cut{border-left:3px solid #f59e0b}
+  .stock-card.avoid{border-left:3px solid #7f1d1d}
+  .stock-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+  .stock-name{font-size:15px;font-weight:600;color:#fff}
+  .stock-code{font-size:11px;color:#8a8e9c;margin-left:6px}
+  .action-tag{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;letter-spacing:0.3px}
+  .action-tag.sell{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3)}
+  .action-tag.hold{background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3)}
+  .action-tag.cut{background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)}
+  .action-tag.avoid{background:rgba(127,29,29,0.25);color:#fca5a5;border:1px solid rgba(127,29,29,0.4)}
+  .stock-price{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+  .price{font-size:22px;font-weight:700;color:#fff}
+  .chg-pct{font-size:14px;font-weight:600}
+  .meta-row{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:#8a8e9c;margin-bottom:8px}
+  .meta-row .meta-item{display:flex;align-items:center;gap:4px}
+  .meta-row strong{color:#c8cad3;font-weight:500}
+  .warn-box{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:8px 10px;font-size:12px;color:#fca5a5;margin:6px 0;line-height:1.6}
+  .ok-box{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:6px;padding:8px 10px;font-size:12px;color:#86efac;margin:6px 0;line-height:1.6}
+  .info-box{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:6px;padding:8px 10px;font-size:12px;color:#93c5fd;margin:6px 0;line-height:1.6}
+  .neutral-box{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:6px;padding:8px 10px;font-size:12px;color:#fcd34d;margin:6px 0;line-height:1.6}
+  .rec-card{background:#0f1117;border-radius:10px;padding:14px;margin-bottom:10px;border:1px solid rgba(34,197,94,0.2)}
+  .rec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+  .v2-checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px;font-size:11px;margin-top:8px}
+  .v2-item{padding:4px 8px;border-radius:4px;background:rgba(255,255,255,0.03)}
+  .v2-item.pass{color:#86efac}
+  .v2-item.fail{color:#fca5a5}
+  .v2-item.warn{color:#fcd34d}
+  .summary-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:10px}
+  .sum-card{background:linear-gradient(135deg,#1a1d2a,#0f1117);border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.05)}
+  .sum-card .label{font-size:11px;color:#8a8e9c;margin-bottom:4px}
+  .sum-card .value{font-size:20px;font-weight:700;color:#fff}
+  .sum-card .sub{font-size:11px;color:#8a8e9c;margin-top:2px}
+  .risk-bar{background:linear-gradient(90deg,#dc2626 0%,#f59e0b 30%,#16a34a 60%,#16a34a 100%);height:8px;border-radius:4px;margin:10px 0;position:relative}
+  .risk-bar .marker{position:absolute;top:-4px;width:4px;height:16px;background:#fff;border-radius:2px}
+  .footer{text-align:center;font-size:11px;color:#5a5e6c;margin-top:20px;padding:14px 0;border-top:1px solid rgba(255,255,255,0.05);line-height:1.7}
+  table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+  th,td{padding:8px 6px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.05)}
+  th{color:#8a8e9c;font-weight:500;font-size:11px}
+  td{color:#c8cad3}
+  @media (max-width:640px){
+    body{padding:10px}
+    .header{padding:12px}
+    .section{padding:14px}
+    .idx-card .val{font-size:16px}
+    .price{font-size:18px}
+    .v2-checks{grid-template-columns:1fr 1fr}
+  }
 </style>
 </head>
 <body>
+
 <div class="header">
   <div>
-    <h1>Daily Signal Report</h1>
-    <div style="font-size:13px;color:var(--color-text-secondary);margin-top:4px">Signal system v2.0  |  20260624  |  scanned in 42s</div>
+    <h1>📊 每日开盘分析 · 2026-06-25（周四）</h1>
+    <div class="subtitle">三策共振 v3.1 体系 | 09:25 集合竞价后 | 数据源：WebSearch(东方财富/证券之星/新浪/同花顺/雪球)</div>
   </div>
-  <span class="env-badge" style="background:#E24B4A">Weak</span>
+  <div class="badges">
+    <span class="badge shake">🔄 震荡（指数强/个股弱）</span>
+    <span class="badge" style="background:linear-gradient(135deg,#7f1d1d,#991b1b)">⚠️ 极端分化</span>
+  </div>
 </div>
 
+<!-- 一、大盘环境 -->
 <div class="section">
-  <h2>Holdings Risk Check</h2>
-  <div class="holdings">
-        <div style="background:#E1F5EE;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">大族激光</span>
-            <span style="font-size:11px;color:#0F6E56;font-weight:500">take profit</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">002008</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">152.23</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+17.7%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:129.29  |  8d</div>
-          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">触及止盈线(+15%)</span>
-        </div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">中恒电气</span>
-            <span style="font-size:11px;color:#3B6D11;font-weight:500">normal</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">002364</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">55.18</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+4.2%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:52.98  |  8d</div>
-          
-        </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">大位科技</span>
-            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">600589</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">10.26</span>
-            <span style="font-size:15px;font-weight:500;color:#3B6D11">+1.3%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:10.12  |  8d</div>
-          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(10.32)</span>
-        </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">特变电工</span>
-            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">600089</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">23.44</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-2.2%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:23.96  |  8d</div>
-          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(24.52)</span>
-        </div>
-        <div style="background:#FAEEDA;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">华域汽车</span>
-            <span style="font-size:11px;color:#854F0B;font-weight:500">caution</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">600741</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">16.53</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-1.4%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:16.76  |  8d</div>
-          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(16.69)</span>
-        </div>
-        <div style="background:#EAF3DE;border-radius:8px;padding:12px;min-width:140px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-weight:500;font-size:14px">盐湖股份</span>
-            <span style="font-size:11px;color:#3B6D11;font-weight:500">normal</span>
-          </div>
-          <div style="font-size:12px;color:var(--color-text-secondary)">000792</div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:20px;font-weight:500">31.34</span>
-            <span style="font-size:15px;font-weight:500;color:#A32D2D">-2.4%</span>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">buy:32.11  |  8d</div>
-          
-        </div></div>
-</div>
-
-<div class="section">
-  <h2>Daily Signals</h2>
-  <div class="summary">
-    <div class="summary-card">
-      <div class="num">0</div>
-      <div class="label">Signals today</div>
+  <h2>一、大盘环境</h2>
+  <div class="summary-cards">
+    <div class="sum-card">
+      <div class="label">上证指数</div>
+      <div class="value up">4120.28</div>
+      <div class="sub up">+0.23%</div>
     </div>
-    <div class="summary-card">
-      <div class="num">30-50%</div>
-      <div class="label">Recommended position</div>
+    <div class="sum-card">
+      <div class="label">深证成指</div>
+      <div class="value up">16344.08</div>
+      <div class="sub up">+1.82%</div>
     </div>
-    <div class="summary-card">
-      <div class="num">5%</div>
-      <div class="label">Max per stock</div>
+    <div class="sum-card">
+      <div class="label">创业板指</div>
+      <div class="value up">4371.99</div>
+      <div class="sub up">+2.84% (新高)</div>
+    </div>
+    <div class="sum-card">
+      <div class="label">科创50</div>
+      <div class="value up">2066.33</div>
+      <div class="sub up">+3.87% (新高)</div>
     </div>
   </div>
-  <table class="sig-table">
-    <thead>
-      <tr>
-        <th style="width:30px">#</th>
-        <th style="width:120px">Stock</th>
-        <th style="width:70px">Close</th>
-        <th style="width:50px">ADX</th>
-        <th style="width:50px">RSI</th>
-        <th style="width:70px">MA20 dev</th>
-        <th style="width:180px">Triggers</th>
-        <th style="width:70px">Bonus</th>
-        <th style="width:90px">Capital</th>
-        <th style="width:110px">SL / TP</th>
-      </tr>
-    </thead>
-    <tbody><tr><td colspan="10" style="padding:40px;text-align:center;color:var(--color-text-secondary)">No signals today. The trend strategy typically generates ~800 signals per year across all stocks.</td></tr></tbody>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-top:8px">
+    <div class="idx-card"><div class="name">成交额</div><div class="val">3.62万亿</div><div class="chg up">放量3120亿</div></div>
+    <div class="idx-card"><div class="name">上涨家数</div><div class="val down">1231</div><div class="chg down">仅占22%</div></div>
+    <div class="idx-card"><div class="name">下跌家数</div><div class="val up">4228</div><div class="chg up">占77%</div></div>
+    <div class="idx-card"><div class="name">涨停/跌停</div><div class="val">95 / 91</div><div class="chg flat">几乎对等</div></div>
+  </div>
+
+  <div class="warn-box">
+    <strong>⚠️ 极端分化预警</strong>：指数全红+科创50/创业板历史新高，但<strong style="color:#fff">4228只下跌（77%）</strong>，仅1231只上涨。这是典型"赚指数不赚个股"行情。
+    美光科技史诗级财报引爆存储芯片，机场航运/AI算力/CPO/PCB独涨，<strong style="color:#fff">主线明确但极度集中</strong>。
+    主力资金净流出214亿，结构性调仓仍在进行。
+  </div>
+
+  <div class="info-box">
+    <strong>🟢 多头信号</strong>：上证站上MA60、深成指/创业板/科创50同步走强、成交放量3120亿、外围情绪转暖（美光财报超预期、美光CEO乐观展望2026下半年）。
+  </div>
+
+  <div class="neutral-box">
+    <strong>📌 关键观察</strong>：6/25（周四）→ 6/26（周五）→ 6/29（周一）= 三个交易日进入6月+上半年收官，公募/私募有调仓/兑现压力。
+    <strong style="color:#fff">月末效应</strong> + <strong style="color:#fff">半年报预披露窗口</strong> = 个股波动可能加大。
+  </div>
+
+  <div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:#8a8e9c">
+    <span>仓位建议：</span>
+    <div style="flex:1;height:10px;background:rgba(255,255,255,0.05);border-radius:5px;position:relative;overflow:hidden">
+      <div style="position:absolute;left:0;top:0;height:100%;width:40%;background:linear-gradient(90deg,#f59e0b,#22c55e);border-radius:5px"></div>
+    </div>
+    <strong style="color:#f59e0b">30-50% 轻仓</strong>
+  </div>
+</div>
+
+<!-- 二、持仓分析 -->
+<div class="section">
+  <h2>二、持仓分析（5只）</h2>
+
+  <div class="stock-card hold">
+    <div class="stock-head">
+      <div><span class="stock-name">中恒电气</span><span class="stock-code">002364.SZ</span></div>
+      <span class="action-tag hold">🟢 持有（减仓预警）</span>
+    </div>
+    <div class="stock-price">
+      <div><span class="price">¥55.59</span> <span class="chg-pct up">+0.74%</span></div>
+      <div style="text-align:right;font-size:12px;color:#8a8e9c">买入价 52.633 | 持仓 8d | 浮盈 <span class="up">+5.62%</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item">3日主力: <strong class="up">+25.55亿 (CAP-A强)</strong></div>
+      <div class="meta-item">5日主力: <strong class="up">+36.20亿</strong></div>
+      <div class="meta-item">10日主力: <strong class="down">-6.12亿</strong></div>
+    </div>
+    <div class="ok-box">
+      ✅ <strong>6/25 跳空高开最高59+回落</strong>，从涨停后冲高回落但收红，多头延续。
+      CAP-A资金确认，AI算力供电龙头+宁德时代合作概念持续。
+    </div>
+    <div class="warn-box">
+      <strong>⚠️ 关键风险</strong>：6/24 7次炸板封单弱（9654万/0.31%），6/25 冲高回落显示<strong style="color:#fff">动能减弱</strong>。
+      <strong>操作</strong>：止损上移至 53.00（已执行），下一目标 60-65（PE回归60倍）；<strong style="color:#fff">若跌破 53 即减仓 50%</strong>。
+    </div>
+  </div>
+
+  <div class="stock-card cut">
+    <div class="stock-head">
+      <div><span class="stock-name">宏昌电子</span><span class="stock-code">603002.SH</span></div>
+      <span class="action-tag cut">🟡 减仓/反弹清仓</span>
+    </div>
+    <div class="stock-price">
+      <div><span class="price">¥24.95</span> <span class="chg-pct up">+6.22%</span></div>
+      <div style="text-align:right;font-size:12px;color:#8a8e9c">买入价 25.7072 | 持仓 8d | 浮亏 <span class="down">-2.95%</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item">6/25主力: <strong class="up">+1.94亿 (单日)</strong></div>
+      <div class="meta-item">换手率: <strong>11.17%</strong></div>
+      <div class="meta-item">成交额: <strong>30.54亿</strong></div>
+    </div>
+    <div class="ok-box">
+      ✅ <strong>资金反转</strong>：从6/24 -1.39亿 → 6/25 +1.94亿，CAP-C → 边际改善。存储芯片+PCB+英伟达概念受益美光财报。
+    </div>
+    <div class="warn-box">
+      <strong>⚠️ 仍需警惕</strong>：<strong style="color:#fff">3日/5日主力仍为负</strong>，单日流入可能是游资短线。已破止损24.42，浮亏未恢复。
+      <strong>操作</strong>：<strong style="color:#fff">反弹清仓</strong>，目标25.50-26.00 减仓 50%-100%；跌破23.50 全卖。
+    </div>
+  </div>
+
+  <div class="stock-card sell">
+    <div class="stock-head">
+      <div><span class="stock-name">盛和资源</span><span class="stock-code">600392.SH</span></div>
+      <span class="action-tag sell">🔴 卖出（已破止损）</span>
+    </div>
+    <div class="stock-price">
+      <div><span class="price">¥31.32</span> <span class="chg-pct up">+0.94%</span></div>
+      <div style="text-align:right;font-size:12px;color:#8a8e9c">买入价 34.237 | 持仓 8d | 浮亏 <span class="down">-8.52%</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item">3日主力: <strong class="down">-13.62亿 (CAP-C持续)</strong></div>
+      <div class="meta-item">5日主力: <strong class="down">-14.89亿</strong></div>
+      <div class="meta-item">10日主力: <strong class="down">-5.85亿</strong></div>
+    </div>
+    <div class="warn-box">
+      <strong>🔴 强烈卖出信号</strong>：<strong style="color:#fff">3日主力 -13.62亿（净占比-9.92%）</strong>，5日 -14.89亿，资金持续大幅出逃。
+      稀土板块整体退潮，6/25 大盘普涨时仅微涨0.94%，弱势明显。
+      股东王全根减持1728万股（占总股本0.99%）雪上加霜。
+    </div>
+    <div class="info-box">
+      <strong>📌 操作</strong>：<strong style="color:#fca5a5">开盘即卖</strong>，32.00 附近减仓 50%，30.00 以下全清。
+      v3.1 硬止损线 -8% 已触发（31.32/34.237 = -8.52%），按规则无条件离场。
+    </div>
+  </div>
+
+  <div class="stock-card sell">
+    <div class="stock-head">
+      <div><span class="stock-name">烽火通信</span><span class="stock-code">600498.SH</span></div>
+      <span class="action-tag sell">🔴 减仓/卖出</span>
+    </div>
+    <div class="stock-price">
+      <div><span class="price">¥84.26</span> <span class="chg-pct up">+2.43%</span></div>
+      <div style="text-align:right;font-size:12px;color:#8a8e9c">买入价 76.886 | 持仓 8d | 浮盈 <span class="up">+9.60%</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item">3日主力: <strong class="down">-7.38亿 (CAP-C)</strong></div>
+      <div class="meta-item">5日主力: <strong class="down">-19.22亿</strong></div>
+      <div class="meta-item">10日主力: <strong class="down">-6.05亿</strong></div>
+    </div>
+    <div class="warn-box">
+      <strong>⚠️ 价升资出</strong>：价格创新高84+，但<strong style="color:#fff">5日主力净流出 19.22 亿</strong>，典型主力拉高出货形态。
+      光通信/CPO 板块今日整体强势，但烽火资金面持续恶化，需警惕补跌。
+    </div>
+    <div class="info-box">
+      <strong>📌 操作</strong>：<strong style="color:#fca5a5">分批减仓</strong>。83-85 区间减仓 50%，跌破 80 全清。
+      浮盈保护下走为上策，避免回吐。
+    </div>
+  </div>
+
+  <div class="stock-card sell">
+    <div class="stock-head">
+      <div><span class="stock-name">中钨高新</span><span class="stock-code">000657.SZ</span></div>
+      <span class="action-tag sell">🔴 卖出</span>
+    </div>
+    <div class="stock-price">
+      <div><span class="price">≈¥103.50</span> <span class="chg-pct up">+3.40%</span></div>
+      <div style="text-align:right;font-size:12px;color:#8a8e9c">买入价 102.50 | 持仓 8d | 浮盈 <span class="up">+0.97%</span></div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item">3日主力: <strong class="down">-22.48亿 (CAP-C)</strong></div>
+      <div class="meta-item">5日主力: <strong class="down">-8.68亿</strong></div>
+      <div class="meta-item">钨板块: <strong>走强（翔鹭涨停）</strong></div>
+    </div>
+    <div class="warn-box">
+      <strong>⚠️ PE 115倍高位 + 主力持续流出</strong>：3日 -22.48亿（净占比-8.47%）资金面极度恶化。
+      钨板块今日走强（黑钨精矿52万/吨企稳、AI PCB钻针需求），但<strong style="color:#fff">中钨高新是机构抱团股</strong>，高位接盘风险大。
+    </div>
+    <div class="info-box">
+      <strong>📌 操作</strong>：<strong style="color:#fca5a5">竞价/开盘清仓</strong>。105 附近减仓 50%，跌破 100 全清。
+      资金确认 CAP-C + 高 PE + 主力出逃 = 三重卖出信号。
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:14px">
+    <strong>📊 持仓小结</strong>：5只中仅中恒电气维持 CAP-A 强信号；盛和/中钨 CAP-C 持续 + 已触发/接近硬止损线；烽火价升资出；宏昌资金边际改善但浮亏未恢复。
+    <strong style="color:#fcd34d">建议：6/26 开盘重点减仓盛和/中钨/烽火，宏昌反弹清仓，保留中恒（移动止损 53）。</strong>
+  </div>
+</div>
+
+<!-- 三、竞价风险 -->
+<div class="section">
+  <h2>三、竞价风险提示</h2>
+  <div class="warn-box">
+    <strong>⚠️ 6/26 竞价前必看</strong>：
+  </div>
+  <ul style="font-size:13px;color:#c8cad3;line-height:2;padding-left:20px;margin:8px 0">
+    <li><strong>美光财报后遗效应</strong>：存储芯片昨夜美股盘后已大涨，今日 A 股已兑现部分，明日若美股存储股回调，A 股存储板块可能"利好出尽" → 警惕中恒/宏昌高开低走</li>
+    <li><strong>月末+半年收官</strong>：6/26 周五为上半年倒数第二个交易日，公募/私募有调仓兑现压力，权重股护盘 vs 个股抛压</li>
+    <li><strong>隔夜外围</strong>：需关注美股 6/25 收盘 + 美元指数（已突破 101.5）+ 油价（霍尔木兹海峡航运）</li>
+    <li><strong>涨跌停比 95:91</strong>：极不稳定，警惕个股闪崩 + 强势股补跌</li>
+    <li><strong>高 PE 抱团股</strong>：中钨/沪电/东山精密（PE 30+/115）需警惕"二季报"窗口期杀估值</li>
+  </ul>
+</div>
+
+<!-- 四、今日推荐 -->
+<div class="section">
+  <h2>四、今日推荐（2只，V2 + CAP 三策共振）</h2>
+  <div class="info-box" style="margin-bottom:10px">
+    <strong>📌 选股逻辑</strong>：市场极端分化下，<strong style="color:#fff">仅推荐"主线龙头回调介入"+"防守高股息"</strong>双线策略。
+    严格排除科创板（688）/创业板（300/301），仅在主板（60/00/001/002）中筛选。
+  </div>
+
+  <!-- 推荐1：沪电股份 -->
+  <div class="rec-card">
+    <div class="rec-head">
+      <div><span class="stock-name" style="font-size:16px">沪电股份</span><span class="stock-code">002463.SZ</span></div>
+      <span class="action-tag hold" style="font-size:12px">⭐⭐⭐ 主线龙头（PCB）</span>
+    </div>
+    <div class="stock-price">
+      <div><span class="price">≈¥62-65</span> <span class="chg-pct up">AI算力PCB龙头</span></div>
+      <div style="text-align:right;font-size:12px;color:#8a8e9c">市值约1200亿 | PE 30倍</div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item">板块: <strong>PCB / AI服务器</strong></div>
+      <div class="meta-item">资金: <strong class="up">+13.7亿（6/25）</strong></div>
+      <div class="meta-item">今年投资: <strong>180亿扩产</strong></div>
+    </div>
+    <div class="ok-box">
+      ✅ <strong>买入逻辑</strong>：
+      ① AI算力PCB全球龙头，AI服务器/数据中心/网络交换机高景气
+      ② 6/25 主力净流入13.7亿，验证 CAP-A 强确认
+      ③ 年内180亿投资扩产，2026-2028年业绩高增（国海证券预测2026营收283亿）
+      ④ 6/17 陆家嘴论坛证监会主席明确支持PCB等高端制造
+    </div>
+    <div class="v2-checks">
+      <div class="v2-item pass">✅ 1. 站上MA20</div>
+      <div class="v2-item pass">✅ 2. MACD金叉</div>
+      <div class="v2-item pass">✅ 3. 成交量放大</div>
+      <div class="v2-item warn">⚠️ 4. PE 30倍（偏高）</div>
+      <div class="v2-item pass">✅ 5. 资金CAP-A</div>
+      <div class="v2-item pass">✅ 6. 行业景气</div>
+    </div>
+    <div class="info-box" style="margin-top:10px">
+      <strong>📍 介入策略</strong>：<strong style="color:#fcd34d">不追高</strong>，等回调至 58-60 区间（MA20 附近）建仓，首仓 30%。
+      <strong>止损 55（-8%）</strong> / <strong>目标 75-80（+25%）</strong>。
+      建议仓位 5-8%。
+    </div>
+  </div>
+
+  <!-- 推荐2：华能国际 -->
+  <div class="rec-card">
+    <div class="rec-head">
+      <div><span class="stock-name" style="font-size:16px">华能国际</span><span class="stock-code">600011.SH</span></div>
+      <span class="action-tag hold" style="font-size:12px">⭐⭐ 防守高股息（电力）</span>
+    </div>
+    <div class="stock-price">
+      <div><span class="price">≈¥7.40-7.60</span> <span class="chg-pct flat">防守型配置</span></div>
+      <div style="text-align:right;font-size:12px;color:#8a8e9c">市值 1168亿 | PE-TTM 8.39（极低）</div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-item">板块: <strong>火电 / 高股息</strong></div>
+      <div class="meta-item">市净率: <strong>1.67</strong></div>
+      <div class="meta-item">PEG: <strong>0.20（低估）</strong></div>
+    </div>
+    <div class="ok-box">
+      ✅ <strong>买入逻辑</strong>：
+      ① PE-TTM 仅 8.39倍，PEG 0.20，<strong style="color:#fff">A 股最便宜蓝筹之一</strong>
+      ② 容量电价改革（120亿/年稳定收入）+ 央企利润上缴新规
+      ③ 高股息防守标的，在指数强/个股弱分化行情中抗跌
+      ④ 6/25 公布 2025 年报分红，7/02 股权登记
+    </div>
+    <div class="v2-checks">
+      <div class="v2-item warn">⚠️ 1. 站上MA20（震荡）</div>
+      <div class="v2-item flat">— 2. MACD弱</div>
+      <div class="v2-item flat">— 3. 缩量</div>
+      <div class="v2-item pass">✅ 4. PE <15（极低）</div>
+      <div class="v2-item warn">⚠️ 5. 资金弱</div>
+      <div class="v2-item pass">✅ 6. 高股息防守</div>
+    </div>
+    <div class="info-box" style="margin-top:10px">
+      <strong>📍 介入策略</strong>：<strong style="color:#fcd34d">分批建仓</strong>，7.30-7.50 区间分 2-3 次买入，首仓 30%。
+      <strong>止损 6.95（-7%）</strong> / <strong>目标 8.50-9.00（+15-20%）</strong>。
+      建议仓位 5%（防守仓）。本只不完全符合 V2 动量标准，作为对冲配置。
+    </div>
+  </div>
+
+  <div class="neutral-box" style="margin-top:8px">
+    <strong>📊 推荐小结</strong>：
+    · 沪电股份 = AI主线进攻仓（5-8%仓位，止损 55）
+    · 华能国际 = 防守对冲仓（5%仓位，止损 6.95）
+    · 合计 <strong style="color:#fff">推荐仓位 10-13%</strong>，远低于市场环境的 30-50% 上限。
+    · <strong style="color:#fca5a5">不推荐</strong>：高位 PE>50 倍、3 日主力 -20 亿以上的抱团股（沪电以外、中钨、东山精密）；
+    · <strong style="color:#fca5a5">不推荐</strong>：机场航运板块（华夏航空已涨停10%追高风险大，南航 PE 29 不便宜）。
+  </div>
+</div>
+
+<!-- 五、风控与规则 -->
+<div class="section">
+  <h2>五、风控规则提醒（v3.1）</h2>
+  <table>
+    <tr><th>规则</th><th>具体标准</th></tr>
+    <tr><td>硬止损</td><td>单笔亏损 <strong style="color:#ef4444">-8%</strong> 或 <strong style="color:#ef4444">2×ATR</strong> → 全卖</td></tr>
+    <tr><td>预警线</td><td>亏损 <strong style="color:#f59e0b">-5%</strong> → 减仓 50%</td></tr>
+    <tr><td>资金加持</td><td>CAP-A/B 净流入>0 时，止损线下移至 -8%</td></tr>
+    <tr><td>基本面加持</td><td>A/B 级基本面（ROE>5%）止损线放宽至 -8%；D 级收紧至 -3%</td></tr>
+    <tr><td>单笔风险</td><td>亏损 > 总资金 <strong>2%</strong> → 无条件平仓</td></tr>
+    <tr><td>月累计</td><td>亏损 > <strong>8%</strong> → 降仓至 30%</td></tr>
+    <tr><td>时间止损</td><td>入场 <strong>10 天</strong>无条件重新评估</td></tr>
+    <tr><td>连亏熔断</td><td>连续 <strong>3 笔</strong>止损 → 停止交易复盘</td></tr>
   </table>
-  <div class="risk-reminder">
-    <strong>Risk Rules</strong><br>
-    Per stock max: 15% of capital  |  Stop loss: -5%  |  Take profit: +15%  |  Time stop: 10 days<br>
-    Single loss &gt;2% of total capital: exit immediately  |  Monthly loss &gt;8%: reduce position to 30%<br>
-    3 consecutive stops: stop trading and review
-  </div>
 </div>
 
+<!-- 六、操作清单 -->
 <div class="section">
-  <h2>Fundamental Grades</h2>
-  <p style="color:var(--color-text-secondary)">基本面评分需NeoData数据覆盖（覆盖率约7%），部分股票可能显示为"未知"等级，建议小仓试探。</p>
-</div>
-
-<div class="section">
-  <h2>Capital Flow Confirmation (v3.0)</h2>
-  <p style="color:var(--color-text-secondary)">资金流向确认需NeoData数据覆盖，CAP-A=强确认(重仓) CAP-B=弱确认(标准) CAP-C=否决(不买)</p>
+  <h2>六、6/26 早盘操作清单</h2>
+  <ol style="font-size:13px;color:#c8cad3;line-height:2.2;padding-left:20px">
+    <li><strong style="color:#fca5a5">09:15 集合竞价</strong>：观察盛和资源/中钨高新/烽火通信竞价情况
+      <ul style="margin-top:4px;list-style-type:circle">
+        <li>盛和：低开即卖，挂单 ≤32.00</li>
+        <li>中钨：竞价 ≤103 减半仓，>105 观察</li>
+        <li>烽火：>85 减仓 30%，<80 全清</li>
+      </ul>
+    </li>
+    <li><strong style="color:#86efac">09:30 开盘</strong>：宏昌电子反弹清仓（目标 25.50-26.00）</li>
+    <li><strong style="color:#fcd34d">10:00 前</strong>：中恒电气破 53 减仓 50%，守住则继续持有</li>
+    <li><strong style="color:#93c5fd">10:30-14:30</strong>：观察沪电股份 58-60 区间建仓机会</li>
+    <li><strong style="color:#93c5fd">14:30 后</strong>：华能国际 7.30-7.50 分批建仓</li>
+    <li><strong style="color:#fca5a5">15:00 收盘前</strong>：检查仓位是否在 30-50% 区间，若持仓 > 60% 强制减仓</li>
+  </ol>
 </div>
 
 <div class="footer">
-  Signal System v3.0 (+Capital)  |  Generated at 2026-06-24 23:57:21  |  Data: 8647 stocks scanned
+  📅 报告生成于 2026-06-25 19:26:13 | 三策共振 v3.1 体系 | 数据源：WebSearch(东方财富/证券之星/新浪/同花顺/雪球/知乎/百度百家号)<br>
+  ⚠️ 本报告由 AI 自动生成，数据来源为公开信息，<strong style="color:#fca5a5">可能存在延迟</strong>，不构成投资建议<br>
+  📈 仅供个人研究使用，<strong style="color:#fca5a5">投资有风险，决策需谨慎</strong> | Signal System v3.1 (+Capital +Fundamental)
 </div>
+
 </body>
 </html>
