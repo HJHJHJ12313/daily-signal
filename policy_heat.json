@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "version": "2.0",
+    "last_update": "2026-06-25",
+    "note": "21板块体系政策热量。评分：国务院+25/部委+15/省级+5/调研+8/五年规划+25，30天全效→60天半效→90天归零。每周五更新。"
+  },
+  "sectors": {
+    "储能/充电桩": {
+      "name": "储能/充电桩",
+      "heat_score": 82,
+      "policies": [
+        {"type": "国家五年规划", "desc": "新型储能写入十四五/十五五规划，明确2026年装机30GW+", "score": 25, "date": "2026-03-01", "valid_days": 365},
+        {"type": "部委政策", "desc": "取消强制配储，推动独立储能入市交易，市场化电价机制成型", "score": 15, "date": "2026-04-14", "valid_days": 90},
+        {"type": "省级政策", "desc": "多省出台储能补贴：浙江0.3元/kWh、广东0.2元/kWh", "score": 10, "date": "2026-05-20", "valid_days": 60},
+        {"type": "产业动态", "desc": "科力远等多家A股公司密集披露储能产能建设进展", "score": 12, "date": "2026-06-16", "valid_days": 30}
+      ],
+      "summary": "政策成熟+市场化转型，补贴叠加产能扩张，板块中期逻辑清晰",
+      "trend": "rising"
+    },
+    "PCB/覆铜板": {
+      "name": "PCB/覆铜板",
+      "heat_score": 88,
+      "policies": [
+        {"type": "产业涨价", "desc": "建滔积层板年内4次涨价累计40%+，木林森PCB全线提价20%", "score": 30, "date": "2026-06-10", "valid_days": 30},
+        {"type": "国家规划", "desc": "AI产业专项规划：算力基建列入国家战略，高速PCB为关键材料", "score": 25, "date": "2026-03-15", "valid_days": 180},
+        {"type": "产业扩产", "desc": "13家A股PCB企业发布扩产公告，规划投资总额590亿元", "score": 18, "date": "2026-06-14", "valid_days": 60},
+        {"type": "需求催化", "desc": "AI服务器代际升级→PCB从电子级向半导体级跃迁，高端PCB短缺至2027年底", "score": 15, "date": "2026-06-22", "valid_days": 90}
+      ],
+      "summary": "AI算力最强受益环节，涨价+扩产+国产替代三浪叠加，板块最热",
+      "trend": "rising"
+    },
+    "PCB上游原料": {
+      "name": "PCB上游原料",
+      "heat_score": 78,
+      "policies": [
+        {"type": "产业涨价", "desc": "建滔积层板涨价传导至CCL全链，生益科技等CCL厂商受益于PCB扩产", "score": 25, "date": "2026-06-10", "valid_days": 30},
+        {"type": "需求催化", "desc": "AI服务器PCB升级→高端CCL/铜箔/玻纤布需求暴增", "score": 20, "date": "2026-06-22", "valid_days": 60},
+        {"type": "产业动态", "desc": "上游铜箔产能偏紧，电子铜箔加工费上涨", "score": 15, "date": "2026-06-18", "valid_days": 30}
+      ],
+      "summary": "PCB扩产直接拉动上游CCL/铜箔/环氧树脂需求，涨价逻辑清晰",
+      "trend": "rising"
+    },
+    "AI算力/服务器": {
+      "name": "AI算力/服务器",
+      "heat_score": 82,
+      "policies": [
+        {"type": "国家战略", "desc": "算力基建化列入国家十四五/十五五重点工程", "score": 25, "date": "2026-02-01", "valid_days": 180},
+        {"type": "部委政策", "desc": "工信部发布智算中心建设指导意见，2026年新增算力50EFlops", "score": 15, "date": "2026-05-10", "valid_days": 90},
+        {"type": "产业动态", "desc": "工业富联AI服务器出货量翻倍，英伟达GB300拉动代工需求", "score": 20, "date": "2026-06-20", "valid_days": 30},
+        {"type": "需求催化", "desc": "国内互联网大厂AI资本开支竞赛，服务器采购订单密集", "score": 22, "date": "2026-06-22", "valid_days": 60}
+      ],
+      "summary": "上半年A股绝对主线，AI服务器代工确定性最强",
+      "trend": "rising"
+    },
+    "芯片封测(含先进封装)": {
+      "name": "芯片封测(含先进封装)",
+      "heat_score": 72,
+      "policies": [
+        {"type": "产业动态", "desc": "Chiplet先进封装成为AI芯片标配，CoWoS产能翻倍", "score": 25, "date": "2026-06-15", "valid_days": 60},
+        {"type": "部委政策", "desc": "大基金三期持续投资封测龙头", "score": 15, "date": "2026-03-20", "valid_days": 180},
+        {"type": "需求催化", "desc": "AI芯片需求量暴增→先进封装产能供不应求", "score": 18, "date": "2026-06-18", "valid_days": 60}
+      ],
+      "summary": "Chiplet+CoWoS技术升级，长电/通富产能利用率接近满产",
+      "trend": "rising"
+    },
+    "IC设计/存储": {
+      "name": "IC设计/存储",
+      "heat_score": 62,
+      "policies": [
+        {"type": "产业动态", "desc": "存储芯片涨价周期，美光财报超预期+AI算力需求爆发", "score": 20, "date": "2026-06-24", "valid_days": 30},
+        {"type": "部委政策", "desc": "国产芯片替代政策持续推进", "score": 12, "date": "2026-03-10", "valid_days": 180}
+      ],
+      "summary": "存储涨价+国产替代，但IC设计分化严重，CIS优于模拟芯片",
+      "trend": "mixed"
+    },
+    "半导体设备": {
+      "name": "半导体设备",
+      "heat_score": 65,
+      "policies": [
+        {"type": "部委政策", "desc": "大基金三期持续重点投资半导体设备国产化", "score": 18, "date": "2026-01-15", "valid_days": 180},
+        {"type": "部委政策", "desc": "上海/北京发布半导体产业扶持新规", "score": 10, "date": "2026-04-20", "valid_days": 60},
+        {"type": "产业动态", "desc": "国产设备验证提速，中芯/华虹扩产拉动设备采购", "score": 15, "date": "2026-05-20", "valid_days": 90}
+      ],
+      "summary": "国产替代核心，但设备股估值偏高（PE普遍>60倍），注意安全边际",
+      "trend": "mixed"
+    },
+    "半导体材料": {
+      "name": "半导体材料",
+      "heat_score": 68,
+      "policies": [
+        {"type": "产业涨价", "desc": "前驱体/靶材/湿化学品等半导体材料涨价，AI芯片制造需求倒逼", "score": 20, "date": "2026-06-17", "valid_days": 30},
+        {"type": "国产替代", "desc": "半导体材料国产化率仍低（<30%），政策持续推动替代", "score": 18, "date": "2026-03-10", "valid_days": 180}
+      ],
+      "summary": "AI算力拉动上游材料涨价，雅克/江化微等受益于国产替代加速",
+      "trend": "rising"
+    },
+    "功率半导体": {
+      "name": "功率半导体",
+      "heat_score": 55,
+      "policies": [
+        {"type": "需求催化", "desc": "新能源车+光伏逆变器拉动IGBT/SiC需求", "score": 18, "date": "2026-05-01", "valid_days": 90},
+        {"type": "产业动态", "desc": "SiC产能扩张加速，士兰微/斯达半导密集投产", "score": 15, "date": "2026-06-10", "valid_days": 60}
+      ],
+      "summary": "车规+新能源需求稳健，但IGBT价格竞争加剧，SiC是增量方向",
+      "trend": "neutral"
+    },
+    "有机硅": {
+      "name": "有机硅",
+      "heat_score": 55,
+      "policies": [
+        {"type": "行业自律", "desc": "6/5行业会议：6-8月执行40%阶段性协同减排，开工率降至60%，DMC报价14800元/吨", "score": 15, "date": "2026-06-05", "valid_days": 90},
+        {"type": "需求催化", "desc": "光伏需求支撑硅基材料价格，四氯化硅受益于光纤扩产", "score": 12, "date": "2026-06-08", "valid_days": 60}
+      ],
+      "summary": "供给收缩支撑DMC价格，三孚(603938)横跨有机硅+光纤上游双重身份，但3连板后PE偏高",
+      "trend": "neutral"
+    },
+    "特种气体": {
+      "name": "特种气体",
+      "heat_score": 68,
+      "policies": [
+        {"type": "产业涨价", "desc": "半导体特种气体涨价，AI芯片制造需求爆发+海外供给扰动", "score": 20, "date": "2026-06-17", "valid_days": 30},
+        {"type": "国产替代", "desc": "电子特气国产化率不足30%，政策持续推动替代", "score": 18, "date": "2026-03-10", "valid_days": 180}
+      ],
+      "summary": "涨价+国产替代双驱动，属AI算力上游受益环节，关注凯美特气等",
+      "trend": "rising"
+    },
+    "锂电上游(锂钴镍)": {
+      "name": "锂电上游(锂钴镍)",
+      "heat_score": 45,
+      "policies": [
+        {"type": "产业动态", "desc": "碳酸锂价格底部企稳，需求端新能源车渗透率持续提升", "score": 12, "date": "2026-06-15", "valid_days": 30},
+        {"type": "部委政策", "desc": "新能源汽车下乡政策延续，补贴延至2026年底", "score": 15, "date": "2026-03-01", "valid_days": 180}
+      ],
+      "summary": "锂价底部区域，天齐/赣锋资源禀赋突出，但供给过剩尚未完全消化",
+      "trend": "neutral"
+    },
+    "光纤光缆/光通信": {
+      "name": "光纤光缆/光通信",
+      "heat_score": 58,
+      "policies": [
+        {"type": "需求催化", "desc": "AI算力数据中心→光纤互联需求暴增，海底光缆建设加速", "score": 20, "date": "2026-06-18", "valid_days": 60},
+        {"type": "产业动态", "desc": "光纤预制棒产能偏紧，上游四氯化硅（三孚）涨价传导", "score": 15, "date": "2026-06-20", "valid_days": 30}
+      ],
+      "summary": "AI数据中心拉动光纤需求，亨通/长飞/烽火受益于算力互联基建",
+      "trend": "rising"
+    },
+    "5G/通信设备": {
+      "name": "5G/通信设备",
+      "heat_score": 50,
+      "policies": [
+        {"type": "部委政策", "desc": "五部门联合发布工业5G独立专网试点，覆盖10大行业", "score": 15, "date": "2026-06-05", "valid_days": 90},
+        {"type": "部委政策", "desc": "5G-A商用推进，2026年基站建设目标维持高位", "score": 12, "date": "2026-04-01", "valid_days": 120}
+      ],
+      "summary": "工业5G专网是增量方向，但基站建设增速放缓，板块缺乏爆发性",
+      "trend": "neutral"
+    },
+    "光伏上游(硅料/硅片)": {
+      "name": "光伏上游(硅料/硅片)",
+      "heat_score": 42,
+      "policies": [
+        {"type": "产业动态", "desc": "硅料价格创历史新高，能效国标即将发布淘汰低效产能", "score": 10, "date": "2026-06-15", "valid_days": 30},
+        {"type": "部委政策", "desc": "晶体硅光伏组件能效等级国标进入审评阶段", "score": 12, "date": "2026-06-06", "valid_days": 60}
+      ],
+      "summary": "硅料涨价利好上游，但板块整体承压，通威/隆基双龙头相对抗跌",
+      "trend": "declining"
+    },
+    "光伏下游(组件/电站)": {
+      "name": "光伏下游(组件/电站)",
+      "heat_score": 35,
+      "policies": [
+        {"type": "产业动态", "desc": "硅料涨价压缩组件利润，组件企业毛利率承压", "score": -5, "date": "2026-06-15", "valid_days": 30}
+      ],
+      "summary": "上游涨价压制下游利润，组件估值处于低位但反转尚需时日",
+      "trend": "declining"
+    },
+    "传统电力/公用事业": {
+      "name": "传统电力/公用事业",
+      "heat_score": 48,
+      "policies": [
+        {"type": "部委政策", "desc": "夏季用电高峰+电力市场化改革推进，电价上行预期", "score": 15, "date": "2026-06-01", "valid_days": 90}
+      ],
+      "summary": "夏季用电高峰+防御性配置逻辑，板块估值低(PE 8-12倍)，高股息属性突出",
+      "trend": "neutral"
+    },
+    "绿电/新能源运营": {
+      "name": "绿电/新能源运营",
+      "heat_score": 52,
+      "policies": [
+        {"type": "部委政策", "desc": "可再生能源消纳保障机制强化，绿电交易量价齐升", "score": 15, "date": "2026-05-10", "valid_days": 90},
+        {"type": "部委政策", "desc": "绿证全覆盖政策推进，新能源运营商补贴拖欠有望缓解", "score": 12, "date": "2026-04-15", "valid_days": 120}
+      ],
+      "summary": "绿电交易+补贴改善，三峡/龙源装机增长确定，但弹性不如光伏制造端",
+      "trend": "neutral"
+    },
+    "稀土": {
+      "name": "稀土",
+      "heat_score": 35,
+      "policies": [],
+      "summary": "无近期政策催化，前期盛和资源等CAP-C持续流出，暂不推荐",
+      "trend": "declining"
+    },
+    "工业金属(铜铝)": {
+      "name": "工业金属(铜铝)",
+      "heat_score": 40,
+      "policies": [
+        {"type": "国际动态", "desc": "铜矿供给偏紧，全球铜库存低位，AI数据中心拉动铜需求", "score": 15, "date": "2026-06-15", "valid_days": 60}
+      ],
+      "summary": "铜价受AI算力+新能源双重拉动，紫金/江铜基本面扎实，但周期股需关注全球宏观",
+      "trend": "neutral"
+    },
+    "航天军工": {
+      "name": "航天军工",
+      "heat_score": 58,
+      "policies": [
+        {"type": "部委政策", "desc": "十四五军工订单进入交付高峰期，新型号列装提速", "score": 18, "date": "2026-01-10", "valid_days": 180},
+        {"type": "产业动态", "desc": "地缘局势升温，国防预算保持7.2%增速", "score": 15, "date": "2026-03-05", "valid_days": 365}
+      ],
+      "summary": "军工订单确定性高+地缘催化，中航沈飞/航发动力为板块中军",
+      "trend": "neutral"
+    }
+  },
+  "global_risk": {
+    "level": "medium",
+    "factors": [
+      "日本央行加息风险（carry trade平仓）",
+      "费城半导体指数波动（6/24 -7.87%，外围科技股回调）",
+      "韩国KOSPI熔断-9.99%",
+      "中美科技脱钩风险持续"
+    ],
+    "impact_on_a_shares": "中等影响：北向资金可能阶段性撤离，国内政策/产业面支撑强于外围扰动"
+  }
+}
