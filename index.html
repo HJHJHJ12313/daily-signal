@@ -2,281 +2,455 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日开盘分析 | 2026年7月7日 周二</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>每日信号报告 v3.2 — 20260707</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0f1117;color:#e4e4e7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;padding:16px}
-.container{max-width:800px;margin:0 auto}
-.header{text-align:center;padding:20px 0;border-bottom:1px solid #2a2d3a}
-.date{font-size:24px;font-weight:700;color:#fff}
-.badge{display:inline-block;padding:4px 12px;border-radius:12px;font-size:14px;font-weight:600;margin-top:8px}
-.badge-bear{background:#dc2626;color:#fff}
-.badge-shock{background:#f59e0b;color:#000}
-.badge-bull{background:#16a34a;color:#fff}
-.badge-panic{background:#7f1d1d;color:#fca5a5}
-.subtitle{font-size:13px;color:#9ca3af;margin-top:4px}
-.section{background:#1a1d2a;border-radius:12px;padding:16px;margin-top:12px}
-.section-title{font-size:18px;font-weight:700;color:#fff;padding-bottom:8px;border-bottom:1px solid #2a2d3a;margin-bottom:12px}
-.section-title .icon{margin-right:6px}
-.stock-card{background:#22253a;border-radius:8px;padding:12px;margin-bottom:10px}
-.stock-name{font-size:16px;font-weight:700;color:#fff}
-.stock-code{font-size:12px;color:#9ca3af;margin-left:4px}
-.stock-price{font-size:20px;font-weight:700;margin-top:4px}
-.price-up{color:#ef4444}
-.price-down{color:#22c55e}
-.stock-detail{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:8px;font-size:13px}
-.stock-detail .label{color:#9ca3af}
-.stock-detail .value{color:#e4e4e7;font-weight:500}
-.stock-action{margin-top:8px;padding:8px;border-radius:6px;font-size:14px;font-weight:600}
-.action-sell{background:#dc2626;color:#fff}
-.action-hold{background:#16a34a;color:#fff}
-.action-reduce{background:#f59e0b;color:#000}
-.action-watch{background:#3b82f6;color:#fff}
-.risk-box{background:#7f1d1d;border-radius:6px;padding:10px;margin-top:8px;font-size:13px;color:#fca5a5}
-.risk-box .title{font-weight:700;color:#fff;font-size:14px}
-.rec-card{background:#22253a;border-radius:8px;padding:12px;margin-bottom:10px}
-.rec-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-bottom:6px}
-.tag-v2{background:#3b82f6;color:#fff}
-.tag-cap-a{background:#16a34a;color:#fff}
-.tag-cap-b{background:#f59e0b;color:#000}
-.v2-check{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:8px;font-size:12px}
-.v2-pass{color:#22c55e;font-weight:600}
-.v2-warn{color:#f59e0b;font-weight:600}
-.v2-fail{color:#dc2626;font-weight:600}
-.data-note{background:#1e293b;border-radius:6px;padding:10px;margin-top:12px;font-size:12px;color:#94a3b8;text-align:center}
-.footer{text-align:center;padding:16px 0;font-size:12px;color:#6b7280}
-.market-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
-.market-item{text-align:center;padding:8px;background:#22253a;border-radius:6px}
-.market-item .name{font-size:12px;color:#9ca3af}
-.market-item .val{font-size:18px;font-weight:700;margin-top:2px}
-.market-item .change{font-size:13px;font-weight:600}
-.cap-tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600}
-.cap-a{background:#16a34a;color:#fff}
-.cap-b{background:#f59e0b;color:#000}
-.cap-c{background:#dc2626;color:#fff}
-.warn-text{color:#f59e0b;font-weight:600}
-.danger-text{color:#dc2626;font-weight:600}
-.safe-text{color:#22c55e;font-weight:600}
-.info-text{color:#3b82f6}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,sans-serif;background:#f8f9fa;color:#2C2C2A;padding:20px;max-width:1100px;margin:0 auto}
+  .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+  .header h1{font-size:22px;font-weight:500}
+  .env-badge{padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;color:#fff}
+  .section{margin-bottom:24px}
+  .section h2{font-size:16px;font-weight:500;margin-bottom:12px}
+  .holdings{display:flex;flex-wrap:wrap;gap:10px}
+  .sig-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.08)}
+  .sig-table th{text-align:left;padding:10px 8px;font-size:12px;font-weight:500;color:var(--color-text-secondary);background:#fafafa}
+  .summary{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+  .summary-card{background:#fff;border-radius:10px;padding:14px 20px;border:0.5px solid rgba(0,0,0,0.08);min-width:120px}
+  .summary-card .num{font-size:28px;font-weight:500}
+  .summary-card .label{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+  .risk-reminder{background:#FAEEDA;border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.7;margin-top:16px}
+  .footer{text-align:center;font-size:11px;color:var(--color-text-secondary);margin-top:32px;padding:16px 0;border-top:0.5px solid rgba(0,0,0,0.06)}
 </style>
 </head>
 <body>
-<div class="container">
-
-<!-- 头部 -->
 <div class="header">
-  <div class="date">2026年7月7日 · 周二</div>
-  <span class="badge badge-bear">🐻 熊市环境</span>
-  <div class="subtitle">上证跌破4000点 · 缩量5100亿 · 超4700只下跌 · 仓位建议：观望/极轻仓</div>
+  <div>
+    <h1>每日信号报告</h1>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-top:4px">三策共振交易体系 v3.2  |  20260707  |  扫描耗时 37s</div>
+  </div>
+  <span class="env-badge" style="background:#E24B4A">弱势</span>
 </div>
 
-<!-- 大盘环境 -->
 <div class="section">
-  <div class="section-title"><span class="icon">📊</span>大盘环境</div>
-  <div class="market-grid">
-    <div class="market-item">
-      <div class="name">上证指数</div>
-      <div class="val price-down">3990.24</div>
-      <div class="change price-down">-1.26%</div>
-    </div>
-    <div class="market-item">
-      <div class="name">深证成指</div>
-      <div class="val price-down">15225.11</div>
-      <div class="change price-down">-1.24%</div>
-    </div>
-    <div class="market-item">
-      <div class="name">创业板指</div>
-      <div class="val price-down">3911.91</div>
-      <div class="change price-down">-0.94%</div>
-    </div>
-  </div>
-  <div class="market-grid" style="margin-top:8px">
-    <div class="market-item">
-      <div class="name">成交额</div>
-      <div class="val">2.58万亿</div>
-      <div class="change" style="color:#f59e0b">缩量5100亿</div>
-    </div>
-    <div class="market-item">
-      <div class="name">涨跌家数</div>
-      <div class="val price-down">693/4797</div>
-      <div class="change price-down">1:7</div>
-    </div>
-    <div class="market-item">
-      <div class="name">跌停</div>
-      <div class="val">45只</div>
-      <div class="change" style="color:#9ca3af">非踩踏级</div>
-    </div>
-  </div>
-  <div style="margin-top:12px;font-size:14px">
-    <p><span class="danger-text">🚨 上证跌破4000点整数关口</span>，回补6月11日向上跳空缺口</p>
-    <p><span class="warn-text">⚠️ 上证 vs MA60(≈4080) = -2.2%</span>，MACD日线死叉延续，缩量无承接下跌</p>
-    <p><span class="info-text">✅ 科创50尾盘翻红+0.28%</span>，半导体设备板块逆势+3.15%，有研硅20cm涨停</p>
-    <p>📊 大盘净流出<span class="danger-text">超900亿</span>，典型无承接下跌（散单挂卖，无大额接盘）</p>
-    <p>🌐 外围扰动：韩国综指盘中跌超3%触发临时停牌，三星业绩兑现跌7%</p>
-    <p>📉 领跌：证券-3%、创新药-4.5%、NMN、赛马；领涨：培育钻石、半导体设备</p>
-    <p>📋 交易新规：7/6起盘后固定价格交易扩展至全A股+ETF(15:05-15:30)</p>
-    <p>📉 两融余额7/1→7/6从3.007万亿降至2.97万亿，科技板块融资持仓占比37%撤最快</p>
-  </div>
+  <h2>持仓风险检查</h2>
+  <div class="holdings">
+        <div style="background:#FCEBEB;border-radius:8px;padding:12px;min-width:140px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:500;font-size:14px">京东方A</span>
+            <span style="font-size:11px;color:#A32D2D;font-weight:500">危险</span>
+          </div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">000725</div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:20px;font-weight:500">7.58</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-4.4%</span>
+          </div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">买入:7.93  |  持有:11d天</div>
+          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">时间止损(10天)</span>
+        </div>
+        <div style="background:#FCEBEB;border-radius:8px;padding:12px;min-width:140px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-weight:500;font-size:14px">中恒电气</span>
+            <span style="font-size:11px;color:#A32D2D;font-weight:500">危险</span>
+          </div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">002364</div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:20px;font-weight:500">51.80</span>
+            <span style="font-size:15px;font-weight:500;color:#A32D2D">-6.8%</span>
+          </div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">买入:55.58  |  持有:20d天</div>
+          <span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">触及止损线(-5.0%)</span><span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">时间止损(10天)</span><span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">跌破MA20(52.45)</span><span style="display:block;font-size:12px;color:#A32D2D;margin-top:2px">MACD死叉</span>
+        </div></div>
 </div>
 
-<!-- 持仓分析 -->
 <div class="section">
-  <div class="section-title"><span class="icon">💼</span>持仓分析（2只）</div>
-
-  <!-- 京东方A -->
-  <div class="stock-card">
-    <div class="stock-name">京东方A <span class="stock-code">000725</span> <span class="cap-tag cap-c">CAP-C</span></div>
-    <div class="stock-price price-down">7.58 <span style="font-size:14px">(-2.32%)</span></div>
-    <div style="font-size:13px;color:#9ca3af;margin-top:2px">买入价 7.926 → 浮亏 <span class="danger-text">-4.36%</span> | 盘中最低 7.45</div>
-    <div class="stock-detail">
-      <div><span class="label">昨收(7/6):</span> <span class="value">7.76</span></div>
-      <div><span class="label">开盘价:</span> <span class="value">7.66</span></div>
-      <div><span class="label">7/7最高:</span> <span class="value">7.84</span></div>
-      <div><span class="label">7/7最低:</span> <span class="value">7.45</span></div>
-      <div><span class="label">成交量:</span> <span class="value">28.19亿股(放量20%)</span></div>
-      <div><span class="label">振幅:</span> <span class="value">5.00%</span></div>
-      <div><span class="label">3日主力净流入:</span> <span class="danger-text">-88.87亿</span></div>
-      <div><span class="label">7/6主力单日:</span> <span class="danger-text">-50.52亿</span></div>
+  <h2>每日信号</h2>
+  <div class="summary">
+    <div class="summary-card">
+      <div class="num">0</div>
+      <div class="label">今日信号</div>
     </div>
-    <div class="risk-box">
-      <div class="title">⚠️ 风险预警</div>
-      <p>• 浮亏-4.36%，<span class="danger-text">盘中最低7.45已跌破-5%预警线7.53</span></p>
-      <p>• 收盘7.58勉强站上7.53，但3日主力-88.87亿(CAP-C)巨额出逃</p>
-      <p>• 从7/2高点9.10到7/7收盘7.58，<span class="danger-text">5天累计暴跌-16.7%</span></p>
-      <p>• 技术面：7.7关键支撑位已失守，止损位7.6已破（收盘7.58<7.60）</p>
-      <p>• 近10日资金流出26.96亿，主力持续看淡</p>
+    <div class="summary-card">
+      <div class="num">30-50%</div>
+      <div class="label">建议仓位</div>
     </div>
-    <div class="stock-action action-reduce">🟡 操作：减仓50-70%止损 | 硬止损7.30（收盘跌破全清）</div>
+    <div class="summary-card">
+      <div class="num">5%</div>
+      <div class="label">单只上限</div>
+    </div>
   </div>
-
-  <!-- 中恒电气 -->
-  <div class="stock-card">
-    <div class="stock-name">中恒电气 <span class="stock-code">002364</span> <span class="cap-tag cap-c">CAP-C</span></div>
-    <div class="stock-price price-down">51.80 <span style="font-size:14px">(-4.41%)</span></div>
-    <div style="font-size:13px;color:#9ca3af;margin-top:2px">买入价 55.584 → 浮亏 <span class="danger-text">-6.82%</span> | 盘中最低 51.88</div>
-    <div class="stock-detail">
-      <div><span class="label">昨收(7/6):</span> <span class="value">54.19</span></div>
-      <div><span class="label">开盘价:</span> <span class="value">54.54</span></div>
-      <div><span class="label">7/7最高:</span> <span class="value">56.85</span></div>
-      <div><span class="label">7/7最低:</span> <span class="value">51.88</span></div>
-      <div><span class="label">成交额:</span> <span class="value">24.89亿</span></div>
-      <div><span class="label">换手率:</span> <span class="value">8.31%</span></div>
-      <div><span class="label">7/7主力净流入:</span> <span class="danger-text">-6479万</span></div>
-      <div><span class="label">游资净流入:</span> <span class="safe-text">+1.03亿</span></div>
-      <div><span class="label">动态PE:</span> <span class="danger-text">295x(极高)</span></div>
-      <div><span class="label">一季报营收+7.79%/净利润+22.89%</span></div>
-    </div>
-    <div class="risk-box">
-      <div class="title">⚠️ 风险预警</div>
-      <p>• 浮亏-6.82%，<span class="danger-text">已跌破-5%预警线52.80</span></p>
-      <p>• 7/7收盘51.8 → 距-8%硬止损51.14仅差<span class="danger-text">0.66元(1.3%)</span></p>
-      <p>• 7/7主力净流出6479万(CAP-C)，资金确认已转负</p>
-      <p>• PE 295x极高估值，一季报基数低导致增速虚高</p>
-      <p>• 开盘54.54→盘中最高56.85→收盘51.8，振幅9.17%，冲高回落典型出货形态</p>
-    </div>
-    <div class="stock-action action-reduce">🟡 操作：大幅减仓至极轻仓(≤20%) | 硬止损51.14（收盘跌破全清）</div>
-  </div>
-
-  <div style="margin-top:8px;font-size:13px;color:#fca5a5;background:#7f1d1d;padding:8px;border-radius:6px">
-    ⚠️ 两只持仓均为CAP-C，主力持续流出，浮亏扩大。7/2已减仓30%，当前应进一步减仓防守。
+  <table class="sig-table">
+    <thead>
+      <tr>
+        <th style="width:30px">#</th>
+        <th style="width:120px">股票</th>
+        <th style="width:70px">收盘价</th>
+        <th style="width:50px">ADX</th>
+        <th style="width:50px">RSI</th>
+        <th style="width:70px">MA20偏离</th>
+        <th style="width:180px">触发条件</th>
+        <th style="width:70px">加分项</th>
+        <th style="width:90px">资金</th>
+        <th style="width:60px">催化剂</th>
+        <th style="width:110px">止损/止盈</th>
+      </tr>
+    </thead>
+    <tbody><tr><td colspan="10" style="padding:40px;text-align:center;color:var(--color-text-secondary)">今日无信号。趋势策略全市场年均约800个信号，请耐心等待。</td></tr></tbody>
+  </table>
+  <div class="risk-reminder">
+    <strong>风控规则</strong><br>
+    单只上限: 总仓位15%  |  止损: -5%  |  止盈: +15%  |  时间止损: 10天<br>
+    单笔亏损&gt;2%总资金: 立即平仓  |  月亏损&gt;8%: 降仓至30%<br>
+    连续3笔止损: 立即停止交易并复盘
   </div>
 </div>
 
-<!-- 竞价风险提示 -->
 <div class="section">
-  <div class="section-title"><span class="icon">⚡</span>竞价风险提示</div>
-  <div style="font-size:14px">
-    <p><span class="danger-text">🚨 京东方A开盘7.66</span>，低于7/6收盘7.76 → 低开1.29%，竞价阶段即显弱势</p>
-    <p><span class="danger-text">🚨 中恒电气开盘54.54</span>，高于7/6收盘54.19 → 竞价微高开，但盘中冲高至56.85后暴跌至51.8 → 冲高出货陷阱</p>
-    <p><span class="warn-text">⚠️ 上证竞价低开0.38%</span>（盘中4026→收盘3990），弱势低开延续</p>
-    <p><span class="info-text">ℹ️ 交易新规7/6落地</span>，盘后15:05-15:30固定价格交易，尾盘博弈加大</p>
-  </div>
+  <h2>基本面评分</h2>
+  <p style="color:var(--color-text-secondary)">基本面评分需要NeoData数据（覆盖率约7%），部分股票可能显示为D级（未知），建议小仓试探。</p>
 </div>
 
-<!-- 今日推荐 -->
 <div class="section">
-  <div class="section-title"><span class="icon">🎯</span>今日推荐（熊市·最多1只）</div>
-
-  <!-- 紫金矿业 -->
-  <div class="rec-card">
-    <span class="rec-tag tag-v2">超跌企稳V2</span>
-    <span class="rec-tag tag-cap-a">CAP-A 资金强确认</span>
-    <div class="stock-name">紫金矿业 <span class="stock-code">601899</span></div>
-    <div class="stock-price price-down">27.62 <span style="font-size:14px">(-2.33%)</span></div>
-    <div style="font-size:13px;color:#9ca3af;margin-top:2px">黄金+铜双龙头 · 风格切换受益 · 花旗正面催化剂</div>
-    <div class="stock-detail">
-      <div><span class="label">7/7主力净流入:</span> <span class="safe-text">+2.78亿</span></div>
-      <div><span class="label">3日主力净流入:</span> <span class="safe-text">+12.39亿</span></div>
-      <div><span class="label">5日主力净流入:</span> <span class="safe-text">+22.48亿</span></div>
-      <div><span class="label">10日主力净流入:</span> <span class="safe-text">+6.64亿</span></div>
-      <div><span class="label">成交额:</span> <span class="value">61.98亿</span></div>
-      <div><span class="label">换手率:</span> <span class="value">1.09%</span></div>
-      <div><span class="label">花旗目标价:</span> <span class="safe-text">51.8港元(买入评级)</span></div>
-      <div><span class="label">2026H1盈利:</span> <span class="safe-text">预计+70%</span></div>
-    </div>
-    <div style="margin-top:8px;font-size:14px">
-      <p><span class="safe-text">✅ 资金确认：</span>7/7主力逆势净流入+2.78亿，3日+12.39亿/5日+22.48亿 → <span class="safe-text">CAP-A最强确认</span></p>
-      <p><span class="safe-text">✅ 基本面：</span>2026H1盈利预计+70%，花旗30日正面催化剂观察，全球铜金龙头地位稳固</p>
-      <p><span class="safe-text">✅ 超跌30%：</span>股价从前高回落超30%，花旗确认估值修复空间</p>
-      <p><span class="warn-text">⚠️ PE估值：</span>动态PE约13-15x，盈利+70%后PE将进一步降低 → 合理偏低</p>
-      <p><span class="warn-text">⚠️ MACD：</span>日线处于调整期，未确认金叉，需等止跌企稳信号</p>
-      <p><span class="warn-text">⚠️ 放量：</span>7/7量比0.64极度缩量，等待放量止跌确认</p>
-    </div>
-    <div class="v2-check">
-      <div><span class="v2-pass">✅ 超跌30%</span></div>
-      <div><span class="v2-pass">✅ 基本面A</span></div>
-      <div><span class="v2-pass">✅ 资金CAP-A</span></div>
-      <div><span class="v2-warn">⚠️ PE~15</span></div>
-      <div><span class="v2-warn">⚠️ MACD待确认</span></div>
-      <div><span class="v2-warn">⚠️ 缩量待放量</span></div>
-    </div>
-    <div style="margin-top:8px;font-size:14px;font-weight:600;color:#fff">
-      📌 操作建议：轻仓试探5-10%，止损26.30(-5%)，止盈30.00(+8%)
-    </div>
-    <div style="margin-top:4px;font-size:12px;color:#9ca3af">
-      💡 在熊市环境下，仅推荐1只资金确认最强(CAP-A)标的。等MACD金叉+放量确认后再加仓。
-    </div>
-  </div>
+  <h2>资金确认 v3.0</h2>
+  <p style="color:var(--color-text-secondary)">资金流向确认需要NeoData数据。CAP-A=强确认(重仓)  CAP-B=弱确认(标准)  CAP-C=否决(不买)  UNKNOWN=保守(80%仓位)</p>
 </div>
 
-<!-- 观察池 -->
 <div class="section">
-  <div class="section-title"><span class="icon">👁️</span>观察池（暂不操作）</div>
-  <div style="font-size:14px">
-    <p><span class="info-text">长江电力 600900</span> · 7/7收盘27.41(+0.81%)逆势上涨 · 股息率3.49% · 换手0.52% · 高股息防御型，但V2超跌条件不满足，熊市观望</p>
-    <p><span class="info-text">华能国际 600011</span> · 7/7收盘6.80(-3.0%) · 主力净流出1.41亿(CAP-C) · PE偏低但资金已转负 → 暂不推荐</p>
-  </div>
+  <h2>v3.2 新增：Watchlist + 板块热度</h2>
 </div>
-
-<!-- 仓位与风控 -->
-<div class="section">
-  <div class="section-title"><span class="icon">🛡️</span>仓位与风控</div>
-  <div style="font-size:14px">
-    <p><span class="danger-text">🐻 市场环境：熊市</span>（上证3990<MA60 -2.2%，MACD死叉，缩量5100亿）</p>
-    <p><span class="danger-text">📉 仓位建议：10-15%极轻仓防守</span>，绝不重仓</p>
-    <p>• 京东方A：减仓50-70% → 仅保留20-30%，止损7.30</p>
-    <p>• 中恒电气：大幅减仓至≤20%，止损51.14</p>
-    <p>• 新建仓：仅紫金矿业轻仓5-10%试探，止损26.30</p>
-    <p><span class="warn-text">⚠️ 两融余额连续下降</span>（3.007→2.97万亿），杠杆资金撤离，不宜融资加仓</p>
-    <p><span class="warn-text">⚠️ 中报预告密集披露期</span>（7月15日前），回避业绩不确定标的</p>
-    <p><span class="warn-text">⚠️ 量化降频砍掉两成日常流动性</span>，缩量环境下抛压更易放大</p>
-    <p><span class="danger-text">🚨 连续止损风险</span>：若京东方A和中恒电气均触硬止损 → 月累计亏损可能超8% → 降仓至30%</p>
-  </div>
+<div class="section sector-analysis">
+<h3>板块资金流向分析 <span style="font-size:11px;color:var(--color-text-tertiary)">5日+10日双窗口</span></h3>
+<div style="margin:8px 0;padding:8px;border-radius:8px;background:var(--color-background-secondary)">
+<span style="font-weight:500">市场资金总览：</span>热度板块 6 个 ｜ 冷门板块 5 个 ｜ 总净流入: +61.6亿
 </div>
-
-<!-- 数据来源 -->
-<div class="data-note">
-  ⚠️ 数据来源：WebSearch（证券之星、英为财情、东方财富、雪球、百家号等），为7/7收盘后获取的收盘数据，可能存在细微偏差<br>
-  ⚠️ 京东方A收盘价7.58来自英为财情，中恒电气51.8来自证券之星，紫金矿业27.62来自证券之星<br>
-  ⚠️ 主力资金流向数据来自证券之星/东方财富，为估算值，非NeoData实时精确数据<br>
-  ⚠️ 按数据源可靠性规则：WebSearch价格数据仅供参考，不作为精确止损判断依据
+<table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:8px">
+<tr style="border-bottom:1px solid var(--color-border-primary)"><th style="text-align:left;padding:4px">板块</th><th style="text-align:right;padding:4px">置信度</th><th style="text-align:right;padding:4px">广度%</th><th style="text-align:right;padding:4px">日均净流向</th><th style="text-align:right;padding:4px">CAP-A/B</th><th style="text-align:right;padding:4px">持续性</th><th style="text-align:right;padding:4px">评级</th></tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-success)">
+<td style="padding:4px;font-weight:500">AI算力/服务器</td>
+<td style="text-align:right;padding:4px"><strong>89</strong></td>
+<td style="text-align:right;padding:4px">50%</td>
+<td style="text-align:right;padding:4px">+4.10亿</td>
+<td style="text-align:right;padding:4px">4/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥🔥🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-success)">
+<td style="padding:4px;font-weight:500">芯片封测(含先进封装)</td>
+<td style="text-align:right;padding:4px"><strong>89</strong></td>
+<td style="text-align:right;padding:4px">50%</td>
+<td style="text-align:right;padding:4px">+2.26亿</td>
+<td style="text-align:right;padding:4px">4/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥🔥🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-success)">
+<td style="padding:4px;font-weight:500">IC设计/存储</td>
+<td style="text-align:right;padding:4px"><strong>89</strong></td>
+<td style="text-align:right;padding:4px">50%</td>
+<td style="text-align:right;padding:4px">+2.56亿</td>
+<td style="text-align:right;padding:4px">4/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥🔥🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-success)">
+<td style="padding:4px;font-weight:500">PCB/覆铜板</td>
+<td style="text-align:right;padding:4px"><strong>85</strong></td>
+<td style="text-align:right;padding:4px">67%</td>
+<td style="text-align:right;padding:4px">+1.96亿</td>
+<td style="text-align:right;padding:4px">3/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥🔥🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-success)">
+<td style="padding:4px;font-weight:500">半导体设备</td>
+<td style="text-align:right;padding:4px"><strong>76</strong></td>
+<td style="text-align:right;padding:4px">33%</td>
+<td style="text-align:right;padding:4px">+2.58亿</td>
+<td style="text-align:right;padding:4px">3/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥🔥🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-success)">
+<td style="padding:4px;font-weight:500">储能/充电桩</td>
+<td style="text-align:right;padding:4px"><strong>72</strong></td>
+<td style="text-align:right;padding:4px">33%</td>
+<td style="text-align:right;padding:4px">+1.02亿</td>
+<td style="text-align:right;padding:4px">3/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">半导体材料</td>
+<td style="text-align:right;padding:4px"><strong>49</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.60亿</td>
+<td style="text-align:right;padding:4px">3/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">光纤光缆/光通信</td>
+<td style="text-align:right;padding:4px"><strong>49</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.86亿</td>
+<td style="text-align:right;padding:4px">4/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">5G/通信设备</td>
+<td style="text-align:right;padding:4px"><strong>49</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.56亿</td>
+<td style="text-align:right;padding:4px">2/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">🔥</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">PCB上游原料</td>
+<td style="text-align:right;padding:4px"><strong>43</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.20亿</td>
+<td style="text-align:right;padding:4px">4/6</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">功率半导体</td>
+<td style="text-align:right;padding:4px"><strong>43</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.48亿</td>
+<td style="text-align:right;padding:4px">2/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">有机硅</td>
+<td style="text-align:right;padding:4px"><strong>43</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.17亿</td>
+<td style="text-align:right;padding:4px">2/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">稀土</td>
+<td style="text-align:right;padding:4px"><strong>43</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.11亿</td>
+<td style="text-align:right;padding:4px">1/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">工业金属(铜铝)</td>
+<td style="text-align:right;padding:4px"><strong>43</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.24亿</td>
+<td style="text-align:right;padding:4px">1/4</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">航天军工</td>
+<td style="text-align:right;padding:4px"><strong>43</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.26亿</td>
+<td style="text-align:right;padding:4px">2/5</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);">
+<td style="padding:4px;font-weight:500">特种气体</td>
+<td style="text-align:right;padding:4px"><strong>37</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.08亿</td>
+<td style="text-align:right;padding:4px">1/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">流入减速(关注转向)</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger)">
+<td style="padding:4px;font-weight:500">锂电上游(锂钴镍)</td>
+<td style="text-align:right;padding:4px"><strong>26</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">+0.00亿</td>
+<td style="text-align:right;padding:4px">0/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">方向不明显</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger)">
+<td style="padding:4px;font-weight:500">光伏下游(组件/电站)</td>
+<td style="text-align:right;padding:4px"><strong>10</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">-0.12亿</td>
+<td style="text-align:right;padding:4px">0/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">双双流出</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger)">
+<td style="padding:4px;font-weight:500">绿电/新能源运营</td>
+<td style="text-align:right;padding:4px"><strong>10</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">-0.15亿</td>
+<td style="text-align:right;padding:4px">0/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">双双流出</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger)">
+<td style="padding:4px;font-weight:500">光伏上游(硅料/硅片)</td>
+<td style="text-align:right;padding:4px"><strong>6</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">-0.68亿</td>
+<td style="text-align:right;padding:4px">0/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">双双流出</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+<tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger)">
+<td style="padding:4px;font-weight:500">传统电力/公用事业</td>
+<td style="text-align:right;padding:4px"><strong>6</strong></td>
+<td style="text-align:right;padding:4px">0%</td>
+<td style="text-align:right;padding:4px">-0.88亿</td>
+<td style="text-align:right;padding:4px">0/3</td>
+<td style="text-align:right;padding:4px;font-size:10px">双双流出</td>
+<td style="text-align:right;padding:4px;font-size:14px">—</td>
+</tr>
+</table>
+<div style="margin-top:8px;font-size:11px">
+<span style="color:var(--color-text-success)">🟢 加仓方向: AI算力/服务器, 芯片封测(含先进封装), IC设计/存储, PCB/覆铜板, 半导体设备, 储能/充电桩</span><br>
+<span style="color:var(--color-text-danger)">🔴 回避方向: 锂电上游(锂钴镍), 光伏下游(组件/电站), 绿电/新能源运营, 光伏上游(硅料/硅片), 传统电力/公用事业</span>
 </div>
-
-<div class="footer">
-  每日开盘分析 · 三策共振交易体系 v3.2 · 2026年7月7日 · 自动化生成
+<div style="margin-top:12px">
+<h4 style="margin:4px 0 6px 0;font-size:13px">板块个股关注 <span style="font-size:10px;color:var(--color-text-tertiary)">1龙头+2资金最强·仅主板</span></h4>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ AI算力/服务器 <span style="font-size:10px;color:var(--color-text-tertiary)">89分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">工业富联</span> AI服务器代工全球龙头，英伟达核心供应商</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">中科曙光</span> AI服务器+超算，国产算力龙头</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">浪潮信息</span> AI服务器国内前三，JDM模式绑定大客户</div>
 </div>
-
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ 芯片封测(含先进封装) <span style="font-size:10px;color:var(--color-text-tertiary)">89分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">长电科技</span> 封测龙头，Chiplet先进封装领先</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">通富微电</span> AMD核心封测伙伴，先进封装放量</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">华天科技</span> 封测三强，AI芯片封装产能爬坡</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ IC设计/存储 <span style="font-size:10px;color:var(--color-text-tertiary)">89分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">韦尔股份</span> CIS传感器龙头，消费电子复苏</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">紫光国微</span> 特种芯片+FPGA，国产替代核心</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">兆易创新</span> MCU+Nor Flash双主线，横跨I</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ PCB/覆铜板 <span style="font-size:10px;color:var(--color-text-tertiary)">85分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">沪电股份</span> AI服务器PCB龙头，订单排至2027</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">超声电子</span> 6/25涨停，主力净流入+2.61亿</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">宏昌电子</span> 覆铜板一体化，营收+162%，CAP-B</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ 半导体设备 <span style="font-size:10px;color:var(--color-text-tertiary)">76分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">北方华创</span> 半导体设备龙头，刻蚀+薄膜沉积</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">至纯科技</span> 高纯工艺+半导体清洗设备</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">万业企业</span> 离子注入机，国产替代稀缺</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ 储能/充电桩 <span style="font-size:10px;color:var(--color-text-tertiary)">72分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">中恒电气</span> 3日CAP-A+25545万，储能政策龙</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">特变电工</span> 变压器+储能，PE12倍低估值</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">国电南瑞</span> 电网自动化龙头，储能调度核心</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ 半导体材料 <span style="font-size:10px;color:var(--color-text-tertiary)">49分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">雅克科技</span> 前驱体/SOD，海力士核心供应商</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">江化微</span> 湿电子化学品，面板+半导体双线</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">有研新材</span> 高纯金属靶材，半导体镀膜核心材料</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ 光纤光缆/光通信 <span style="font-size:10px;color:var(--color-text-tertiary)">49分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">烽火通信</span> 光通信设备龙头，光纤传输核心</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">亨通光电</span> 光纤预制棒+海底光缆，海洋通信稀缺</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">长飞光纤</span> 光纤预制棒全球前三，产能最大</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">★ 5G/通信设备 <span style="font-size:10px;color:var(--color-text-tertiary)">49分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">中兴通讯</span> 5G基站+核心网，五部门工业5G试点</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">武汉凡谷</span> 5G射频滤波器，华为核心供应商</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">通宇通讯</span> 基站天线龙头，5G-A升级受益</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· PCB上游原料 <span style="font-size:10px;color:var(--color-text-tertiary)">43分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">生益科技</span> 覆铜板CCL全球第二，PCB直接上游</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">金安国纪</span> 覆铜板涨价弹性大，产能释放期</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">超华科技</span> 电子铜箔+CCL一体化，铜价联动</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 功率半导体 <span style="font-size:10px;color:var(--color-text-tertiary)">43分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">士兰微</span> IDM功率半导体龙头，IGBT+SiC布</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">斯达半导</span> IGBT模块龙头，新能源车电驱核心</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">闻泰科技</span> 安世半导体，汽车功率器件全球前列</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 有机硅 <span style="font-size:10px;color:var(--color-text-tertiary)">43分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">三孚股份</span> 四氯化硅龙头（光纤上游原料），3连板后回</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">宏柏新材</span> 2连板，硅烷+高纯四氯化硅</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">新安股份</span> 有机硅一体化，DMC涨价受益</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 稀土 <span style="font-size:10px;color:var(--color-text-tertiary)">43分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">北方稀土</span> 全球最大稀土供应商，轻稀土绝对龙头</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">盛和资源</span> 稀土冶炼+海外矿进口，弹性最大</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">广晟有色</span> 广东稀土整合平台，重稀土为主</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 工业金属(铜铝) <span style="font-size:10px;color:var(--color-text-tertiary)">43分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">紫金矿业</span> 铜+金双主线，全球矿业巨头</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">江西铜业</span> 国内最大铜生产商，铜价联动直接</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">中国铝业</span> 铝业央企龙头，电解铝产能最大</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 航天军工 <span style="font-size:10px;color:var(--color-text-tertiary)">43分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">中航沈飞</span> 战斗机整机龙头，十四五军工核心</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">中航西飞</span> 大飞机+运输机，军民融合</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">航发动力</span> 航空发动机唯一上市平台</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 特种气体 <span style="font-size:10px;color:var(--color-text-tertiary)">37分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">凯美特气</span> 电子特气+食品级CO2，CAP-B</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">昊华科技</span> 含氟特气龙头，半导体级产品</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">三美股份</span> 氟化工+电子级氢氟酸</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 锂电上游(锂钴镍) <span style="font-size:10px;color:var(--color-text-tertiary)">26分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">赣锋锂业</span> 锂盐+锂矿全球布局，产业链最完整</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">天齐锂业</span> 全球最大锂矿权益，Greenbushes</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">华友钴业</span> 钴+镍+前驱体一体化，印尼镍矿布局</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 光伏下游(组件/电站) <span style="font-size:10px;color:var(--color-text-tertiary)">10分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">晶澳科技</span> 组件出货全球前三，N型技术领先</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">正泰电器</span> 低压电器+户用光伏电站双线</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">福斯特</span> 光伏胶膜全球第一，组件必需辅材</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 绿电/新能源运营 <span style="font-size:10px;color:var(--color-text-tertiary)">10分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">三峡能源</span> 风电+光伏运营龙头，装机增长确定</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">龙源电力</span> 全球最大风电运营商，国能集团旗下</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">节能风电</span> 风电运营，项目储备丰富</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 光伏上游(硅料/硅片) <span style="font-size:10px;color:var(--color-text-tertiary)">6分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">通威股份</span> 硅料+电池片双龙头，成本优势行业第一</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">隆基绿能</span> 硅片全球第一，技术迭代领先</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">TCL中环</span> 大尺寸硅片龙头，210mm市占领先</div>
+</div>
+<div style="flex:1;min-width:180px;padding:8px;border-radius:6px;background:var(--color-background-secondary);font-size:11px">
+<div style="font-weight:600;margin-bottom:4px">· 传统电力/公用事业 <span style="font-size:10px;color:var(--color-text-tertiary)">6分</span></div>
+<div style="margin:2px 0"><span style="opacity:0.6">龙头 </span><span style="font-weight:500">长江电力</span> 水电之王，高股息防御首选</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F1  </span><span style="font-weight:500">华能国际</span> 火电龙头，PE8.39极度低估，夏季用电</div>
+<div style="margin:2px 0"><span style="opacity:0.6">F2  </span><span style="font-weight:500">华电国际</span> 火电+绿电转型，低估值高分红</div>
+</div>
+</div></div>
+</div><div class="footer">
+  信号系统 v3.2 (观察池+催化剂+板块联动)  |  生成时间: 2026-07-07 23:57:30  |  数据: 8647 只股票已扫描
 </div>
 </body>
 </html>
