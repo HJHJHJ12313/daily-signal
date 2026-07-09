@@ -39,7 +39,9 @@
       "score": 66.69,
       "buy_zone": "突破并站稳 20.8",
       "invalid_zone": "跌破 18.54 放弃",
-      "position_plan": "BEAR中只观察或5%试错"
+      "position_plan": "BEAR中只观察或5%试错",
+      "industry_code": "X420102",
+      "industry": "其他IT设备"
     },
     {
       "code": "002415",
@@ -61,7 +63,9 @@
       "score": 62.58,
       "buy_zone": "突破并站稳 36.16",
       "invalid_zone": "跌破 32.96 放弃",
-      "position_plan": "BEAR中只观察或5%试错"
+      "position_plan": "BEAR中只观察或5%试错",
+      "industry_code": "X420101",
+      "industry": "安防设备"
     },
     {
       "code": "001206",
@@ -83,7 +87,9 @@
       "score": 70.0,
       "buy_zone": "突破并站稳 21.24",
       "invalid_zone": "跌破 18.4 放弃",
-      "position_plan": "BEAR中只观察或5%试错"
+      "position_plan": "BEAR中只观察或5%试错",
+      "industry_code": "X230102",
+      "industry": "生活用纸"
     }
   ],
   "holdings": [
@@ -105,7 +111,9 @@
       "low20": 5.56,
       "cost": 7.936,
       "weight": 61.5,
-      "pnl_pct": 2.7
+      "pnl_pct": 2.7,
+      "industry_code": "X400301",
+      "industry": "面板"
     },
     {
       "code": "002579",
@@ -125,7 +133,9 @@
       "low20": 15.01,
       "cost": 17.363,
       "weight": 13.6,
-      "pnl_pct": 4.01
+      "pnl_pct": 4.01,
+      "industry_code": "X400401",
+      "industry": "PCB"
     },
     {
       "code": "002008",
@@ -145,7 +155,9 @@
       "low20": 116.3,
       "cost": 130.95,
       "weight": 24.7,
-      "pnl_pct": -0.04
+      "pnl_pct": -0.04,
+      "industry_code": "X320503",
+      "industry": "激光设备"
     }
   ],
   "watch": [
@@ -164,7 +176,9 @@
       "macd_hist": -0.2915,
       "ret20": 6.41,
       "high20": 58.3,
-      "low20": 46.51
+      "low20": 46.51,
+      "industry_code": "X3006",
+      "industry": "其它发电设备"
     },
     {
       "code": "000938",
@@ -181,7 +195,9 @@
       "macd_hist": 0.9105,
       "ret20": 37.65,
       "high20": 34.63,
-      "low20": 25.03
+      "low20": 25.03,
+      "industry_code": "X420102",
+      "industry": "其他IT设备"
     },
     {
       "code": "002655",
@@ -198,7 +214,144 @@
       "macd_hist": -1.2155,
       "ret20": 14.49,
       "high20": 52.72,
-      "low20": 32.49
+      "low20": 32.49,
+      "industry_code": "X400201",
+      "industry": "消费电子组件"
     }
-  ]
+  ],
+  "top_sectors": [
+    {
+      "industry": "半导体封测",
+      "count": 6,
+      "sum_day": 53.24999999999999,
+      "strong": 6,
+      "above_ma20": 5,
+      "volume_up": 2,
+      "avg_day_pct": 8.87,
+      "strong_ratio": 100.0,
+      "above_ma20_ratio": 83.3,
+      "volume_up_ratio": 33.3,
+      "score": 108.62
+    },
+    {
+      "industry": "半导体设备",
+      "count": 5,
+      "sum_day": 39.08,
+      "strong": 5,
+      "above_ma20": 5,
+      "volume_up": 1,
+      "avg_day_pct": 7.82,
+      "strong_ratio": 100.0,
+      "above_ma20_ratio": 100.0,
+      "volume_up_ratio": 20.0,
+      "score": 101.16
+    },
+    {
+      "industry": "半导体材料",
+      "count": 8,
+      "sum_day": 60.42,
+      "strong": 7,
+      "above_ma20": 5,
+      "volume_up": 1,
+      "avg_day_pct": 7.55,
+      "strong_ratio": 87.5,
+      "above_ma20_ratio": 62.5,
+      "volume_up_ratio": 12.5,
+      "score": 90.78
+    },
+    {
+      "industry": "集成电路设计",
+      "count": 11,
+      "sum_day": 58.23,
+      "strong": 8,
+      "above_ma20": 10,
+      "volume_up": 5,
+      "avg_day_pct": 5.29,
+      "strong_ratio": 72.7,
+      "above_ma20_ratio": 90.9,
+      "volume_up_ratio": 45.5,
+      "score": 75.04
+    },
+    {
+      "industry": "网络接配及塔设",
+      "count": 6,
+      "sum_day": 32.07,
+      "strong": 5,
+      "above_ma20": 2,
+      "volume_up": 2,
+      "avg_day_pct": 5.34,
+      "strong_ratio": 83.3,
+      "above_ma20_ratio": 33.3,
+      "volume_up_ratio": 33.3,
+      "score": 70.2
+    }
+  ],
+  "weak_sectors": [
+    {
+      "industry": "磁性材料",
+      "count": 5,
+      "sum_day": -27.87,
+      "strong": 0,
+      "above_ma20": 2,
+      "volume_up": 1,
+      "avg_day_pct": -5.57,
+      "strong_ratio": 0.0,
+      "above_ma20_ratio": 40.0,
+      "volume_up_ratio": 20.0,
+      "score": -38.16
+    },
+    {
+      "industry": "锂",
+      "count": 10,
+      "sum_day": -44.42,
+      "strong": 1,
+      "above_ma20": 0,
+      "volume_up": 6,
+      "avg_day_pct": -4.44,
+      "strong_ratio": 10.0,
+      "above_ma20_ratio": 0.0,
+      "volume_up_ratio": 60.0,
+      "score": -28.22
+    },
+    {
+      "industry": "电池化学品",
+      "count": 12,
+      "sum_day": -41.19,
+      "strong": 0,
+      "above_ma20": 0,
+      "volume_up": 6,
+      "avg_day_pct": -3.43,
+      "strong_ratio": 0.0,
+      "above_ma20_ratio": 0.0,
+      "volume_up_ratio": 50.0,
+      "score": -23.44
+    },
+    {
+      "industry": "旅游景区",
+      "count": 15,
+      "sum_day": -45.47,
+      "strong": 0,
+      "above_ma20": 1,
+      "volume_up": 6,
+      "avg_day_pct": -3.03,
+      "strong_ratio": 0.0,
+      "above_ma20_ratio": 6.7,
+      "volume_up_ratio": 40.0,
+      "score": -20.24
+    },
+    {
+      "industry": "其他石化",
+      "count": 5,
+      "sum_day": -12.29,
+      "strong": 0,
+      "above_ma20": 0,
+      "volume_up": 1,
+      "avg_day_pct": -2.46,
+      "strong_ratio": 0.0,
+      "above_ma20_ratio": 0.0,
+      "volume_up_ratio": 20.0,
+      "score": -18.08
+    }
+  ],
+  "sector_data_source": "TDX tdxhy.cfg + hy_tree.xml, price/volume aggregated; raw capital-flow fields not yet verified"
 }
