@@ -1,0 +1,36 @@
+========================================================================
+A-share V3 strategy report | date=20260709 | scanned=3236
+========================================================================
+
+Market state=BEAR exposure=30-50% index=10.49 MA20=10.57 MA60=10.9 VOLx=0.66
+
+Holdings
+-    HOLD 000725 京东方A current=8.15 day=6.82% pnl=2.7% stop=7.3 tp=9.13 MA20=7.34 MA60=5.6 reasons=
+-    HOLD 002579 中京电子 current=18.06 day=9.99% pnl=4.01% stop=15.97 tp=19.97 MA20=18.98 MA60=15.99 reasons=below MA20
+-  REDUCE 002008 大族激光 current=130.9 day=2.35% pnl=-0.04% stop=120.47 tp=150.59 MA20=135.48 MA60=124.37 reasons=below MA20
+
+Signals
+- no signals
+
+Technical Filter Diagnostics
+- 20d_breakout: 3185
+- volume_expansion: 3037
+- above_ma60: 2762
+- rsi_momentum: 2503
+- macd_positive: 1246
+- near_ma20: 1213
+- adx_strength: 974
+
+Near Misses
+- 600755 600755 close=6.07 ADX=35.8 RSI=70.2 MA20dev=7.71% VOLx=1.8 fails=near_ma20
+- 002841 视源股份 close=52.13 ADX=34.8 RSI=85.7 MA20dev=42.05% VOLx=3.73 fails=near_ma20
+- 000977 000977 close=85.99 ADX=34.8 RSI=71.9 MA20dev=28.64% VOLx=2.53 fails=near_ma20
+- 001229 001229 close=45.47 ADX=31.2 RSI=86.2 MA20dev=40.63% VOLx=2.64 fails=near_ma20
+- 603183 603183 close=4.25 ADX=31.1 RSI=73.3 MA20dev=13.79% VOLx=3.69 fails=near_ma20
+- 000017 000017 close=6.55 ADX=29.1 RSI=81.2 MA20dev=17.64% VOLx=2.54 fails=near_ma20
+- 000017 000017 close=6.55 ADX=29.1 RSI=81.2 MA20dev=17.64% VOLx=2.54 fails=near_ma20
+- 603313 603313 close=7.26 ADX=27.8 RSI=72.1 MA20dev=25.79% VOLx=2.7 fails=near_ma20
+- 600129 600129 close=15.39 ADX=27.4 RSI=69.2 MA20dev=15.03% VOLx=2.72 fails=near_ma20
+- 603222 603222 close=10.12 ADX=26.5 RSI=71.3 MA20dev=23.62% VOLx=1.63 fails=near_ma20
+
+Risk note: research signal only; verify TDX price data before trading decisions.

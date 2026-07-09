@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A-share V3 Report 20260709</title>
+<style>
+body{font-family:Arial,'Microsoft YaHei',sans-serif;margin:0;background:#f6f7f8;color:#202124}
+main{max-width:1180px;margin:0 auto;padding:24px}
+h1{font-size:22px;margin:0 0 16px}
+h2{font-size:16px;margin:28px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.metric{background:#fff;border:1px solid #e4e6e8;border-radius:8px;padding:12px}
+.metric span{display:block;color:#667085;font-size:12px}
+.metric strong{display:block;font-size:22px;margin-top:4px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e4e6e8;border-radius:8px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid #eceff1;text-align:left;font-size:13px;vertical-align:top}
+th{background:#fafafa;color:#667085;font-weight:600}
+.badge{display:inline-block;border-radius:999px;padding:3px 9px;font-size:12px;font-weight:700}
+.buy{background:#dff7ea;color:#087443}.watch{background:#fff4d6;color:#8a5a00}.hold{background:#e8f1ff;color:#175cd3}
+.reduce{background:#ffe8cc;color:#b54708}.sell{background:#ffe4e8;color:#b42318}.skip{background:#edf0f2;color:#475467}
+.pos{color:#087443;font-weight:600}.neg{color:#b42318;font-weight:600}
+.fails{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;list-style:none;padding:0;margin:0}
+.fails li{background:#fff;border:1px solid #e4e6e8;border-radius:8px;padding:10px;display:flex;justify-content:space-between}
+@media(max-width:760px){main{padding:14px}.grid,.fails{grid-template-columns:1fr}table{font-size:12px}th,td{padding:8px}}
+</style>
+</head>
+<body>
+<main>
+<h1>A-share V3 Strategy Report 20260709</h1>
+<section class="grid">
+<div class="metric"><span>Market</span><strong>BEAR</strong></div>
+<div class="metric"><span>Exposure</span><strong>30-50%</strong></div>
+<div class="metric"><span>Index / MA60</span><strong>10.49 / 10.9</strong></div>
+<div class="metric"><span>Signals</span><strong>0</strong></div>
+</section>
+<h2>Holdings</h2>
+<table><thead><tr><th>Action</th><th>Stock</th><th>Close</th><th>Day</th><th>PnL</th><th>Stop / TP</th><th>MA20 / MA60</th><th>Reasons</th></tr></thead><tbody><tr><td><span class='badge hold'>HOLD</span></td><td>000725<br><strong>京东方A</strong></td><td>8.15</td><td class='pos'>6.82%</td><td class='pos'>2.7%</td><td>7.3 / 9.13</td><td>7.34 / 5.6</td><td>-</td></tr><tr><td><span class='badge hold'>HOLD</span></td><td>002579<br><strong>中京电子</strong></td><td>18.06</td><td class='pos'>9.99%</td><td class='pos'>4.01%</td><td>15.97 / 19.97</td><td>18.98 / 15.99</td><td>below MA20</td></tr><tr><td><span class='badge reduce'>REDUCE</span></td><td>002008<br><strong>大族激光</strong></td><td>130.9</td><td class='pos'>2.35%</td><td class='neg'>-0.04%</td><td>120.47 / 150.59</td><td>135.48 / 124.37</td><td>below MA20</td></tr></tbody></table>
+<h2>Signals</h2>
+<table><thead><tr><th>Action</th><th>Grade / Mode</th><th>Stock</th><th>Score</th><th>Close</th><th>ADX / RSI</th><th>MA20 Dev</th><th>RS20 / Sector</th><th>CAP / F</th><th>Reasons</th></tr></thead><tbody><tr><td colspan='10'>No signals</td></tr></tbody></table>
+<h2>Technical Filter Diagnostics</h2>
+<ul class="fails"><li><span>20d_breakout</span><strong>3185</strong></li><li><span>volume_expansion</span><strong>3037</strong></li><li><span>above_ma60</span><strong>2762</strong></li><li><span>rsi_momentum</span><strong>2503</strong></li><li><span>macd_positive</span><strong>1246</strong></li><li><span>near_ma20</span><strong>1213</strong></li><li><span>adx_strength</span><strong>974</strong></li></ul>
+<h2>Near Misses</h2>
+<table><thead><tr><th>Stock</th><th>Close</th><th>ADX / RSI</th><th>MA20 Dev</th><th>VOLx</th><th>Fails</th></tr></thead><tbody><tr><td>600755<br><strong>600755</strong></td><td>6.07</td><td>35.8 / 70.2</td><td>7.71%</td><td>1.8</td><td>near_ma20</td></tr><tr><td>002841<br><strong>视源股份</strong></td><td>52.13</td><td>34.8 / 85.7</td><td>42.05%</td><td>3.73</td><td>near_ma20</td></tr><tr><td>000977<br><strong>000977</strong></td><td>85.99</td><td>34.8 / 71.9</td><td>28.64%</td><td>2.53</td><td>near_ma20</td></tr><tr><td>001229<br><strong>001229</strong></td><td>45.47</td><td>31.2 / 86.2</td><td>40.63%</td><td>2.64</td><td>near_ma20</td></tr><tr><td>603183<br><strong>603183</strong></td><td>4.25</td><td>31.1 / 73.3</td><td>13.79%</td><td>3.69</td><td>near_ma20</td></tr><tr><td>000017<br><strong>000017</strong></td><td>6.55</td><td>29.1 / 81.2</td><td>17.64%</td><td>2.54</td><td>near_ma20</td></tr><tr><td>000017<br><strong>000017</strong></td><td>6.55</td><td>29.1 / 81.2</td><td>17.64%</td><td>2.54</td><td>near_ma20</td></tr><tr><td>603313<br><strong>603313</strong></td><td>7.26</td><td>27.8 / 72.1</td><td>25.79%</td><td>2.7</td><td>near_ma20</td></tr><tr><td>600129<br><strong>600129</strong></td><td>15.39</td><td>27.4 / 69.2</td><td>15.03%</td><td>2.72</td><td>near_ma20</td></tr><tr><td>603222<br><strong>603222</strong></td><td>10.12</td><td>26.5 / 71.3</td><td>23.62%</td><td>1.63</td><td>near_ma20</td></tr></tbody></table>
+</main>
+</body>
+</html>
