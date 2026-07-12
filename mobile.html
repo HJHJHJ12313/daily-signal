@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>手机持仓简报 20260709</title>
+<title>手机持仓简报 20260710</title>
 <style>
 body{font-family:Arial,'Microsoft YaHei','PingFang SC',sans-serif;margin:0;background:#f5f7fa;color:#111827}
 main{max-width:720px;margin:0 auto;padding:14px} h1{font-size:22px;margin:6px 0 4px} h2{font-size:17px;margin:18px 0 8px}
@@ -13,159 +13,193 @@ main{max-width:720px;margin:0 auto;padding:14px} h1{font-size:22px;margin:6px 0 
 .card{margin:8px 0} .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start} .name{font-size:18px;font-weight:800} .code{color:#667085;font-size:12px}
 .compact .name{font-size:16px}
 .price{font-size:20px;font-weight:800;text-align:right} .price span{font-size:13px} .pos{color:#087443} .neg{color:#b42318}
+.badge{display:inline-block;margin-top:5px;padding:3px 7px;border-radius:999px;font-size:12px;font-weight:800;background:#eef4ff;color:#175cd3}
+.level-s{background:#ecfdf3;color:#067647} .level-a{background:#fefbe8;color:#854a0e} .level-b{background:#eef4ff;color:#175cd3} .level-c{background:#f2f4f7;color:#344054} .level-d{background:#fef3f2;color:#b42318}
 .kv{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;color:#374151;margin-top:8px} .kv div{background:#f8fafc;border-radius:6px;padding:7px}
+.signal{font-size:12px;color:#475467;background:#f9fafb;border-radius:6px;padding:7px;margin-top:8px}
+.decision{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px;margin:8px 0}
+.decision-note{font-size:14px;line-height:1.5;margin-bottom:8px;color:#344054}
+.decision-grid{display:grid;grid-template-columns:1fr;gap:7px} .decision-grid div{background:#f8fafc;border-radius:7px;padding:8px}
+.decision-grid b{display:inline-block;width:38px} .decision-grid span{font-weight:800;margin-right:8px} .decision-grid small{display:block;color:#667085;margin-top:3px}
 .plan{display:grid;grid-template-columns:1fr;gap:7px;margin-top:8px;font-size:14px} .plan div{background:#fff7ed;border:1px solid #fed7aa;border-radius:7px;padding:8px;line-height:1.45}
+.sector-stocks{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px} .sector-stocks li{background:#f8fafc;border-radius:7px;padding:7px;font-size:13px;line-height:1.4}
+.sector-stocks span{color:#667085;margin-left:4px} .sector-stocks em{font-style:normal;font-weight:800;margin-left:6px} .sector-stocks small{display:block;color:#667085}
 .note{font-size:15px;line-height:1.55;margin-top:8px} a{color:#175cd3;text-decoration:none;font-weight:700}
 @media(max-width:420px){main{padding:12px}.grid{grid-template-columns:1fr}.price{font-size:18px}.name{font-size:17px}}
 </style>
 </head>
 <body><main>
 <h1>手机持仓简报</h1>
-<div class="sub">20260709 ｜ 本地通达信数据 ｜ 仅作交易研究</div>
+<div class="sub">20260710 ｜ 本地通达信数据 ｜ 仅作交易研究</div>
 <div class="grid">
 <div class="metric"><span>市场状态</span><strong>BEAR</strong></div>
 <div class="metric"><span>策略动作</span><strong>防守优先</strong></div>
-<div class="metric"><span>上证收盘</span><strong>10.49</strong></div>
+<div class="metric"><span>上证收盘</span><strong>10.45</strong></div>
 <div class="metric"><span>推荐数量</span><strong>3</strong></div>
 </div>
 <div class="alert">每日3股会随盘面自动变化。当前若是BEAR，只作为观察/条件买，不作为满仓买入理由。</div>
+
+<h2>统一决策面板</h2>
+<section class="decision">
+  <div class="decision-note">BEAR中防守优先，S/A也要降仓验证。</div>
+  <div class="decision-grid"><div><b>S级</b><span>默认可买</span><small>无</small></div><div><b>A级</b><span>小仓试错</span><small>无</small></div><div><b>B级</b><span>重点观察</span><small>无</small></div><div><b>C级</b><span>普通记录</span><small>海康威视(002415)</small></div><div><b>D级</b><span>放弃</span><small>中国长城(000066)、中京电子(002579)</small></div></div>
+</section>
+
 <h2>今日策略推荐3股</h2>
 
 <section class="card">
   <div class="top">
-    <div><div class="name">中国长城</div><div class="code">000066</div></div>
-    <div class="price pos">19.88<br><span>2.95%</span></div>
+    <div><div class="name">中国长城</div><div class="code">000066</div><span class='badge level-d'>D级 · 放弃</span></div>
+    <div class="price neg">19.45<br><span>-2.16%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 18.06</div><div>MA60 18.54</div>
-    <div>RS20 30.5</div><div>RSI 58.78</div>
+    <div>MA20 18.25</div><div>MA60 18.61</div>
+    <div>RS20 31.48</div><div>RSI 54.25</div>
     <div>板块 其他IT设备</div>
+    <div>建议仓位 0%</div>
     
   </div>
-  <div class="note">第1候选。理由：RS20 30.5，强于指数；所属板块：其他IT设备；收盘在MA60上方，RSI 58.78。 买点：突破并站稳 20.8。失效：跌破 18.54 放弃。仓位：BEAR中只观察或5%试错。</div>
+  <div class="signal">A+ ｜ V2平衡 ｜ 基本面31 ｜ Serenity 未命中</div>
+  <div class="note">第1候选。理由：RS20 31.48，强于指数；所属板块：其他IT设备；收盘在MA60上方，RSI 54.25。 分层：D级，放弃。 买点：突破并站稳 20.8。失效：跌破 18.61 放弃。仓位：BEAR中只观察或5%试错。</div>
 </section>
 
 <section class="card">
   <div class="top">
-    <div><div class="name">海康威视</div><div class="code">002415</div></div>
-    <div class="price pos">35.39<br><span>3.03%</span></div>
+    <div><div class="name">海康威视</div><div class="code">002415</div><span class='badge level-c'>C级 · 普通记录</span></div>
+    <div class="price neg">34.45<br><span>-2.66%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 33.0</div><div>MA60 32.96</div>
-    <div>RS20 23.82</div><div>RSI 64.93</div>
+    <div>MA20 33.23</div><div>MA60 32.99</div>
+    <div>RS20 22.43</div><div>RSI 57.53</div>
     <div>板块 安防设备</div>
+    <div>建议仓位 0%</div>
     
   </div>
-  <div class="note">第2候选。理由：RS20 23.82，强于指数；所属板块：安防设备；收盘在MA60上方，RSI 64.93。 买点：突破并站稳 36.16。失效：跌破 32.96 放弃。仓位：BEAR中只观察或5%试错。</div>
+  <div class="signal">A+ ｜ V2平衡 ｜ 基本面90 ｜ Serenity 未命中</div>
+  <div class="note">第2候选。理由：RS20 22.43，强于指数；所属板块：安防设备；收盘在MA60上方，RSI 57.53。 分层：C级，普通记录。 买点：突破并站稳 36.16。失效：跌破 32.99 放弃。仓位：BEAR中只观察或5%试错。</div>
 </section>
 
 <section class="card">
   <div class="top">
-    <div><div class="name">依依股份</div><div class="code">001206</div></div>
-    <div class="price neg">20.23<br><span>-1.94%</span></div>
+    <div><div class="name">中京电子</div><div class="code">002579</div><span class='badge level-d'>D级 · 放弃</span></div>
+    <div class="price neg">17.74<br><span>-1.77%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 18.47</div><div>MA60 18.4</div>
-    <div>RS20 36.51</div><div>RSI 65.79</div>
-    <div>板块 生活用纸</div>
+    <div>MA20 19.1</div><div>MA60 16.07</div>
+    <div>RS20 23.54</div><div>RSI 39.29</div>
+    <div>板块 PCB</div>
+    <div>建议仓位 0%</div>
     
   </div>
-  <div class="note">第3候选。理由：RS20 36.51，强于指数；所属板块：生活用纸；收盘在MA60上方，RSI 65.79。 买点：突破并站稳 21.24。失效：跌破 18.4 放弃。仓位：BEAR中只观察或5%试错。</div>
+  <div class="signal">宽口径 ｜ V2平衡 ｜ 基本面47 ｜ Serenity 命中</div>
+  <div class="note">第3候选。理由：RS20 23.54，强于指数；所属板块：PCB；收盘在MA60上方，RSI 39.29。 分层：D级，放弃。 买点：突破并站稳 23.4。失效：跌破 16.07 放弃。仓位：BEAR中只观察或5%试错。</div>
 </section>
-<h2>板块强弱：盘面资金方向替代指标</h2><section class='card compact'><div class='top'><div><div class='name'>半导体封测</div><div class='code'>样本 6 只</div></div><div class='price pos'>8.87%</div></div><div class='kv'><div>强势占比 100.0%</div><div>站上MA20 83.3%</div><div>放量占比 33.3%</div><div>板块分 108.62</div></div></section>
-<section class='card compact'><div class='top'><div><div class='name'>半导体设备</div><div class='code'>样本 5 只</div></div><div class='price pos'>7.82%</div></div><div class='kv'><div>强势占比 100.0%</div><div>站上MA20 100.0%</div><div>放量占比 20.0%</div><div>板块分 101.16</div></div></section>
-<section class='card compact'><div class='top'><div><div class='name'>半导体材料</div><div class='code'>样本 8 只</div></div><div class='price pos'>7.55%</div></div><div class='kv'><div>强势占比 87.5%</div><div>站上MA20 62.5%</div><div>放量占比 12.5%</div><div>板块分 90.78</div></div></section>
-<section class='card compact'><div class='top'><div><div class='name'>集成电路设计</div><div class='code'>样本 11 只</div></div><div class='price pos'>5.29%</div></div><div class='kv'><div>强势占比 72.7%</div><div>站上MA20 90.9%</div><div>放量占比 45.5%</div><div>板块分 75.04</div></div></section>
-<section class='card compact'><div class='top'><div><div class='name'>网络接配及塔设</div><div class='code'>样本 6 只</div></div><div class='price pos'>5.34%</div></div><div class='kv'><div>强势占比 83.3%</div><div>站上MA20 33.3%</div><div>放量占比 33.3%</div><div>板块分 70.2</div></div></section>
-<h2>弱势板块：暂时回避</h2><section class='card compact'><div class='top'><div><div class='name'>磁性材料</div><div class='code'>样本 5 只</div></div><div class='price neg'>-5.57%</div></div><div class='kv'><div>强势占比 0.0%</div><div>站上MA20 40.0%</div><div>放量占比 20.0%</div><div>板块分 -38.16</div></div></section>
-<section class='card compact'><div class='top'><div><div class='name'>锂</div><div class='code'>样本 10 只</div></div><div class='price neg'>-4.44%</div></div><div class='kv'><div>强势占比 10.0%</div><div>站上MA20 0.0%</div><div>放量占比 60.0%</div><div>板块分 -28.22</div></div></section>
-<section class='card compact'><div class='top'><div><div class='name'>电池化学品</div><div class='code'>样本 12 只</div></div><div class='price neg'>-3.43%</div></div><div class='kv'><div>强势占比 0.0%</div><div>站上MA20 0.0%</div><div>放量占比 50.0%</div><div>板块分 -23.44</div></div></section>
-<section class='card compact'><div class='top'><div><div class='name'>旅游景区</div><div class='code'>样本 15 只</div></div><div class='price neg'>-3.03%</div></div><div class='kv'><div>强势占比 0.0%</div><div>站上MA20 6.7%</div><div>放量占比 40.0%</div><div>板块分 -20.24</div></div></section>
-<section class='card compact'><div class='top'><div><div class='name'>其他石化</div><div class='code'>样本 5 只</div></div><div class='price neg'>-2.46%</div></div><div class='kv'><div>强势占比 0.0%</div><div>站上MA20 0.0%</div><div>放量占比 20.0%</div><div>板块分 -18.08</div></div></section>
+<h2>板块强弱：盘面资金方向替代指标</h2><section class='card compact'><div class='top'><div><div class='name'>航天装备</div><div class='code'>样本 6 只</div></div><div class='price pos'>9.44%</div></div><div class='kv'><div>强势占比 100.0%</div><div>站上MA20 100.0%</div><div>放量占比 83.3%</div><div>板块分 119.18</div></div><ul class='sector-stocks'><li><b>中国卫通</b> <span>601698</span> <em class='pos'>10.0%</em><small>MA20偏离 8.14%</small></li><li><b>星网宇达</b> <span>002829</span> <em class='pos'>9.98%</em><small>MA20偏离 7.69%</small></li><li><b>烽火电子</b> <span>000561</span> <em class='pos'>6.76%</em><small>MA20偏离 0.84%</small></li></ul></section>
+<section class='card compact'><div class='top'><div><div class='name'>基因药物</div><div class='code'>样本 5 只</div></div><div class='price pos'>5.01%</div></div><div class='kv'><div>强势占比 60.0%</div><div>站上MA20 100.0%</div><div>放量占比 40.0%</div><div>板块分 70.28</div></div><ul class='sector-stocks'><li><b>双鹭药业</b> <span>002038</span> <em class='pos'>10.0%</em><small>MA20偏离 11.44%</small></li><li><b>长春高新</b> <span>000661</span> <em class='pos'>5.48%</em><small>MA20偏离 4.63%</small></li><li><b>通化东宝</b> <span>600867</span> <em class='pos'>1.88%</em><small>MA20偏离 3.05%</small></li></ul></section>
+<section class='card compact'><div class='top'><div><div class='name'>医疗研发外包</div><div class='code'>样本 5 只</div></div><div class='price pos'>4.83%</div></div><div class='kv'><div>强势占比 60.0%</div><div>站上MA20 80.0%</div><div>放量占比 60.0%</div><div>板块分 68.04</div></div><ul class='sector-stocks'><li><b>九洲药业</b> <span>603456</span> <em class='pos'>5.88%</em><small>MA20偏离 8.33%</small></li><li><b>昭衍新药</b> <span>603127</span> <em class='pos'>10.0%</em><small>MA20偏离 14.87%</small></li><li><b>药明康德</b> <span>603259</span> <em class='pos'>1.84%</em><small>MA20偏离 7.95%</small></li></ul></section>
+<section class='card compact'><div class='top'><div><div class='name'>发行院线</div><div class='code'>样本 7 只</div></div><div class='price pos'>4.01%</div></div><div class='kv'><div>强势占比 85.7%</div><div>站上MA20 42.9%</div><div>放量占比 100.0%</div><div>板块分 66.65</div></div><ul class='sector-stocks'><li><b>金逸影视</b> <span>002905</span> <em class='pos'>4.62%</em><small>MA20偏离 4.32%</small></li><li><b>中国电影</b> <span>600977</span> <em class='pos'>0.95%</em><small>MA20偏离 0.56%</small></li><li><b>横店影视</b> <span>603103</span> <em class='pos'>3.69%</em><small>MA20偏离 -2.62%</small></li></ul></section>
+<section class='card compact'><div class='top'><div><div class='name'>医院</div><div class='code'>样本 10 只</div></div><div class='price pos'>4.2%</div></div><div class='kv'><div>强势占比 70.0%</div><div>站上MA20 60.0%</div><div>放量占比 80.0%</div><div>板块分 64.7</div></div><ul class='sector-stocks'><li><b>新里程</b> <span>002219</span> <em class='pos'>10.0%</em><small>MA20偏离 6.77%</small></li><li><b>光正眼科</b> <span>002524</span> <em class='pos'>9.88%</em><small>MA20偏离 7.77%</small></li><li><b>大东方</b> <span>600327</span> <em class='pos'>3.06%</em><small>MA20偏离 2.04%</small></li></ul></section>
+<h2>弱势板块：暂时回避</h2><section class='card compact'><div class='top'><div><div class='name'>半导体设备</div><div class='code'>样本 5 只</div></div><div class='price neg'>-7.1%</div></div><div class='kv'><div>强势占比 0.0%</div><div>站上MA20 100.0%</div><div>放量占比 80.0%</div><div>板块分 -38.4</div></div><ul class='sector-stocks'><li><b>603690</b> <span>603690</span> <em class='neg'>-0.89%</em><small>MA20偏离 3.04%</small></li><li><b>600520</b> <span>600520</span> <em class='neg'>-7.85%</em><small>MA20偏离 1.56%</small></li><li><b>002371</b> <span>002371</span> <em class='neg'>-8.81%</em><small>MA20偏离 1.71%</small></li></ul></section>
+<section class='card compact'><div class='top'><div><div class='name'>被动元件</div><div class='code'>样本 9 只</div></div><div class='price neg'>-4.87%</div></div><div class='kv'><div>强势占比 0.0%</div><div>站上MA20 0.0%</div><div>放量占比 22.2%</div><div>板块分 -37.18</div></div><ul class='sector-stocks'><li><b>002199</b> <span>002199</span> <em class='pos'>0.76%</em><small>MA20偏离 -3.09%</small></li><li><b>002484</b> <span>002484</span> <em class='neg'>-4.24%</em><small>MA20偏离 -11.39%</small></li><li><b>600237</b> <span>600237</span> <em class='neg'>-4.82%</em><small>MA20偏离 -11.13%</small></li></ul></section>
+<section class='card compact'><div class='top'><div><div class='name'>氟化工</div><div class='code'>样本 9 只</div></div><div class='price neg'>-4.32%</div></div><div class='kv'><div>强势占比 0.0%</div><div>站上MA20 0.0%</div><div>放量占比 0.0%</div><div>板块分 -34.56</div></div><ul class='sector-stocks'><li><b>603310</b> <span>603310</span> <em class='pos'>0.0%</em><small>MA20偏离 -2.92%</small></li><li><b>002915</b> <span>002915</span> <em class='pos'>0.71%</em><small>MA20偏离 -9.57%</small></li><li><b>600160</b> <span>600160</span> <em class='neg'>-5.61%</em><small>MA20偏离 -10.75%</small></li></ul></section>
+<section class='card compact'><div class='top'><div><div class='name'>电子</div><div class='code'>样本 8 只</div></div><div class='price neg'>-4.63%</div></div><div class='kv'><div>强势占比 12.5%</div><div>站上MA20 12.5%</div><div>放量占比 25.0%</div><div>板块分 -30.41</div></div><ul class='sector-stocks'><li><b>603931</b> <span>603931</span> <em class='pos'>4.28%</em><small>MA20偏离 2.49%</small></li><li><b>002584</b> <span>002584</span> <em class='neg'>-3.95%</em><small>MA20偏离 -7.08%</small></li><li><b>002643</b> <span>002643</span> <em class='neg'>-6.37%</em><small>MA20偏离 -4.84%</small></li></ul></section>
+<section class='card compact'><div class='top'><div><div class='name'>锂</div><div class='code'>样本 10 只</div></div><div class='price neg'>-4.0%</div></div><div class='kv'><div>强势占比 0.0%</div><div>站上MA20 0.0%</div><div>放量占比 20.0%</div><div>板块分 -30.4</div></div><ul class='sector-stocks'><li><b>002667</b> <span>002667</span> <em class='neg'>-3.02%</em><small>MA20偏离 -13.49%</small></li><li><b>002176</b> <span>002176</span> <em class='pos'>0.35%</em><small>MA20偏离 -16.11%</small></li><li><b>000762</b> <span>000762</span> <em class='pos'>0.0%</em><small>MA20偏离 -15.46%</small></li></ul></section>
 <h2>当前持仓</h2>
 
 <section class="card">
   <div class="top">
     <div><div class="name">京东方A</div><div class="code">000725</div></div>
-    <div class="price pos">8.15<br><span>6.82%</span></div>
+    <div class="price neg">7.59<br><span>-6.87%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 7.34</div><div>MA60 5.6</div>
-    <div>RS20 -</div><div>RSI 66.13</div>
+    <div>MA20 7.43</div><div>MA60 5.66</div>
+    <div>RS20 -</div><div>RSI 56.42</div>
     <div>板块 面板</div>
-    <div>浮盈 2.7%</div>
+    <div>建议仓位 -</div>
+    <div>浮盈 -4.36%</div>
   </div>
+  <div class="signal"></div>
   <div class="note">仓位偏重，反弹不过8.18-8.20可降；跌回7.90下方继续降。</div>
 <div class="plan"><div><b>加仓/做T确认</b><br>不建议加重；只在7.90附近企稳后做小T，或重新站稳8.20再看。</div><div><b>失效/防守</b><br>跌回7.90下方先降；7.70失守不做低吸。</div><div><b>建议仓位</b><br>当前61.5%过重，BEAR中建议降到35%-45%，最多不超过50%。</div></div></section>
 
 <section class="card">
   <div class="top">
     <div><div class="name">中京电子</div><div class="code">002579</div></div>
-    <div class="price pos">18.06<br><span>9.99%</span></div>
+    <div class="price neg">17.74<br><span>-1.77%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 18.98</div><div>MA60 15.99</div>
-    <div>RS20 -</div><div>RSI 43.1</div>
+    <div>MA20 19.1</div><div>MA60 16.07</div>
+    <div>RS20 -</div><div>RSI 39.29</div>
     <div>板块 PCB</div>
-    <div>浮盈 4.01%</div>
+    <div>建议仓位 -</div>
+    <div>浮盈 2.17%</div>
   </div>
+  <div class="signal"></div>
   <div class="note">可以保留观察，站上18.98才算进一步转强。</div>
 <div class="plan"><div><b>加仓/做T确认</b><br>站稳18.06可留；突破18.98并不回落，才考虑小加。</div><div><b>失效/防守</b><br>跌回17.36成本区要减弱预期；跌破16.65说明反弹失败。</div><div><b>建议仓位</b><br>当前13.6%可接受，确认突破后最多加到20%-22%。</div></div></section>
 
 <section class="card">
   <div class="top">
     <div><div class="name">大族激光</div><div class="code">002008</div></div>
-    <div class="price pos">130.9<br><span>2.35%</span></div>
+    <div class="price neg">130.3<br><span>-0.46%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 135.48</div><div>MA60 124.37</div>
-    <div>RS20 -</div><div>RSI 47.55</div>
+    <div>MA20 135.92</div><div>MA60 125.28</div>
+    <div>RS20 -</div><div>RSI 48.97</div>
     <div>板块 激光设备</div>
-    <div>浮盈 -0.04%</div>
+    <div>建议仓位 -</div>
+    <div>浮盈 -0.5%</div>
   </div>
+  <div class="signal"></div>
   <div class="note">弱修复，135.5站不上不加；跌破126/124区域防守。</div>
 <div class="plan"><div><b>加仓/做T确认</b><br>突破并站稳135.5再考虑小加；否则只做观察。</div><div><b>失效/防守</b><br>跌破126先防守，跌破124要坚决降风险。</div><div><b>建议仓位</b><br>当前24.7%偏中等，BEAR中不建议超过25%。</div></div></section>
 <h2>关注股</h2>
 
 <section class="card">
   <div class="top">
-    <div><div class="name">中恒电气</div><div class="code">002364</div></div>
-    <div class="price pos">54.42<br><span>10.01%</span></div>
+    <div><div class="name">中恒电气</div><div class="code">002364</div><span class='badge level-d'>D级 · 放弃</span></div>
+    <div class="price pos">56.05<br><span>3.0%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 52.33</div><div>MA60 49.39</div>
-    <div>RS20 -</div><div>RSI 50.46</div>
+    <div>MA20 52.69</div><div>MA60 49.68</div>
+    <div>RS20 -</div><div>RSI 55.07</div>
     <div>板块 其它发电设备</div>
+    <div>建议仓位 0%</div>
     
   </div>
+  <div class="signal">宽口径 ｜ V2未过 ｜ 基本面57 ｜ Serenity 未命中</div>
   <div class="note">不追涨，等52.3回踩不破或58.3突破确认。</div>
 </section>
 
 <section class="card">
   <div class="top">
-    <div><div class="name">紫光股份</div><div class="code">000938</div></div>
-    <div class="price pos">35.68<br><span>6.13%</span></div>
+    <div><div class="name">紫光股份</div><div class="code">000938</div><span class='badge level-d'>D级 · 放弃</span></div>
+    <div class="price pos">38.41<br><span>7.65%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 28.67</div><div>MA60 29.43</div>
-    <div>RS20 -</div><div>RSI 69.42</div>
+    <div>MA20 29.32</div><div>MA60 29.6</div>
+    <div>RS20 -</div><div>RSI 72.4</div>
     <div>板块 其他IT设备</div>
+    <div>建议仓位 0%</div>
     
   </div>
+  <div class="signal">宽口径 ｜ V2未过 ｜ 基本面40 ｜ Serenity 命中</div>
   <div class="note">强势但防追高，等回踩或突破确认。</div>
 </section>
 
 <section class="card">
   <div class="top">
-    <div><div class="name">共达电声</div><div class="code">002655</div></div>
-    <div class="price pos">38.8<br><span>3.91%</span></div>
+    <div><div class="name">共达电声</div><div class="code">002655</div><span class='badge level-d'>D级 · 放弃</span></div>
+    <div class="price neg">36.77<br><span>-5.23%</span></div>
   </div>
   <div class="kv">
-    <div>MA20 42.05</div><div>MA60 35.63</div>
-    <div>RS20 -</div><div>RSI 43.17</div>
+    <div>MA20 42.2</div><div>MA60 35.89</div>
+    <div>RS20 -</div><div>RSI 30.32</div>
     <div>板块 消费电子组件</div>
+    <div>建议仓位 0%</div>
     
   </div>
+  <div class="signal">宽口径 ｜ V2未过 ｜ 基本面54 ｜ Serenity 未命中</div>
   <div class="note">高波动观察，等重新站回关键均线。</div>
 </section>
 </main></body></html>
